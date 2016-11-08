@@ -32,15 +32,46 @@
 <div class="jumbotron text-center">
     <h1>Codecool Shop</h1>
 </div>
-
-<div>
-    <h1>hello</h1>
+<div class='box'>
+    <h4>Search</h4>
+    <h3>Category</h3>
+    <div>
+        <input id="features1" name="features" type="checkbox" value="TABLET" />
+        <input name="_features" type="hidden" value="on" />
+        <label for="features1">Tablet</label>
+    </div>
+    <div>
+        <input id="features1" name="features" type="checkbox" value="LAPTOP" />
+        <input name="_features" type="hidden" value="on" />
+        <label for="features1">Laptop</label>
+    </div>
+    <div>
+        <input id="features1" name="features" type="checkbox" value="MOBILE" />
+        <input name="_features" type="hidden" value="on" />
+        <label for="features1">Mobile</label>
+    </div>
+    <h3>Supplier</h3>
+        <div>
+            <input id="features1" name="features" type="checkbox" value="LENOVO" />
+            <input name="_features" type="hidden" value="on" />
+            <label for="features1" title="${category.description}">Lenovo</label>
+        </div>
+        <div>
+            <input id="features1" name="features" type="checkbox" value="SAMSUNG" />
+            <input name="_features" type="hidden" value="on" />
+            <label for="features1" title="${category.description}">Samsung</label>
+        </div>
+        <div>
+            <input id="features1" name="features" type="checkbox" value="AMAZON" />
+            <input name="_features" type="hidden" value="on" />
+            <label for="features1"  title="${category.description}">Amazon</label>
+        </div>
+    <br/>
+    <input type="button" value="Search"/>
 </div>
 
+
 <div class="container">
-    <div class="well well-sm">
-        <strong th:text="${category.name}">Category Title</strong>
-    </div>
 
     <div id="products" class="row list-group">
 
