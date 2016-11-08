@@ -35,7 +35,7 @@
 
 <div class="container">
     <div class="well well-sm">
-        <strong th:text="${category.name}">Category Title</strong>
+        <strong th:text="${'All products'}" th:unless="${not'asd'}">All products</strong> <!-- th:unless="${not selected_category.name}"> -->
     </div>
 
     <div id="products" class="row list-group">
