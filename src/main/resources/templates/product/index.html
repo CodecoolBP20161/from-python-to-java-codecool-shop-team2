@@ -32,10 +32,25 @@
 <div class="jumbotron text-center">
     <h1>Codecool Shop</h1>
 </div>
+<div class='box'>
+    <h4>Search</h4>
+    <h3>Category</h3>
+    <div>
+        <a href='/category/1'>Tablet</a><br/> <!--<a href='/?id=1' th:attr="name ='category'">-->
+        <a href='/category/2'>Laptop</a>
+    <h3>Supplier</h3>
+        <a href='/supplier/2'>Lenovo</a><br/>
+        <a href='/supplier/3'>Samsung</a><br/>
+        <a href='/supplier/1'>Amazon</a>
+    </div>
+
+</div>
+
 
 <div class="container">
+
     <div class="well well-sm">
-        <strong th:text="${category.name}">Category Title</strong>
+        <!-- <strong th:text="${stringValueName}">Category Title</strong> th:unless="${not selected_category.name}"> -->
     </div>
 
     <div id="products" class="row list-group">
