@@ -59,4 +59,11 @@ public class ProductController {
         }
 
     }
+
+    public static String getProducts(Request req, Response res) {
+        System.out.println(req.params(":id"));
+        res.redirect("/");
+        return null;
+
+    }
 }
