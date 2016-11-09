@@ -35,29 +35,25 @@ public class ProductController {
        }
 
 
-        if (valueFromHtml == 0 && stringValueName==null) {
+        if (valueFromHtml == 0) {
 
             params.put("categories", productCategoryDataStore.getAll());
             params.put("products", productDataStore.getAll());
 
-            System.out.println("2");
-
             return new ModelAndView(params, "product/index");
 
         } else {
-            System.out.println("1");
 
-            if (stringValueName == "category") {
+            if (stringValueName.equals("category") ) {
 
                 params.put("selected_category", productCategoryDataStore.find(valueFromHtml));
                 params.put("products", productDataStore.getBy(productCategoryDataStore.find(valueFromHtml)));
-                System.out.println("belement a category if-be");
                 return new ModelAndView(params, "product/index");
 
             } else {
-
                 params.put("selected_category", supplierDataStore.find(valueFromHtml));
                 params.put("products", productDataStore.getBy(supplierDataStore.find(valueFromHtml)));
+
                 return new ModelAndView(params, "product/index");
             }
         }
