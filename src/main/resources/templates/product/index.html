@@ -36,22 +36,21 @@
     <h4>Search</h4>
     <h3>Category</h3>
     <div>
-        <a href='/?id=1'>Tablet</a><br/>
-        <a href=''>Laptop</a>
+        <a href='/category/1'>Tablet</a><br/> <!--<a href='/?id=1' th:attr="name ='category'">-->
+        <a href='/category/2'>Laptop</a>
     <h3>Supplier</h3>
-        <a href=''>Lenovo</a><br/>
-        <a href=''>Samsung</a><br/>
-        <a href=''>Amazon</a>
+        <a href='/supplier/2'>Lenovo</a><br/>
+        <a href='/supplier/3'>Samsung</a><br/>
+        <a href='/supplier/1'>Amazon</a>
     </div>
-    <br/>
-    <input type="button" value="Search"/>
+
 </div>
 
 
 <div class="container">
 
     <div class="well well-sm">
-            <strong th:text="${'All products'}" th:unless="${not'asd'}">All products</strong> <!-- th:unless="${not selected_category.name}"> -->
+        <!-- <strong th:text="${stringValueName}">Category Title</strong> th:unless="${not selected_category.name}"> -->
     </div>
 
     <div id="products" class="row list-group">
