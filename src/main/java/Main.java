@@ -23,12 +23,11 @@ public class Main {
 
         populateData();
 
+
         get("/", ProductController::renderProducts, new ThymeleafTemplateEngine());
-        get("/hello", (req, res) -> "Hello World");
         get("/:name/:id", ProductController::renderProducts, new ThymeleafTemplateEngine());
-
+        post("/add/:id", ProductController::getProducts);
     }
-
     public static void populateData() {
         ;
         ProductDao productDataStore = ProductDaoMem.getInstance();
