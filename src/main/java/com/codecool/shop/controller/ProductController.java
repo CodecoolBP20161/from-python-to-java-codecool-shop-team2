@@ -6,6 +6,8 @@ import com.codecool.shop.dao.SupplierDao;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
 import com.codecool.shop.dao.implementation.SupplierDaoMem;
+import com.codecool.shop.model.LineItem;
+import com.codecool.shop.model.Product;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -61,7 +63,11 @@ public class ProductController {
     }
 
     public static String getProducts(Request req, Response res) {
-        System.out.println(req.params(":id"));
+        Integer id = Integer.parseInt(req.params(":id"));
+        ProductDao productDataStore = ProductDaoMem.getInstance();
+        Product result = productDataStore.find(id);
+        LineItem item = new LineItem(result);
+        System.out.println(item);
         res.redirect("/");
         return null;
 
