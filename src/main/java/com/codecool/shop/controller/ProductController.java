@@ -1,8 +1,10 @@
 package com.codecool.shop.controller;
 
+import com.codecool.shop.dao.OrderDao;
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.dao.SupplierDao;
+import com.codecool.shop.dao.implementation.OrderDaoMem;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
 import com.codecool.shop.dao.implementation.SupplierDaoMem;
@@ -66,8 +68,10 @@ public class ProductController {
         Integer id = Integer.parseInt(req.params(":id"));
         ProductDao productDataStore = ProductDaoMem.getInstance();
         Product result = productDataStore.find(id);
-        LineItem item = new LineItem(result);
-        System.out.println(item);
+        OrderDao orderDataStore = OrderDaoMem.getInstance();
+        orderDataStore.addItem(new LineItem(result));
+        System.out.println(orderDataStore.getList());
+        System.out.println("All quantity: "+orderDataStore.getAllQuantity());
         res.redirect("/");
         return null;
 
