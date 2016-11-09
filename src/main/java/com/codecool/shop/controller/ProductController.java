@@ -2,9 +2,10 @@ package com.codecool.shop.controller;
 
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.ProductDao;
+import com.codecool.shop.dao.SupplierDao;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
-import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
+import com.codecool.shop.dao.implementation.SupplierDaoMem;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -12,55 +13,54 @@ import spark.Response;
 import java.util.HashMap;
 import java.util.Map;
 
+//import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
+
 public class ProductController {
 
     public static ModelAndView renderProducts(Request req, Response res) {
         ProductDao productDataStore = ProductDaoMem.getInstance();
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
-
-
-
-
-        Integer htmlId = 0;
-
+        SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
 
         Map params = new HashMap<>();
+        int valueFromHtml;
+        String stringValueFromHtml = req.params(":id");
+        String stringValueName = req.params(":name");
 
-        while (true) {
-
-            //String valueFromHtml;
-            //Integer htmlId;
-            //valueFromHtml = req.queryParams("id");
-            //System.out.println(valueFromHtml);
-
-            //int asd = valueFromHtml.intValue();
+        //create int from the string one way or another:
+       if (stringValueFromHtml!= null){
+           valueFromHtml = Integer.parseInt(stringValueFromHtml);
+       }else{
+           valueFromHtml = 0;
+       }
 
 
+        if (valueFromHtml == 0 && stringValueName==null) {
 
+            params.put("categories", productCategoryDataStore.getAll());
+            params.put("products", productDataStore.getAll());
 
-            if (htmlId == 0) {
+            System.out.println("2");
 
-                params.put("categories", productCategoryDataStore.getAll());
-                params.put("products", productDataStore.getAll());
+            return new ModelAndView(params, "product/index");
 
+        } else {
+            System.out.println("1");
+
+            if (stringValueName == "category") {
+
+                params.put("selected_category", productCategoryDataStore.find(valueFromHtml));
+                params.put("products", productDataStore.getBy(productCategoryDataStore.find(valueFromHtml)));
+                System.out.println("belement a category if-be");
                 return new ModelAndView(params, "product/index");
+
             } else {
-                params.put("selected_category", productCategoryDataStore.find(htmlId));
-                params.put("products", productDataStore.getBy(productCategoryDataStore.find(htmlId)));
 
+                params.put("selected_category", supplierDataStore.find(valueFromHtml));
+                params.put("products", productDataStore.getBy(supplierDataStore.find(valueFromHtml)));
                 return new ModelAndView(params, "product/index");
-
             }
-
-
         }
-
-
-
-
-        //params.put("selected_category", productCategoryDataStore.find(2));
-        //params.put("products", productDataStore.getBy(productCategoryDataStore.find(2)));
-
 
     }
 }
