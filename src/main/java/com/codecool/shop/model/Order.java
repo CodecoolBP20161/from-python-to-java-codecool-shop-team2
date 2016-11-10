@@ -7,7 +7,7 @@ public class Order {
 
     public void addItem(LineItem newItem) {
         for (LineItem lineItem:DATA){
-            if (lineItem.getProductName().equals(newItem.getProductName())){
+            if (lineItem.getProductId().equals(newItem.getProductId())){
                 int q = lineItem.getQuantity();
                 lineItem.setQuantity(++q);
                 return;
