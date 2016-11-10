@@ -15,7 +15,7 @@ input[type=number] {
 }
 
 p {
-    width: 300px;
+    width: auto;
     color: #4d4b4a;
     font-size: 18px;
 }
@@ -29,7 +29,7 @@ div p {
     color: #ff8d71;
     padding-bottom: 10px;
     padding-top: 0px;
-    margin-bottom 10px;
+    margin-bottom: 10px;
 }
 
 .btn:hover {
