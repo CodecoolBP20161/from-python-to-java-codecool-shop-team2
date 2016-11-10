@@ -6,24 +6,24 @@ import com.codecool.shop.dao.SupplierDao;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
 import com.codecool.shop.dao.implementation.SupplierDaoMem;
-import com.codecool.shop.model.LineItem;
 import com.codecool.shop.model.Order;
 import com.codecool.shop.model.Product;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
+import com.codecool.shop.model.LineItem;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ProductController {
-
+//import com.codecool.shop.model.LineItem;
     public static ModelAndView renderProducts(Request req, Response res) {
         ProductDao productDataStore = ProductDaoMem.getInstance();
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
         SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
 
         Map params = new HashMap<>();
-//        params.put("cart", req.session().attribute("cart"));
+
         int valueFromHtml;
         String stringValueFromHtml = req.params(":id");
         String stringValueName = req.params(":name");
@@ -41,23 +41,31 @@ public class ProductController {
             params.put("categories", productCategoryDataStore.getAll());
             params.put("products", productDataStore.getAll());
 
-            return new ModelAndView(params, "product/index");
-
         } else {
 
             if (stringValueName.equals("category") ) {
 
                 params.put("selected_category", productCategoryDataStore.find(valueFromHtml));
                 params.put("products", productDataStore.getBy(productCategoryDataStore.find(valueFromHtml)));
-                return new ModelAndView(params, "product/index");
 
             } else {
                 params.put("selected_category", supplierDataStore.find(valueFromHtml));
                 params.put("products", productDataStore.getBy(supplierDataStore.find(valueFromHtml)));
-
-                return new ModelAndView(params, "product/index");
             }
         }
+
+
+        System.out.println("new: "+req.session().isNew());
+        if (req.session().isNew()) {
+            Order orderDataStore = new Order();
+            req.session().attribute("order", orderDataStore);
+            params.put("allQuantity", orderDataStore.getAllQuantity());
+        } else {
+            Order orderDataStore = req.session().attribute("order");
+            params.put("allQuantity", orderDataStore.getAllQuantity());
+        }
+        System.out.println(params);
+        return new ModelAndView(params, "product/index");
 
     }
 
@@ -65,13 +73,8 @@ public class ProductController {
         Integer id = Integer.parseInt(req.params(":id"));
         ProductDao productDataStore = ProductDaoMem.getInstance();
         Product result = productDataStore.find(id);
-        Order orderDataStore = Order.getInstance();
+        Order orderDataStore = req.session().attribute("order");
         orderDataStore.addItem(new LineItem(result));
-        System.out.println(orderDataStore.getList());
-        System.out.println("All quantity: "+orderDataStore.getAllQuantity());
-        System.out.println("All price: "+orderDataStore.getAllPrice());
-
-//        req.session().attribute("cart", 1);
         res.redirect("/");
         return null;
 
