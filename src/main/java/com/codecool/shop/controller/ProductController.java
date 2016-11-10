@@ -1,11 +1,15 @@
 package com.codecool.shop.controller;
 
+import com.codecool.shop.dao.OrderDao;
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.dao.SupplierDao;
+import com.codecool.shop.dao.implementation.OrderDaoMem;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
 import com.codecool.shop.dao.implementation.SupplierDaoMem;
+import com.codecool.shop.model.LineItem;
+import com.codecool.shop.model.Product;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -57,6 +61,20 @@ public class ProductController {
                 return new ModelAndView(params, "product/index");
             }
         }
+
+    }
+
+    public static String getProducts(Request req, Response res) {
+        Integer id = Integer.parseInt(req.params(":id"));
+        ProductDao productDataStore = ProductDaoMem.getInstance();
+        Product result = productDataStore.find(id);
+        OrderDao orderDataStore = OrderDaoMem.getInstance();
+        orderDataStore.addItem(new LineItem(result));
+        System.out.println(orderDataStore.getList());
+        System.out.println("All quantity: "+orderDataStore.getAllQuantity());
+        System.out.println("All price: "+orderDataStore.getAllPrice());
+        res.redirect("/");
+        return null;
 
     }
 }

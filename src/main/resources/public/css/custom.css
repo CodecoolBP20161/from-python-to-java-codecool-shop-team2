@@ -77,5 +77,69 @@ h4 {
 }
 
 a {
+    color: black;
+    text-decoration: none !important;
+}
+
+a:active {
+    color: orange;
+    font-weight: bold;
+    text-decoration: none !important;
+}
+
+a:hover {
+    color: orange;
+    font-weight: bold;
+    text-decoration: none !important;
+}
+
+
+.navbar{
+    height: 10px;
+    width: auto;
+    border-radius: 0;
+    background-color: black;
+    margin-top: -48px;
+}
+
+#cartbutton {
+    height: 35px;
+    width: 100px;
+    float: right;
+    margin-top: 5px;
+    margin-right: -3px;
+    border: #87ec25;
+    background-color: #87ec25;
+    color: white;
+}
+
+#cartpng {
+    width: 20px;
+    height: auto;
+}
+
+#itemplace {
+    z-index: -1;
+    height: 35px;
+    width: 40px;
+    float: right;
+    margin-top: 5px;
+    margin-right: 10px;
+    border: white;
+    border-radius: 5px;
+    background-color: white;
+    color: black;
+    text-align: center;
+}
+
+#numitem {
+    margin-top: 2px;
+}
+
+.activelink {
+    color: black;
+}
+
+.passivelink {
     color: orange;
 }
