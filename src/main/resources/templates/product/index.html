@@ -36,20 +36,22 @@
     <div id="itemplace">
         <p id="numitem" th:text="${allQuantity}"></p>
     </div>
-    <a type="button" id="cartbutton" href="/review"><img src="/img/cart.png" id="cartpng"/>  CART</a>
+    <form action="/review">
+        <button type="submit" id="cartbutton"><img src="/img/cart.png" id="cartpng"/>  CART</button>
+    </form>
 
 </div>
     <h1>Codecool Shop</h1>
 </div>
 
 <div class='box'>
-    <h4>Search</h4>
+    <h5>Search</h5>
     <a href='/'>All product</a><br/>
-    <h3>Category</h3>
+    <h4>Category</h4>
     <div>
         <a href='/category/1'>Tablet</a><br/>
         <a href='/category/2'>Laptop</a>
-    <h3>Supplier</h3>
+    <h4>Supplier</h4>
         <a href='/supplier/2'>Lenovo</a><br/>
         <a href='/supplier/3'>Samsung</a><br/>
         <a href='/supplier/1'>Amazon</a>
