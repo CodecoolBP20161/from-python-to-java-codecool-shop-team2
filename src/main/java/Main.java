@@ -26,7 +26,7 @@ public class Main {
 
         get("/", ProductController::renderProducts, new ThymeleafTemplateEngine());
         get("/:name/:id", ProductController::renderProducts, new ThymeleafTemplateEngine());
-        post("/add/:id", ProductController::getProducts);
+        post("/add/:id", ProductController::addProducts);
         get("/review", ProductController::renderReview, new ThymeleafTemplateEngine());
     }
     public static void populateData() {
