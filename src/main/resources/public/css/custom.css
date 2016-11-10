@@ -71,6 +71,7 @@
 
 .container {
     z-index: 50;
+
     float: left;
 }
 
@@ -100,8 +101,13 @@ a:hover {
     height: 10px;
     width: auto;
     border-radius: 0;
-    background-color: black;
-    margin-top: -48px;
+    background-color: #201d1d;
+    margin-top: auto;
+    position: relative;
+}
+
+#cart {
+    margin-top: -50px;
 }
 
 #cartbutton {
@@ -110,9 +116,26 @@ a:hover {
     float: right;
     margin-top: 5px;
     margin-right: -3px;
-    border: #87ec25;
-    background-color: #87ec25;
+    border: darkorange;
+    background-color: darkorange;
     color: white;
+    display: inline-block;
+    outline: none !important;
+}
+
+#logo {
+    float: left;
+    margin-top: 5px;
+    margin-left: 20px;
+    display: inline-block;
+}
+
+p.logotitle{
+    color: white;
+    font-size: 15px;
+    margin-top: 18px;
+    margin-left: 10px;
+    display: inline-block;
 }
 
 #cartpng {
@@ -135,7 +158,8 @@ a:hover {
 }
 
 #numitem {
-    margin-top: 2px;
+    margin-top: 5px;
+    font-size: 18px;
 }
 
 .activelink {
@@ -144,4 +168,39 @@ a:hover {
 
 .passivelink {
     color: orange;
+}
+
+.addbutton {
+    margin-left: 50px;
+    margin-top: auto;
+    height: 35px;
+    width: 100px;
+    border-radius: 5px;
+    border-color: darkorange;
+    background-color: darkorange;
+    color: white;
+
+    outline: none !important;
+}
+
+.addbuttonshadow {
+    z-index: -50;
+    margin-left: 53px;
+    margin-top: -33px;
+    height: 35px;
+    width: 100px;
+    border-radius: 5px;
+    background-color: #f94204;
+
+}
+
+.footer {
+    height: 20px;
+    width: auto;
+    background: white;
+}
+#navbartext {
+    margin-top: 3px;
+    font-size: 10px;
+    color:grey;
 }
