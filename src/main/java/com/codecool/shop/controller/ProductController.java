@@ -99,8 +99,7 @@ public class ProductController {
     public static String editProducts(Request req, Response res) {
         Order orderDataStore = req.session().attribute("order");
         List<String> editAttr = new ArrayList<>(Arrays.asList(req.params(":lineItem").split("_")));
-        System.out.println(editAttr);
-//        req.session().attribute("order", orderDataStore.editItem(orderDataStore, editAttr));
+        req.session().attribute("order", orderDataStore.editItem(editAttr));
         res.redirect("/review");
         return null;
     }
