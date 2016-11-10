@@ -34,15 +34,15 @@
 <div class="jumbotron text-center">
 <div class="navbar">
     <div id="itemplace">
-        <p id="numitem">0</p>
+        <!--<p id="numitem" th:text="${OrderDao.getProducts()}"></p>-->
     </div>
     <button type="submit" id="cartbutton"><img src="/img/cart.png" id="cartpng"/>  CART</button>
 
 </div>
     <h1>Codecool Shop</h1>
 </div>
-<div class='box'>
 
+<div class='box'>
     <h4>Search</h4>
     <a href='/'>All product</a><br/>
     <h3>Category</h3>
@@ -59,12 +59,13 @@
 
 
 <div class="container">
-
+    <!--
     <div class="well well-sm">
-        <!-- <strong th:text="${stringValueName}">Category Title</strong> th:unless="${not selected_category.name}"> -->
+         <strong th:text="${stringValueName}">Category Title</strong> th:unless="${not selected_category.name}">
     </div>
+    -->
 
-    <div id="products" class="row list-group">
+    <div id="products" class="row ">
 
         <div class="item col-xs-4 col-lg-4" th:each="prod,iterStat : ${products}">
             <div class="thumbnail">
