@@ -24,15 +24,15 @@ public class OrderDaoMem implements OrderDao{
 
 
     @Override
-    public void addItem(LineItem item) {
+    public void addItem(LineItem newItem) {
         for (LineItem lineItem:DATA){
-            if (lineItem.getProductName().equals(item.getProductName())){
+            if (lineItem.getProductName().equals(newItem.getProductName())){
                 int q = lineItem.getQuantity();
-                lineItem.setQuantity(q++);
-                return;
+                lineItem.setQuantity(++q);
+                   return;
             }
         }
-        DATA.add(item);
+        DATA.add(newItem);
     }
 
     @Override
@@ -44,13 +44,19 @@ public class OrderDaoMem implements OrderDao{
     public Integer getAllQuantity () {
         Integer res = 0;
         for (LineItem lineItem:DATA){
+            System.out.println("lineItem quantity: "+lineItem.getQuantity());
             res+=lineItem.getQuantity();
         }
         return res;
     }
 
     @Override
-    public Integer getAllPrice() {
-        return null;
+    public float getAllPrice() {
+        float res = 0;
+        for (LineItem lineItem:DATA){
+            System.out.println("lineItem Subprice: "+lineItem.getSubTotalPrice());
+            res+=lineItem.getSubTotalPrice();
+        }
+        return res;
     }
 }
