@@ -76,4 +76,16 @@ public class ProductController {
         return null;
 
     }
+
+    public static ModelAndView renderReview(Request req, Response res) {
+        float price = Order.getAllPrice();
+        Order orderDataStore = Order.getInstance();
+        Map params = new HashMap<>();
+        params.put("order", orderDataStore.getList());
+        params.put("price", price);
+
+
+
+        return new ModelAndView(params, "product/review");
+    }
 }

@@ -7,7 +7,7 @@
 
     <title>Codecool Shop</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
 
     <!-- Latest compiled and minified Jquery -->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
@@ -37,23 +37,20 @@
 <div class="container">
     <h1>Shopping cart summary</h1>
     <div class="quantityForm">
-        <form>
-            <p class="inline">Lenovo tablet XY 100</p>
-            <input class="inline"type="number" name="quantity" min="1" step="1" value="1">
-            <button type="button" class="btn btn-link inline pull-right">Remove</button>
-            <p class="inline pull-right">subtotal: <strong>$499.99</strong></p>
-        </form>
-        <form>
-            <p class="inline">Samsung Galaxy S8</p>
-            <input class="inline"type="number" name="quantity" min="1" step="1" value="1">
-            <button type="button" class="btn btn-link inline pull-right">Remove</button>
-            <p class="inline pull-right">subtotal: <strong>$899.99</strong></p>
-        </form>
+        <div th:each="ord,iterStat : ${order}">
+            <form>
+                <p class="inline" th:text="${ord.getProductName()}">Lenovo tablet XY 100</p>
+                <input class="inline" type="number" name="quantity" min="1" step="1" th:value="${ord.getQuantity()}"/>
+                <button type="button" class="btn btn-link inline pull-right">Remove</button>
+                <p class="inline pull-right">subtotal: <strong th:text="${ord.getSubTotalPrice()}">$499.99</strong></p>
+            </form>
+        </div>
     </div>
 
 
+
     <div>
-        <p class="inline">Total price: $1200.00</p>
+        <p class="inline">Total price: <strong th:text="${price}">$1200.00</strong></p>
         <button class="btn-continue pull-right" style="vertical-align:middle"><span>Continue </span></button>
     </div>
 </div>

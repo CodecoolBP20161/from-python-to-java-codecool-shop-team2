@@ -27,9 +27,10 @@ public class Main {
         get("/", ProductController::renderProducts, new ThymeleafTemplateEngine());
         get("/:name/:id", ProductController::renderProducts, new ThymeleafTemplateEngine());
         post("/add/:id", ProductController::getProducts);
+        get("/review", ProductController::renderReview, new ThymeleafTemplateEngine());
     }
     public static void populateData() {
-        ;
+
         ProductDao productDataStore = ProductDaoMem.getInstance();
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
         SupplierDao supplierDataStore = SupplierDaoMem.getInstance();

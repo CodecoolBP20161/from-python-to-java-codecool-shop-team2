@@ -43,7 +43,7 @@ public class Order {
         return res;
     }
 
-    public float getAllPrice() {
+    public static float getAllPrice() {
         float res = 0;
         for (LineItem lineItem:DATA){
             System.out.println("lineItem Subprice: "+lineItem.getSubTotalPrice());
