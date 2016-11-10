@@ -30,7 +30,10 @@ public class Order {
                 } else {
                     item.setQuantity(--q);
                 }
-//                System.out.println(item.getQuantity());
+                if (item.getQuantity()<1) {
+                    this.getList().remove(this.getList().indexOf(item));
+                    break;
+                }
             }
         }
         return this;
