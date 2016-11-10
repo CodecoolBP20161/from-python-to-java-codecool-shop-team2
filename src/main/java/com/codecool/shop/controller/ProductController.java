@@ -72,6 +72,7 @@ public class ProductController {
         orderDataStore.addItem(new LineItem(result));
         System.out.println(orderDataStore.getList());
         System.out.println("All quantity: "+orderDataStore.getAllQuantity());
+        System.out.println("All price: "+orderDataStore.getAllPrice());
         res.redirect("/");
         return null;
 

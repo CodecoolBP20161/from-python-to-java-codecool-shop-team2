@@ -7,5 +7,5 @@ public interface OrderDao {
     void addItem(LineItem item);
     List getList();
     Integer getAllQuantity();
-    Integer getAllPrice();
+    float getAllPrice();
 }
