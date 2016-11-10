@@ -28,7 +28,7 @@ public class Order {
         return res;
     }
 
-    public static float getAllPrice() {
+    public float getAllPrice() {
         float res = 0;
         for (LineItem lineItem:DATA){
             res+=lineItem.getSubTotalPrice();

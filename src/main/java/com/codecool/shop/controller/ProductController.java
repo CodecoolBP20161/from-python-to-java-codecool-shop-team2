@@ -81,8 +81,8 @@ public class ProductController {
     }
 
     public static ModelAndView renderReview(Request req, Response res) {
-        float price = Order.getAllPrice();
-        Order orderDataStore = Order.getInstance();
+        Order orderDataStore = req.session().attribute("order");
+        float price = orderDataStore.getAllPrice();
         Map params = new HashMap<>();
         params.put("order", orderDataStore.getList());
         params.put("price", price);
