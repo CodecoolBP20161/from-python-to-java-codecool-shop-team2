@@ -31,8 +31,17 @@
 </head>
 <body>
 
-<div class="jumbotron text-center">
-    <h1>Codecool Shop</h1>
+<div class="navbar">
+    <div>
+        <img src="/img/logo.png" id="logo"/>
+        <p class="logotitle">Shop</p>
+    </div>
+    <div id="cart">
+        <form action="/">
+            <button type="submit" id="cartbutton">BACK</button>
+        </form>
+    </div>
+
 </div>
 
 <div class="container">
@@ -41,11 +50,11 @@
         <div th:each="ord,iterStat : ${order}">
             <p class="inline" th:text="${ord.getProductName()}">name</p>
             <form class="inline" action="/edit"  method="post" th:action="'/edit/'+ ${ord.getProductId()}+'_'+${ord.getQuantity()}+'_-'">
-                <button type="submit" class="btn btn-link inline">-</button>
+                <button type="submit" class="math">-</button>
             </form>
             <p class="inline" th:text="${ord.getQuantity()}">price</p>
             <form class="inline" action="/edit"  method="post" th:action="'/edit/'+ ${ord.getProductId()}+'_'+${ord.getQuantity()}+'_+'">
-                <button type="submit" class="btn btn-link inline">+</button>
+                <button type="submit" class="math">+</button>
             </form>
             <!--<button type="button" class="btn btn-link inline pull-right">Remove</button>-->
             <p class="inline pull-right">subtotal: <strong th:text="${ord.getSubTotalPrice()}+' $'">totalPrice</strong></p>
@@ -55,9 +64,16 @@
 
 
     <div>
-        <p class="inline">Total price: <strong th:text="${price}+' $'"></strong></p>
+        <div id = "totalborder">
+            <p class="inline" id = "price">Total price: <strong th:text="${price}+' $'"></strong></p>
+        </div>
+        <br/><br/><br/>
         <button class="btn-continue pull-right" style="vertical-align:middle"><span>Continue </span></button>
     </div>
+</div>
+
+<div class="footer navbar-fixed-bottom text-center">
+    <p id= "navbartext">2016 | t2 | All rights reserved</p>
 </div>
 
 

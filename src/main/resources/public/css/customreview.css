@@ -94,3 +94,85 @@ div p {
     opacity: 1;
     right: 0;
 }
+
+.navbar{
+    height: 10px;
+    width: auto;
+    border-radius: 0;
+    background-color: #201d1d;
+    margin-top: auto;
+    position: relative;
+}
+
+#cart {
+    margin-top: -50px;
+}
+
+#cartbutton {
+    height: 35px;
+    width: 100px;
+    float: right;
+    margin-top: 5px;
+    margin-right: 10px;
+    border: darkorange;
+    border-radius : 5px;
+    background-color: darkorange;
+    color: white;
+    display: inline-block;
+    outline: none !important;
+}
+
+#logo {
+    float: left;
+    margin-top: 5px;
+    margin-left: 20px;
+    display: inline-block;
+}
+
+p.logotitle{
+    color: white;
+    font-size: 15px;
+    margin-top: 18px;
+    margin-left: 10px;
+    display: inline-block;
+}
+
+.footer {
+    height: 20px;
+    width: auto;
+    background: white;
+}
+#navbartext {
+    margin-top: 3px;
+    font-size: 10px;
+    color:grey;
+}
+
+.math{
+    height: 20px;
+    width: 20px;
+    border-width: 1px;
+    border-radius: 5px;
+    border-color: darkgrey;
+    background-color: white;
+    outline: none ! important;
+
+}
+
+#totalborder{
+    height:50px;
+    width:200px;
+    border-width: 1px;
+    border-color: orange;
+    background-color: orange;
+    border-radius: 3px;
+    float: right;
+    text-align:right;
+}
+
+#price{
+    margin-top: 10px;
+    color: white;
+    text-align:right;
+    margin-right:10px;
+}
