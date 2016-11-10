@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ProductController {
-//import com.codecool.shop.model.LineItem;
+
     public static ModelAndView renderProducts(Request req, Response res) {
         ProductDao productDataStore = ProductDaoMem.getInstance();
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
@@ -55,7 +55,6 @@ public class ProductController {
         }
 
 
-        System.out.println("new: "+req.session().isNew());
         if (req.session().isNew()) {
             Order orderDataStore = new Order();
             req.session().attribute("order", orderDataStore);
@@ -64,12 +63,11 @@ public class ProductController {
             Order orderDataStore = req.session().attribute("order");
             params.put("allQuantity", orderDataStore.getAllQuantity());
         }
-        System.out.println(params);
         return new ModelAndView(params, "product/index");
 
     }
 
-    public static String getProducts(Request req, Response res) {
+    public static String addProducts(Request req, Response res) {
         Integer id = Integer.parseInt(req.params(":id"));
         ProductDao productDataStore = ProductDaoMem.getInstance();
         Product result = productDataStore.find(id);
@@ -81,13 +79,19 @@ public class ProductController {
     }
 
     public static ModelAndView renderReview(Request req, Response res) {
+
+
+        if (req.session().isNew()){
+            Order orderDataStore = new Order();
+            req.session().attribute("order", orderDataStore);
+            res.redirect("/");
+        }
+
         Order orderDataStore = req.session().attribute("order");
         float price = orderDataStore.getAllPrice();
         Map params = new HashMap<>();
         params.put("order", orderDataStore.getList());
         params.put("price", price);
-
-
 
         return new ModelAndView(params, "product/review");
     }
