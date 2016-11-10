@@ -28,7 +28,9 @@ public class Main {
         get("/:name/:id", ProductController::renderProducts, new ThymeleafTemplateEngine());
         post("/add/:id", ProductController::addProducts);
         get("/review", ProductController::renderReview, new ThymeleafTemplateEngine());
+        post("/edit/:lineItem", ProductController::editProducts);
     }
+
     public static void populateData() {
 
         ProductDao productDataStore = ProductDaoMem.getInstance();
