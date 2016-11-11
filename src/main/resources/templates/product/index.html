@@ -70,8 +70,9 @@
 <div class="container">
 
     <div id="products" class="row ">
+
         <!--display every item on the site, based on the given data from the server-->
-        <div class="item col-xs-4 col-lg-4" th:each="prod,iterStat : ${products}">
+        <div class="item col-xs-12 col-sm-6 col-lg-4" th:each="prod,iterStat : ${products}">
             <div class="thumbnail">
                 <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" th:attr="src='/img/product_' + ${prod.id} + '.jpg'" alt="" />
                 <div class="caption">
