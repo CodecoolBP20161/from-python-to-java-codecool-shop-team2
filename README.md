@@ -9,7 +9,7 @@ From Python To Java, 2nd TW week project
 3. Thymeleaf template engine
 4. HTML5, Bootstrap, jQuery
 
-_If you need more info, look at the pom.xml_
+_If you need more info, look at the pom.xml!_
 
 
 # Usage
