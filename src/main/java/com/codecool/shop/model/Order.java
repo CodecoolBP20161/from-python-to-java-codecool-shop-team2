@@ -5,9 +5,10 @@ import java.util.List;
 public class Order {
     private  List<LineItem> DATA = new ArrayList<>();
 
+
     public void addItem(LineItem newItem) {
         for (LineItem lineItem:DATA){
-            if (lineItem.getProductName().equals(newItem.getProductName())){
+            if (lineItem.getProductId().equals(newItem.getProductId())){
                 int q = lineItem.getQuantity();
                 lineItem.setQuantity(++q);
                 return;
@@ -16,7 +17,30 @@ public class Order {
         DATA.add(newItem);
     }
 
-    public List getList() {
+    public Order editItem(List editAttr) {
+
+        Integer newProdId = Integer.parseInt(editAttr.get(0).toString());
+        Integer q = Integer.parseInt(editAttr.get(1).toString());
+        Character setVal = editAttr.get(2).toString().charAt(0);
+
+        for (LineItem item : this.getList()) {
+            if (item.getProductId().equals(newProdId)) {
+                if (setVal == '+') {
+                    item.setQuantity(++q);
+                } else {
+                    item.setQuantity(--q);
+                }
+                if (item.getQuantity()<1) {
+                    this.getList().remove(this.getList().indexOf(item));
+                    break;
+                }
+            }
+        }
+        return this;
+    }
+
+
+    public List<LineItem> getList() {
         return DATA;
     }
 

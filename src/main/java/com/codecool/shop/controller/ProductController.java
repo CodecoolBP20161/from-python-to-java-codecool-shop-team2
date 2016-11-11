@@ -6,14 +6,14 @@ import com.codecool.shop.dao.SupplierDao;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
 import com.codecool.shop.dao.implementation.SupplierDaoMem;
+import com.codecool.shop.model.LineItem;
 import com.codecool.shop.model.Order;
 import com.codecool.shop.model.Product;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
-import com.codecool.shop.model.LineItem;
-import java.util.HashMap;
-import java.util.Map;
+
+import java.util.*;
 
 public class ProductController {
 
@@ -94,5 +94,13 @@ public class ProductController {
         params.put("price", price);
 
         return new ModelAndView(params, "product/review");
+    }
+
+    public static String editProducts(Request req, Response res) {
+        Order orderDataStore = req.session().attribute("order");
+        List<String> editAttr = new ArrayList<>(Arrays.asList(req.params(":lineItem").split("_")));
+        req.session().attribute("order", orderDataStore.editItem(editAttr));
+        res.redirect("/review");
+        return null;
     }
 }
