@@ -95,6 +95,15 @@ div p {
     right: 0;
 }
 
+.modalButton {
+    color: white;
+    margin-bottom: 0px;
+}
+
+.modalButton:hover {
+    color: white;
+}
+
 .navbar{
     height: 10px;
     width: auto;
@@ -170,9 +179,20 @@ p.logotitle{
     text-align:right;
 }
 
+#modalBody {
+    color: white;
+}
+
 #price{
     margin-top: 10px;
     color: white;
     text-align:right;
     margin-right:10px;
+}
+
+@media only screen and (min-width: 150px) and (max-width: 600px)
+{
+    h1 {
+        text-align: center;
+    }
 }
