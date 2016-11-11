@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Codecool" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Codecool Shop</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
+
+    <!-- Latest compiled and minified Jquery -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous" />
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="/css/customreview.css" />
+    <script src="/js/style.js"/>
+</head>
+<body>
+
+<div class="navbar">
+    <div>
+        <img src="/img/logo.png" id="logo"/>
+        <p class="logotitle">Shop</p>
+    </div>
+    <div id="cart">
+        <form action="/">
+            <button type="submit" id="cartbutton">BACK</button>
+        </form>
+    </div>
+
+</div>
+
+<!--display the selected items on the review page, based on the given data from the server-->
+<div class="container">
+    <div class="row">
+        <h1>Shopping cart summary</h1>
+        <div class="quantityForm">
+            <div th:each="ord,iterStat : ${order}">
+                <div class="col-xs-12 col-sm-5 col-md-4">
+                    <p class="inline" th:text="${ord.getProductName()}">name</p>
+                </div>
+                <div class="col-xs-6 col-sm-5 col-md-4">
+                    <form class="inline" action="/edit"  method="post" th:action="'/edit/'+ ${ord.getProductId()}+'_'+${ord.getQuantity()}+'_-'">
+                        <button type="submit" class="math">-</button>
+                    </form>
+                    <p class="inline" th:text="${ord.getQuantity()}">price</p>
+                    <form class="inline" action="/edit"  method="post" th:action="'/edit/'+ ${ord.getProductId()}+'_'+${ord.getQuantity()}+'_+'">
+                        <button type="submit" class="math">+</button>
+                    </form>
+                </div>
+                <div class="col-xs-6 col-sm-2 col-md-4">
+                    <p class="inline pull-right">subtotal: <strong th:text="${ord.getSubTotalPrice()}+' $'">totalPrice</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div id="totalPriceDiv">
+        <!--display the total price, based on the given data from the server-->
+        <div id ="totalborder">
+            <p class="inline" id ="price">Total price: <strong th:text="${price}+' $'"></strong></p>
+        </div>
+        <br/><br/><br/>
+        <button class="btn-continue pull-right" style="vertical-align:middle" data-toggle="modal" data-target="#myModal"><span>Continue </span></button>
+
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title">Continue to checkout and pay in the future</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>This button will have further use, but now it's only here to say: </p>
+                        <p><strong>Thank you for your attention!</strong></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary modalButton" data-dismiss="modal">Close</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    </div>
+</div>
+
+<div class="footer navbar-fixed-bottom text-center">
+    <p id= "navbartext">2016 | t2 | All rights reserved</p>
+</div>
+
+
+
+</body>
+</html>

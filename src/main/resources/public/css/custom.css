@@ -35,7 +35,7 @@
 }
 .item.list-group-item .caption
 {
-    padding: 9px 9px 0px 9px;
+    padding: 2px 2px 0px 2px;
 }
 .item.list-group-item:nth-of-type(odd)
 {
@@ -59,4 +59,148 @@
 .list-group-item-text
 {
     margin: 0 0 11px;
+}
+
+.box {
+    width: 80px;
+    margin-left: 20px;
+    float: left;
+
+    font-family: sans-serif;
+}
+
+.container {
+    z-index: 50;
+
+    float: left;
+}
+
+h5 {
+    color: grey;
+}
+
+a {
+    color: black;
+    text-decoration: none !important;
+}
+
+a:active {
+    color: orange;
+    font-weight: bold;
+    text-decoration: none !important;
+}
+
+a:hover {
+    color: orange;
+    font-weight: bold;
+    text-decoration: none !important;
+}
+
+
+.navbar{
+    height: 10px;
+    width: auto;
+    border-radius: 0;
+    background-color: #201d1d;
+    margin-top: auto;
+    position: relative;
+}
+
+#cart {
+    margin-top: -50px;
+}
+
+#cartbutton {
+    height: 35px;
+    width: 100px;
+    float: right;
+    margin-top: 5px;
+    margin-right: -3px;
+    border: darkorange;
+    background-color: darkorange;
+    color: white;
+    display: inline-block;
+    outline: none !important;
+}
+
+#logo {
+    float: left;
+    margin-top: 5px;
+    margin-left: 20px;
+    display: inline-block;
+}
+
+p.logotitle{
+    color: white;
+    font-size: 15px;
+    margin-top: 18px;
+    margin-left: 10px;
+    display: inline-block;
+}
+
+#cartpng {
+    width: 20px;
+    height: auto;
+}
+
+#itemplace {
+    z-index: -1;
+    height: 35px;
+    width: 40px;
+    float: right;
+    margin-top: 5px;
+    margin-right: 10px;
+    border: white;
+    border-radius: 5px;
+    background-color: white;
+    color: black;
+    text-align: center;
+}
+
+#numitem {
+    margin-top: 5px;
+    font-size: 18px;
+}
+
+.activelink {
+    color: black;
+}
+
+.passivelink {
+    color: orange;
+}
+
+.addbutton {
+    margin-left: 50px;
+    margin-top: auto;
+    height: 35px;
+    width: 100px;
+    border-radius: 5px;
+    border-color: darkorange;
+    background-color: darkorange;
+    color: white;
+
+    outline: none !important;
+}
+
+.addbuttonshadow {
+    z-index: -50;
+    margin-left: 53px;
+    margin-top: -33px;
+    height: 35px;
+    width: 100px;
+    border-radius: 5px;
+    background-color: #f94204;
+
+}
+
+.footer {
+    height: 20px;
+    width: auto;
+    background: white;
+}
+#navbartext {
+    margin-top: 3px;
+    font-size: 10px;
+    color:grey;
 }

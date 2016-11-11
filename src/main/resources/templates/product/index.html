@@ -25,22 +25,54 @@
             crossorigin="anonymous"></script>
 
     <link rel="stylesheet" type="text/css" href="/css/custom.css" />
+    <script src="/js/style.js"/>
+
+
 </head>
 
 <body>
 
-<div class="jumbotron text-center">
-    <h1>Codecool Shop</h1>
-</div>
 
-<div class="container">
-    <div class="well well-sm">
-        <strong th:text="${category.name}">Category Title</strong>
+
+<div class="navbar">
+    <div>
+        <img src="/img/logo.png" id="logo"/>
+        <p class="logotitle">Shop</p>
+    </div>
+    <div id="cart">
+        <div id="itemplace">
+            <p id="numitem" th:text="${allQuantity}"></p>
+        </div>
+        <form action="/review">
+            <button type="submit" id="cartbutton"><img src="/img/cart.png" id="cartpng"/>  CART</button>
+        </form>
     </div>
 
-    <div id="products" class="row list-group">
+</div>
 
-        <div class="item col-xs-4 col-lg-4" th:each="prod,iterStat : ${products}">
+<!--if the user click a category or supplier, then only the given items visible-->
+<div class='box'>
+    <h5>Search</h5>
+    <a href='/'>All product</a><br/>
+    <h4>Category</h4>
+    <div>
+        <a href='/category/1'>Tablet</a><br/>
+        <a href='/category/2'>Laptop</a>
+    <h4>Supplier</h4>
+        <a href='/supplier/2'>Lenovo</a><br/>
+        <a href='/supplier/3'>Samsung</a><br/>
+        <a href='/supplier/1'>Amazon</a>
+    </div>
+
+</div>
+
+
+<div class="container">
+
+    <div id="products" class="row ">
+
+        <!--display every item on the site, based on the given data from the server-->
+        <div class="item col-xs-12 col-sm-6 col-lg-4" th:each="prod,iterStat : ${products}">
             <div class="thumbnail">
                 <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" th:attr="src='/img/product_' + ${prod.id} + '.jpg'" alt="" />
                 <div class="caption">
@@ -51,7 +83,11 @@
                             <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
                         </div>
                         <div class="col-xs-12 col-md-6">
-                            <a class="btn btn-success" href="#">Add to cart</a>
+                            <!--when the user clicked the button, the client send the data to the server-->
+                            <form action="/add"  method="post" th:action="'/add/'+ ${prod.id}">
+                                <button class="addbutton" href="#">Add to cart</button>
+                                <div class="addbuttonshadow"></div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -59,6 +95,10 @@
         </div>
     </div>
 
+</div>
+
+<div class="footer navbar-fixed-bottom text-center">
+    <p id= "navbartext">2016 | t2 | All rights reserved</p>
 </div>
 
 
