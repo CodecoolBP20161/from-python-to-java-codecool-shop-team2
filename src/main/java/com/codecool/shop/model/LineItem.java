@@ -8,20 +8,21 @@ public class LineItem {
     private float subTotalPrice;
 
     public LineItem (Product product) {
+        // this necessary for easier object setting
         this.product = product;
         this.setProductId();
         this.setProductName();
+        // default value
         this.setQuantity(1);
     }
 
-    public Integer getProductId() {
-        return productId;
-    }
+    public Integer getProductId() {return productId;}
 
     private void setProductId() {
         this.productId = this.product.id;
     }
 
+    // this used by review.html
     public String getProductName() {
         return productName;
     }
@@ -34,10 +35,7 @@ public class LineItem {
         return quantity;
     }
 
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-        this.setSubTotalPrice();
-    }
+    public void setQuantity(Integer quantity) {this.quantity = quantity;this.setSubTotalPrice();}
 
     public float getSubTotalPrice() {
         return subTotalPrice;
