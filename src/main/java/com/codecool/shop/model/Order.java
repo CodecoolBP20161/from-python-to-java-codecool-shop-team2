@@ -5,7 +5,8 @@ import java.util.List;
 public class Order {
     private  List<LineItem> DATA = new ArrayList<>();
 
-
+    // add just the new LineItem
+    // if item is exist, then increase the quantity
     public void addItem(LineItem newItem) {
         for (LineItem lineItem:DATA){
             if (lineItem.getProductId().equals(newItem.getProductId())){
@@ -17,21 +18,30 @@ public class Order {
         DATA.add(newItem);
     }
 
-    public Order editItem(List editAttr) {
+    // edit (or remove) an existing LineItem in Order's list, then give back the new Order object
+    public Order editItem(List editAttr) throws IllegalArgumentException {
 
+        // convert the list elements to the necessary type
         Integer newProdId = Integer.parseInt(editAttr.get(0).toString());
-        Integer q = Integer.parseInt(editAttr.get(1).toString());
-        Character setVal = editAttr.get(2).toString().charAt(0);
+        Integer quantity = Integer.parseInt(editAttr.get(1).toString());
+        Character setValue = editAttr.get(2).toString().charAt(0);
 
-        for (LineItem item : this.getList()) {
+        // get the exist Order list, then find the given LineItem
+        for (LineItem item : DATA) {
             if (item.getProductId().equals(newProdId)) {
-                if (setVal == '+') {
-                    item.setQuantity(++q);
-                } else {
-                    item.setQuantity(--q);
+                // modify the item based on setValue
+                if (setValue == '+') {
+                    item.setQuantity(++quantity);
                 }
+                else if (setValue == '-') {
+                    item.setQuantity(--quantity);
+                }
+                else {
+                    throw new IllegalArgumentException ("Value should be + or - at 3rd place of editAttr ArrayList");
+                }
+                // if the item's quantity 0, then remove from Order's list (after get the item's index in ArrayList
                 if (item.getQuantity()<1) {
-                    this.getList().remove(this.getList().indexOf(item));
+                    DATA.remove(DATA.indexOf(item));
                     break;
                 }
             }
@@ -39,11 +49,11 @@ public class Order {
         return this;
     }
 
-
     public List<LineItem> getList() {
         return DATA;
     }
 
+    // return all item quantity in the Order's list
     public Integer getAllQuantity () {
         Integer res = 0;
         for (LineItem lineItem:DATA){
@@ -52,6 +62,7 @@ public class Order {
         return res;
     }
 
+    // return all item price in the Order's list
     public float getAllPrice() {
         float res = 0;
         for (LineItem lineItem:DATA){

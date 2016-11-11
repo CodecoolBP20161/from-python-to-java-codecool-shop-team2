@@ -27,7 +27,7 @@
             crossorigin="anonymous"></script>
 
     <link rel="stylesheet" type="text/css" href="/css/customreview.css" />
-    <script src="/js/jquery.js"/>
+    <script src="/js/style.js"/>
 </head>
 <body>
 
@@ -44,31 +44,60 @@
 
 </div>
 
+<!--display the selected items on the review page, based on the given data from the server-->
 <div class="container">
-    <h1>Shopping cart summary</h1>
-    <div class="quantityForm">
-        <div th:each="ord,iterStat : ${order}">
-            <p class="inline" th:text="${ord.getProductName()}">name</p>
-            <form class="inline" action="/edit"  method="post" th:action="'/edit/'+ ${ord.getProductId()}+'_'+${ord.getQuantity()}+'_-'">
-                <button type="submit" class="math">-</button>
-            </form>
-            <p class="inline" th:text="${ord.getQuantity()}">price</p>
-            <form class="inline" action="/edit"  method="post" th:action="'/edit/'+ ${ord.getProductId()}+'_'+${ord.getQuantity()}+'_+'">
-                <button type="submit" class="math">+</button>
-            </form>
-            <!--<button type="button" class="btn btn-link inline pull-right">Remove</button>-->
-            <p class="inline pull-right">subtotal: <strong th:text="${ord.getSubTotalPrice()}+' $'">totalPrice</strong></p>
+    <div class="row">
+        <h1>Shopping cart summary</h1>
+        <div class="quantityForm">
+            <div th:each="ord,iterStat : ${order}">
+                <div class="col-xs-12 col-sm-5 col-md-4">
+                    <p class="inline" th:text="${ord.getProductName()}">name</p>
+                </div>
+                <div class="col-xs-6 col-sm-5 col-md-4">
+                    <form class="inline" action="/edit"  method="post" th:action="'/edit/'+ ${ord.getProductId()}+'_'+${ord.getQuantity()}+'_-'">
+                        <button type="submit" class="math">-</button>
+                    </form>
+                    <p class="inline" th:text="${ord.getQuantity()}">price</p>
+                    <form class="inline" action="/edit"  method="post" th:action="'/edit/'+ ${ord.getProductId()}+'_'+${ord.getQuantity()}+'_+'">
+                        <button type="submit" class="math">+</button>
+                    </form>
+                </div>
+                <div class="col-xs-6 col-sm-2 col-md-4">
+                    <p class="inline pull-right">subtotal: <strong th:text="${ord.getSubTotalPrice()}+' $'">totalPrice</strong></p>
+                </div>
+            </div>
         </div>
     </div>
 
 
 
-    <div>
-        <div id = "totalborder">
-            <p class="inline" id = "price">Total price: <strong th:text="${price}+' $'"></strong></p>
+    <div id="totalPriceDiv">
+        <!--display the total price, based on the given data from the server-->
+        <div id ="totalborder">
+            <p class="inline" id ="price">Total price: <strong th:text="${price}+' $'"></strong></p>
         </div>
         <br/><br/><br/>
-        <button class="btn-continue pull-right" style="vertical-align:middle"><span>Continue </span></button>
+        <button class="btn-continue pull-right" style="vertical-align:middle" data-toggle="modal" data-target="#myModal"><span>Continue </span></button>
+
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title">Continue to checkout and pay in the future</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>This button will have further use, but now it's only here to say: </p>
+                        <p><strong>Thank you for your attention!</strong></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary modalButton" data-dismiss="modal">Close</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
     </div>
 </div>
 

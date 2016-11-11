@@ -25,7 +25,7 @@
             crossorigin="anonymous"></script>
 
     <link rel="stylesheet" type="text/css" href="/css/custom.css" />
-    <script src="/js/jquery.js"/>
+    <script src="/js/style.js"/>
 
 
 </head>
@@ -50,7 +50,7 @@
 
 </div>
 
-
+<!--if the user click a category or supplier, then only the given items visible-->
 <div class='box'>
     <h5>Search</h5>
     <a href='/'>All product</a><br/>
@@ -71,7 +71,8 @@
 
     <div id="products" class="row ">
 
-        <div class="item col-xs-4 col-lg-4" th:each="prod,iterStat : ${products}">
+        <!--display every item on the site, based on the given data from the server-->
+        <div class="item col-xs-12 col-sm-6 col-lg-4" th:each="prod,iterStat : ${products}">
             <div class="thumbnail">
                 <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" th:attr="src='/img/product_' + ${prod.id} + '.jpg'" alt="" />
                 <div class="caption">
@@ -82,6 +83,7 @@
                             <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
                         </div>
                         <div class="col-xs-12 col-md-6">
+                            <!--when the user clicked the button, the client send the data to the server-->
                             <form action="/add"  method="post" th:action="'/add/'+ ${prod.id}">
                                 <button class="addbutton" href="#">Add to cart</button>
                                 <div class="addbuttonshadow"></div>

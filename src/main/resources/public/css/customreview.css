@@ -38,11 +38,18 @@ div p {
 
 
 .quantityForm {
-    border-bottom: 1px;
-    border-bottom-style: solid;
-    border-bottom-color: #bab8b7;
     margin-bottom: 20px;
 
+}
+
+#totalPriceDiv {
+    border-top: 1px;
+    border-top-style: solid;
+    border-top-color: #bab8b7;
+}
+
+#totalborder {
+    margin-top: 10px;
 }
 
 .inline {
@@ -93,6 +100,15 @@ div p {
 .btn-continue:hover span:after {
     opacity: 1;
     right: 0;
+}
+
+.modalButton {
+    color: white;
+    margin-bottom: 0px;
+}
+
+.modalButton:hover {
+    color: white;
 }
 
 .navbar{
@@ -170,9 +186,20 @@ p.logotitle{
     text-align:right;
 }
 
+#modalBody {
+    color: white;
+}
+
 #price{
     margin-top: 10px;
     color: white;
     text-align:right;
     margin-right:10px;
+}
+
+@media only screen and (min-width: 150px) and (max-width: 600px)
+{
+    h1 {
+        text-align: center;
+    }
 }
