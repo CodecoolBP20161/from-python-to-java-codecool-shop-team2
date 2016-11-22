@@ -19,7 +19,7 @@ public class SupplierDaoJdbc implements SupplierDao {
         try {
 
             PreparedStatement stmt;
-            stmt = databaseController.getConnection().prepareStatement("INSERT INTO codecoolshop (id, name, description) VALUES (?, ?, ?)");
+            stmt = databaseController.getConnection().prepareStatement("INSERT INTO supplier (id, name, description) VALUES (?, ?, ?)");
             stmt.setString(1, String.valueOf(supplier.getId()));
             stmt.setString(2, supplier.getName());
             stmt.setString(3, supplier.getDescription());
@@ -34,7 +34,7 @@ public class SupplierDaoJdbc implements SupplierDao {
     @Override
     public Supplier find(int id) {
 
-        String query = "SELECT * FROM codecoolshop WHERE id ='" + id + "';";
+        String query = "SELECT * FROM supplier WHERE id ='" + id + "';";
         databaseController.executeQuery(query);
         return null;
     }
@@ -42,14 +42,14 @@ public class SupplierDaoJdbc implements SupplierDao {
     @Override
     public void remove(int id) {
 
-        String query = "DELETE FROM codecoolshop WHERE id ='" + id + "';";
+        String query = "DELETE FROM supplier WHERE id ='" + id + "';";
         databaseController.executeQuery(query);
     }
 
     @Override
     public List<Supplier> getAll() {
 
-        String query = "SELECT * FROM codecoolshop;";
+        String query = "SELECT * FROM supplier;";
         databaseController.executeQuery(query);
         return null;
     }
