@@ -8,8 +8,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.lang.Integer.parseInt;
-
 /**
  * Created by bt on 2016.11.21..
  */
@@ -35,7 +33,6 @@ public class SupplierDaoJdbc implements SupplierDao {
 
             PreparedStatement stmt;
             stmt = databaseController.getConnection().prepareStatement("INSERT INTO supplier (name, description) VALUES (?, ?)");
-            //stmt.setString(1, String.valueOf(supplier.getId()));
             stmt.setString(1, supplier.getName());
             stmt.setString(2, supplier.getDescription());
             stmt.executeUpdate();
@@ -61,7 +58,6 @@ public class SupplierDaoJdbc implements SupplierDao {
                         resultSet.getString("name"),
                         resultSet.getString("description"));
                 supplier.setId(resultSet.getInt(1));
-//                System.out.println();
                 return supplier;
             }
         } catch (SQLException e) {
@@ -103,14 +99,4 @@ public class SupplierDaoJdbc implements SupplierDao {
         return resultList;
     }
 
-    public static void main(String[] args) {
-        SupplierDao supplierDao = new SupplierDaoJdbc();
-        Supplier supplier1 = new Supplier("frfrasd", "dsafg");
-        Supplier supplier2 = new Supplier("amazon", "asddsadsadas");
-//        supplierDao.add(supplier1);
-//        supplierDao.add(supplier2);
-        supplierDao.remove(1);
-        System.out.println(supplierDao.getAll());
-
-    }
 }
