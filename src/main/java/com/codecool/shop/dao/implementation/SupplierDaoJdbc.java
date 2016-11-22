@@ -8,9 +8,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by bt on 2016.11.21..
- */
 public class SupplierDaoJdbc implements SupplierDao {
     DatabaseController databaseController = new DatabaseController();
 
@@ -39,8 +36,6 @@ public class SupplierDaoJdbc implements SupplierDao {
         }catch (SQLException e) {
             e.printStackTrace();
         }
-
-
     }
 
     @Override
@@ -70,7 +65,6 @@ public class SupplierDaoJdbc implements SupplierDao {
 
     @Override
     public void remove(int id) {
-
         String query = "DELETE FROM supplier WHERE id ='" + id + "';";
         databaseController.executeQuery(query);
     }
