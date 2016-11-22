@@ -1,12 +1,10 @@
 package com.codecool.shop.controller;
 
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 
-/**
- * Created by bt on 2016.11.21..
- */
 public class DatabaseController {
 
     private static final String DATABASE = "jdbc:postgresql://localhost:5432/codecoolshop";
