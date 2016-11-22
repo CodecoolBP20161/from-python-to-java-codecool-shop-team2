@@ -35,27 +35,22 @@ public class SupplierDaoJdbc implements SupplierDao {
     public Supplier find(int id) {
 
         String query = "SELECT * FROM codecoolshop WHERE id ='" + id + "';";
-
-        try {
-            Connection connection = databaseController.getConnection();
-            Statement statement =connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(query);
-
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
+        databaseController.executeQuery(query);
         return null;
     }
 
     @Override
     public void remove(int id) {
 
+        String query = "DELETE FROM codecoolshop WHERE id ='" + id + "';";
+        databaseController.executeQuery(query);
     }
 
     @Override
     public List<Supplier> getAll() {
+
+        String query = "SELECT * FROM codecoolshop;";
+        databaseController.executeQuery(query);
         return null;
     }
 }
