@@ -3,9 +3,9 @@ package com.codecool.shop.controller;
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.dao.SupplierDao;
-import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
-import com.codecool.shop.dao.implementation.ProductDaoMem;
-import com.codecool.shop.dao.implementation.SupplierDaoMem;
+import com.codecool.shop.dao.implementation.ProductCategoryDaoJdbc;
+import com.codecool.shop.dao.implementation.ProductDaoJbdc;
+import com.codecool.shop.dao.implementation.SupplierDaoJdbc;
 import com.codecool.shop.model.LineItem;
 import com.codecool.shop.model.Order;
 import com.codecool.shop.model.Product;
@@ -19,9 +19,9 @@ public class ProductController {
 
     public static ModelAndView renderProducts(Request req, Response res) {
         // initialize data for renderProducts
-        ProductDao productDataStore = ProductDaoMem.getInstance();
-        ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
-        SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
+        ProductDao productDataStore = ProductDaoJdbc.getInstance();
+        ProductCategoryDao productCategoryDataStore = ProductCategoryDaoJdbc.getInstance();
+        SupplierDao supplierDataStore = SupplierDaoJdbc.getInstance();
 
         Map params = new HashMap<>();
 
@@ -74,7 +74,7 @@ public class ProductController {
     public static String addProducts(Request req, Response res) {
         // find the selected product
         Integer id = Integer.parseInt(req.params(":id"));
-        ProductDao productDataStore = ProductDaoMem.getInstance();
+        ProductDao productDataStore = ProductDaoJdbc.getInstance();
         Product result = productDataStore.find(id);
         // give to the Order's object into the session
         Order orderDataStore = req.session().attribute("order");
