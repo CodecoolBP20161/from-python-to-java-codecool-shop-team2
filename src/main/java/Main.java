@@ -22,8 +22,6 @@ public class Main {
         staticFileLocation("/public");
         port(8888);
 
-        // fill the site with example data
-        ExampleData.populateData();
 
         // here is the website's routes, what call the necessary method form the ProductController
         get("/", ProductController::renderProducts, new ThymeleafTemplateEngine());

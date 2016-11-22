@@ -13,7 +13,7 @@ import com.codecool.shop.dao.implementation.SupplierDaoJdbc;
 public class ExampleData {
 
     // Define the example data
-    public static void populateData() {
+    public static void  main(String[] args) {
 
         ProductDao productDataStore = ProductDaoJdbc.getInstance();
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoJdbc.getInstance();
