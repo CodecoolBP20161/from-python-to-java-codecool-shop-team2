@@ -5,7 +5,10 @@ import com.codecool.shop.dao.SupplierDao;
 import com.codecool.shop.model.Supplier;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
+
+import static java.lang.Integer.parseInt;
 
 /**
  * Created by bt on 2016.11.21..
@@ -13,17 +16,29 @@ import java.util.List;
 public class SupplierDaoJdbc implements SupplierDao {
     DatabaseController databaseController = new DatabaseController();
 
+    private static SupplierDaoJdbc instance = null;
+
+    private SupplierDaoJdbc() {
+    }
+
+    public static SupplierDaoJdbc getInstance() {
+        if (instance == null) {
+            instance = new SupplierDaoJdbc();
+        }
+        return instance;
+    }
+
 
     @Override
     public void add(Supplier supplier) {
         try {
 
             PreparedStatement stmt;
-            stmt = databaseController.getConnection().prepareStatement("INSERT INTO supplier (id, name, description) VALUES (?, ?, ?)");
-            stmt.setString(1, String.valueOf(supplier.getId()));
-            stmt.setString(2, supplier.getName());
-            stmt.setString(3, supplier.getDescription());
-            stmt.executeQuery();
+            stmt = databaseController.getConnection().prepareStatement("INSERT INTO supplier (name, description) VALUES (?, ?)");
+            //stmt.setString(1, String.valueOf(supplier.getId()));
+            stmt.setString(1, supplier.getName());
+            stmt.setString(2, supplier.getDescription());
+            stmt.executeUpdate();
         }catch (SQLException e) {
             e.printStackTrace();
         }
@@ -35,8 +50,26 @@ public class SupplierDaoJdbc implements SupplierDao {
     public Supplier find(int id) {
 
         String query = "SELECT * FROM supplier WHERE id ='" + id + "';";
-        databaseController.executeQuery(query);
+
+
+        try (Connection connection = databaseController.getConnection();
+             Statement statement =connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query);
+        ){
+            while (resultSet.next()){
+                Supplier supplier = new Supplier(
+                        resultSet.getString("name"),
+                        resultSet.getString("description"));
+                supplier.setId(resultSet.getInt(1));
+//                System.out.println();
+                return supplier;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         return null;
+
     }
 
     @Override
@@ -50,7 +83,34 @@ public class SupplierDaoJdbc implements SupplierDao {
     public List<Supplier> getAll() {
 
         String query = "SELECT * FROM supplier;";
-        databaseController.executeQuery(query);
-        return null;
+
+        List<Supplier> resultList = new ArrayList<>();
+
+        try (Connection connection = databaseController.getConnection();
+             Statement statement =connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query);
+        ){
+            while (resultSet.next()){
+                Supplier supplier = new Supplier(resultSet.getString("name"),
+                        resultSet.getString("description"));
+                supplier.setId(resultSet.getInt(1));
+                resultList.add(supplier);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return resultList;
+    }
+
+    public static void main(String[] args) {
+        SupplierDao supplierDao = new SupplierDaoJdbc();
+        Supplier supplier1 = new Supplier("frfrasd", "dsafg");
+        Supplier supplier2 = new Supplier("amazon", "asddsadsadas");
+//        supplierDao.add(supplier1);
+//        supplierDao.add(supplier2);
+        supplierDao.remove(1);
+        System.out.println(supplierDao.getAll());
+
     }
 }

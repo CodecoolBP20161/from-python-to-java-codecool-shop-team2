@@ -2,9 +2,9 @@ DROP TABLE IF EXISTS supplier;
 
 CREATE TABLE supplier
 (
-id INTEGER PRIMARY KEY,
+id SERIAL PRIMARY KEY ,
 name VARCHAR(40),
-description VARCHAR(10)
+description TEXT
 
 );
 
