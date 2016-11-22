@@ -1,9 +1,8 @@
 package com.codecool.shop.controller;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by bt on 2016.11.21..
@@ -31,6 +30,7 @@ public class DatabaseController {
             e.printStackTrace();
         }
     }
+
 
     public static void main(String[] args) throws SQLException {
         DatabaseController databaseController = new DatabaseController();

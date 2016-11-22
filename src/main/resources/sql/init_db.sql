@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS supplier, productCategory, product;
 
 CREATE TABLE supplier
 (
-id INTEGER PRIMARY KEY,
+id SERIAL PRIMARY KEY ,
 name VARCHAR(40),
 description TEXT
 );
