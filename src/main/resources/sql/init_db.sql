@@ -9,7 +9,7 @@ description TEXT
 
 CREATE TABLE productCategory
 (
-id INTEGER PRIMARY KEY,
+id SERIAL PRIMARY KEY,
 name VARCHAR(40),
 description TEXT,
 department VARCHAR(40)
@@ -17,7 +17,7 @@ department VARCHAR(40)
 
 CREATE TABLE product
 (
-id INTEGER PRIMARY KEY,
+id SERIAL PRIMARY KEY,
 name VARCHAR(40),
 description TEXT,
 defaultPrice FLOAT,
