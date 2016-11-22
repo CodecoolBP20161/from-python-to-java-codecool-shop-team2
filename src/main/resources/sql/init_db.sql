@@ -1,40 +1,27 @@
-DROP TABLE IF EXISTS supplier;
+DROP TABLE IF EXISTS supplier, productCategory, product;
 
 CREATE TABLE supplier
 (
 id INTEGER PRIMARY KEY,
 name VARCHAR(40),
-description VARCHAR(10)
-
+description TEXT
 );
-
-DROP TABLE IF EXISTS productCategory;
 
 CREATE TABLE productCategory
 (
 id INTEGER PRIMARY KEY,
 name VARCHAR(40),
-description VARCHAR(10),
+description TEXT,
 department VARCHAR(40)
-
 );
-
-DROP TABLE IF EXISTS product;
 
 CREATE TABLE product
 (
 id INTEGER PRIMARY KEY,
 name VARCHAR(40),
-description VARCHAR(10),
+description TEXT,
 defaultPrice FLOAT,
 currencyString VARCHAR(40),
 productCategory INTEGER REFERENCES productCategory(id),
 supplier INTEGER REFERENCES supplier(id)
-
 );
-
-
-
-
-
-
