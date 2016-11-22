@@ -18,10 +18,10 @@ department VARCHAR(40)
 CREATE TABLE product
 (
 id SERIAL PRIMARY KEY,
-name VARCHAR(40),
+name VARCHAR(100),
 description TEXT,
 defaultPrice FLOAT ,
-currencyString VARCHAR(40),
+currencyString VARCHAR(100),
 productCategory INTEGER REFERENCES productCategory(id),
 supplier INTEGER REFERENCES supplier(id)
 );

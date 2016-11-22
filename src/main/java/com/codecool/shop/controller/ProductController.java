@@ -4,7 +4,7 @@ import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.dao.SupplierDao;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoJdbc;
-import com.codecool.shop.dao.implementation.ProductDaoJbdc;
+import com.codecool.shop.dao.implementation.ProductDaoJdbc;
 import com.codecool.shop.dao.implementation.SupplierDaoJdbc;
 import com.codecool.shop.model.LineItem;
 import com.codecool.shop.model.Order;
