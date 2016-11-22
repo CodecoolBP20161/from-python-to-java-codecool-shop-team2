@@ -4,9 +4,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by bt on 2016.11.21..
- */
 public class DatabaseController {
 
     private static final String DATABASE = "jdbc:postgresql://localhost:5432/codecoolshop";
