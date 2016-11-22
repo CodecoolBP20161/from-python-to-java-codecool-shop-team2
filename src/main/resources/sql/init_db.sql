@@ -20,7 +20,7 @@ CREATE TABLE product
 id SERIAL PRIMARY KEY,
 name VARCHAR(40),
 description TEXT,
-defaultPrice FLOAT,
+defaultPrice FLOAT ,
 currencyString VARCHAR(40),
 productCategory INTEGER REFERENCES productCategory(id),
 supplier INTEGER REFERENCES supplier(id)
