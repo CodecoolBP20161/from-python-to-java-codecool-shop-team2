@@ -2,22 +2,12 @@ package com.codecool.shop.dao.implementation;
 
 
 import com.codecool.shop.dao.SupplierDao;
-import com.codecool.shop.dao.implementation.SupplierDaoMem;
-import com.codecool.shop.model.Product;
-import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
-
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 /**
  * Created by bt on 2016.11.23..
@@ -25,8 +15,6 @@ import static org.mockito.Mockito.when;
 public class SupplierDaoTest {
 
     SupplierDao supplierStoreTest = SupplierDaoMem.getInstance();
-
-    @Mock
     Supplier supplierTest = new Supplier("nameTest", "descriptionTest");
 
 
