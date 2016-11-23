@@ -1,6 +1,6 @@
 package com.codecool.shop.dao.implementation;
 
-import com.codecool.shop.controller.DatabaseController;
+import com.codecool.shop.service.DatabaseService;
 import com.codecool.shop.dao.SupplierDao;
 import com.codecool.shop.model.Supplier;
 
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SupplierDaoJdbc implements SupplierDao {
-    DatabaseController databaseController = new DatabaseController();
+    DatabaseService databaseService = new DatabaseService();
 
     private static SupplierDaoJdbc instance = null;
 
@@ -29,7 +29,7 @@ public class SupplierDaoJdbc implements SupplierDao {
         try {
 
             PreparedStatement stmt;
-            stmt = databaseController.getConnection().prepareStatement("INSERT INTO supplier (name, description) VALUES (?, ?)");
+            stmt = databaseService.getConnection().prepareStatement("INSERT INTO supplier (name, description) VALUES (?, ?)");
             stmt.setString(1, supplier.getName());
             stmt.setString(2, supplier.getDescription());
             stmt.executeUpdate();
@@ -44,7 +44,7 @@ public class SupplierDaoJdbc implements SupplierDao {
         String query = "SELECT * FROM supplier WHERE id ='" + id + "';";
 
 
-        try (Connection connection = databaseController.getConnection();
+        try (Connection connection = databaseService.getConnection();
              Statement statement =connection.createStatement();
              ResultSet resultSet = statement.executeQuery(query);
         ){
@@ -67,7 +67,7 @@ public class SupplierDaoJdbc implements SupplierDao {
     public void remove(int id) {
 
         String query = "DELETE FROM supplier WHERE id ='" + id + "';";
-        databaseController.executeQuery(query);
+        databaseService.executeQuery(query);
     }
 
     @Override
@@ -77,7 +77,7 @@ public class SupplierDaoJdbc implements SupplierDao {
 
         List<Supplier> resultList = new ArrayList<>();
 
-        try (Connection connection = databaseController.getConnection();
+        try (Connection connection = databaseService.getConnection();
              Statement statement =connection.createStatement();
              ResultSet resultSet = statement.executeQuery(query);
         ){

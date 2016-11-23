@@ -1,6 +1,6 @@
 package com.codecool.shop.dao.implementation;
 
-import com.codecool.shop.controller.DatabaseController;
+import com.codecool.shop.service.DatabaseService;
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.dao.SupplierDao;
@@ -15,7 +15,7 @@ import java.util.List;
 
 public class ProductDaoJdbc implements ProductDao {
 
-    DatabaseController databaseController = new DatabaseController();
+    DatabaseService databaseService = new DatabaseService();
 
     private static ProductDaoJdbc instance = null;
 
@@ -33,7 +33,7 @@ public class ProductDaoJdbc implements ProductDao {
     public void add(Product product) {
         try {
             PreparedStatement stmt;
-            stmt = databaseController.getConnection().prepareStatement
+            stmt = databaseService.getConnection().prepareStatement
                     ("INSERT INTO product" +
                             "(name," +
                             "description," +
@@ -58,7 +58,7 @@ public class ProductDaoJdbc implements ProductDao {
 
         String query = "SELECT * FROM product WHERE id ='" + id + "';";
 
-        try (Connection connection = databaseController.getConnection();
+        try (Connection connection = databaseService.getConnection();
              Statement statement =connection.createStatement();
              ResultSet resultSet = statement.executeQuery(query);
 
@@ -93,104 +93,56 @@ public class ProductDaoJdbc implements ProductDao {
     public void remove(int id) {
 
         String query = "DELETE * FROM product WHERE id ='" + id + "';";
-        databaseController.executeQuery(query);
+        databaseService.executeQuery(query);
+    }
+
+    private List<Product> getProducts(String query) {
+        List<Product> resultList = new ArrayList<>();
+
+        try (Connection connection = databaseService.getConnection();
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query);
+
+        ) {
+            ProductCategoryDao productCategoryDataStore = ProductCategoryDaoJdbc.getInstance();
+
+            SupplierDao supplierDataStore = SupplierDaoJdbc.getInstance();
+
+
+            while (resultSet.next()) {
+
+                Product product = new Product(
+                        resultSet.getString("name"),
+                        resultSet.getFloat("defaultprice"),
+                        resultSet.getString("currencystring"),
+                        resultSet.getString("description"),
+                        productCategoryDataStore.find(resultSet.getInt("productcategory")),
+                        supplierDataStore.find(resultSet.getInt("supplier")));
+                product.setId(resultSet.getInt(1));
+                resultList.add(product);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return resultList;
     }
 
     @Override
     public List<Product> getAll() {
         String query = "SELECT * FROM product;";
-        List<Product> resultList = new ArrayList<>();
-
-        try (Connection connection = databaseController.getConnection();
-             Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery(query);
-
-        ) {
-            ProductCategoryDao productCategoryDataStore = ProductCategoryDaoJdbc.getInstance();
-
-            SupplierDao supplierDataStore = SupplierDaoJdbc.getInstance();
-
-
-            while (resultSet.next()) {
-
-                Product product = new Product(
-                        resultSet.getString("name"),
-                        resultSet.getFloat("defaultprice"),
-                        resultSet.getString("currencystring"),
-                        resultSet.getString("description"),
-                        productCategoryDataStore.find(resultSet.getInt("productcategory")),
-                        supplierDataStore.find(resultSet.getInt("supplier")));
-                product.setId(resultSet.getInt(1));
-                resultList.add(product);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return resultList;
+        return this.getProducts(query);
     }
 
     @Override
     public List<Product> getBy(Supplier supplier) {
         String query = "SELECT * FROM product WHERE supplier ='" + supplier.getId() + "';";
-        List<Product> resultList = new ArrayList<>();
-
-        try (Connection connection = databaseController.getConnection();
-             Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery(query);
-
-        ) {
-            ProductCategoryDao productCategoryDataStore = ProductCategoryDaoJdbc.getInstance();
-            SupplierDao supplierDataStore = SupplierDaoJdbc.getInstance();
-
-
-            while (resultSet.next()) {
-
-                Product product = new Product(
-                        resultSet.getString("name"),
-                        resultSet.getFloat("defaultprice"),
-                        resultSet.getString("currencystring"),
-                        resultSet.getString("description"),
-                        productCategoryDataStore.find(resultSet.getInt("productcategory")),
-                        supplierDataStore.find(resultSet.getInt("supplier")));
-                product.setId(resultSet.getInt(1));
-                resultList.add(product);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return resultList;
+        return this.getProducts(query);
     }
 
     @Override
     public List<Product> getBy(ProductCategory productCategory) {
         String query = "SELECT * FROM product WHERE productcategory ='" + productCategory.getId() + "';";
-        List<Product> resultList = new ArrayList<>();
-
-        try (Connection connection = databaseController.getConnection();
-             Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery(query);
-
-        ) {
-            ProductCategoryDao productCategoryDataStore = ProductCategoryDaoJdbc.getInstance();
-            SupplierDao supplierDataStore = SupplierDaoJdbc.getInstance();
-
-            while (resultSet.next()) {
-                Product product = new Product(
-                        resultSet.getString("name"),
-                        resultSet.getFloat("defaultprice"),
-                        resultSet.getString("currencystring"),
-                        resultSet.getString("description"),
-                        productCategoryDataStore.find(resultSet.getInt("productcategory")),
-                        supplierDataStore.find(resultSet.getInt("supplier")));
-                product.setId(resultSet.getInt(1));
-                resultList.add(product);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return resultList;
+        return this.getProducts(query);
     }
 }
