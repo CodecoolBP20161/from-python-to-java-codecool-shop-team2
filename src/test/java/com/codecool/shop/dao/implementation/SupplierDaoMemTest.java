@@ -9,10 +9,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-/**
- * Created by bt on 2016.11.23..
- */
-public class SupplierDaoTest {
+public class SupplierDaoMemTest {
 
     SupplierDao supplierStoreTest = SupplierDaoMem.getInstance();
     Supplier supplierTest = new Supplier("nameTest", "descriptionTest");

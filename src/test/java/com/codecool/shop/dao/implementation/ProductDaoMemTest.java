@@ -7,7 +7,6 @@ import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -15,9 +14,6 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by adambodnar on 2016. 11. 23..
- */
 public class ProductDaoMemTest {
 
     public static List<Product> testData = new ArrayList<>();
