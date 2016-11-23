@@ -15,37 +15,40 @@ public class ProductCategoryDaoMemTest {
 
     @Before
     public void seUp() {
+        // Before every test case delete element in the static list (in ProductCategoryDaoMem)
         testCategoryStore.remove(1);
     }
 
     @Test
-    public void getInstance() throws Exception {
+    public void getInstanceTest() throws Exception {
         assertTrue(testCategoryStore instanceof ProductCategoryDaoMem);
     }
 
     @Test
-    public void add() throws Exception {
-        testCategoryStore.add(testCategory);
-        assertEquals(testCategory, testCategoryStore.find(1));
-
-    }
-
-    @Test
-    public void find() throws Exception {
+    public void addCategoryTest() throws Exception {
         testCategoryStore.add(testCategory);
         assertEquals(testCategory, testCategoryStore.find(1));
     }
 
     @Test
-    public void remove() throws Exception {
+    public void findCategoryTest() throws Exception {
+        testCategoryStore.add(testCategory);
+        assertEquals(testCategory, testCategoryStore.find(1));
+        assertEquals(null, testCategoryStore.find(0));
+    }
+
+    @Test
+    public void removeCategoryTest() throws Exception {
+        testCategoryStore.add(testCategory);
+        testCategoryStore.remove(-1);
+        assertEquals(testCategory, testCategoryStore.find(1));
         testCategoryStore.remove(1);
         assertEquals(null, testCategoryStore.find(1));
     }
 
     @Test
-    public void getAll() throws Exception {
+    public void getAllCategoryTest() throws Exception {
         testCategoryStore.add(testCategory);
         assertEquals(1, testCategoryStore.getAll().size());
     }
-
 }
