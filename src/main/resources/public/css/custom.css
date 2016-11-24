@@ -118,7 +118,7 @@ a:hover {
     margin-right: 10px;
 }
 
-#regbutt.active{
+#regbutt:hover{
     background-color: darkorange;
     color: white;
 

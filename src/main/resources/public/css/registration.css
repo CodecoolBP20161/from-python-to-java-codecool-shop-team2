@@ -2,9 +2,23 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
+input {
+    width: 300px;
+    height: 30px;
+    border: solid;
+    border-width: 1px;
+    border-radius: 2px;
+    border-color: #5e5e5e;
+    outline: none !important;
+    padding: 2px;
+}
+
 h1 {
     margin-bottom: 50px;
+    font-weight: bolder;
     color: orange;
+    margin-top: 30px;
+    font-size: 50px;
 }
 
 h6 {
@@ -12,12 +26,12 @@ h6 {
 }
 
 #box{
-    width: 300px;
-    height: 300px;
+    width: 350px;
+    height: 450px;
     border: solid;
     border-width: thin;
     border-radius: 10px;
-    border-color: grey;
+    border-color: #bab8b7;
     padding: 20px;
 }
 
@@ -162,42 +176,25 @@ p.logotitle{
     color:grey;
 }
 
-.math{
-    height: 20px;
-    width: 20px;
-    border-width: 1px;
-    border-radius: 5px;
-    border-color: darkgrey;
-    background-color: white;
-    outline: none ! important;
-
-}
-
-#totalborder{
-    height:50px;
-    width:250px;
-    border-width: 1px;
-    border-color: orange;
-    background-color: orange;
-    border-radius: 3px;
-    float: right;
-    text-align:right;
-}
-
-#modalBody {
-    color: white;
-}
-
-#price{
-    margin-top: 10px;
-    color: white;
-    text-align:right;
-    margin-right:10px;
-}
-
 @media only screen and (min-width: 150px) and (max-width: 600px)
 {
     h1 {
         text-align: center;
     }
+}
+
+#subbutton {
+    background-color: darkorange;
+    color: white;
+    width: 300px;
+    height: 40px;
+    outline: none ! important;
+    border-color: Transparent;
+    border-radius: 5px;
+}
+
+#subbutton:hover {
+    background-color: #201d1d;
+    color: orange;
+    font-weight: bold;
 }

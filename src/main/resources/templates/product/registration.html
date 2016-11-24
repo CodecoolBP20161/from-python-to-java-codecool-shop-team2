@@ -45,19 +45,18 @@
 
 </div>
 
-<h1 class="container-fluid text-center">Registration</h1>
 <div class="container-fluid center" id="box">
+    <h1 class="container-fluid text-center">Registration</h1>
     <form method="post" >
         <h6>Username</h6>
-        <input name="username" type="text" required="required" th:field="*{username}" th:placeholder="username" />
+        <input name="username" type="text" required="required" placeholder="username" />
         <h6>Email</h6>
-        <input name="email" type="text" required="required" th:field="*{username}" th:placeholder="email" />
+        <input name="email" type="text" required="required" placeholder="email" />
         <h6>Password</h6>
-        <input name="password" type="text" required="required" th:field="*{username}" th:placeholder="password" />
-        <br/><br/>
+        <input name="password" type="text" required="required" placeholder="password" />
+        <br/><br/><br/>
 
-        <button class="addbutton" href="#">Submit</button>
-        <div class="addbuttonshadow"></div>
+        <button id="subbutton" href="#">Submit</button>
     </form>
 
 
