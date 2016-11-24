@@ -11,8 +11,8 @@ CREATE TABLE productCategory
 (
 id SERIAL PRIMARY KEY,
 name VARCHAR(40),
-description TEXT,
-department VARCHAR(40)
+department VARCHAR(40),
+description TEXT
 );
 
 CREATE TABLE product
