@@ -106,6 +106,24 @@ a:hover {
     position: relative;
 }
 
+#regbutt{
+    font-size: 15px;
+    color:orange;
+    background-color: Transparent;
+    border-color: Transparent;
+    outline: none !important;
+    display: inline-block;
+    float: right;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+#regbutt.active{
+    background-color: darkorange;
+    color: white;
+
+}
+
 #cart {
     margin-top: -50px;
 }
