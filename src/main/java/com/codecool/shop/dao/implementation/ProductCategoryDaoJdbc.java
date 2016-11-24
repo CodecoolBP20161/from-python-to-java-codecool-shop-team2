@@ -1,6 +1,6 @@
 package com.codecool.shop.dao.implementation;
 
-import com.codecool.shop.controller.DatabaseController;
+import com.codecool.shop.service.DatabaseService;
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.model.ProductCategory;
 
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductCategoryDaoJdbc implements ProductCategoryDao{
-    DatabaseController databaseController = new DatabaseController();
+    DatabaseService databaseService = new DatabaseService();
 
     private static ProductCategoryDaoJdbc instance = null;
 
@@ -27,7 +27,7 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao{
     public void add(ProductCategory category) {
         try {
             PreparedStatement stmt;
-            stmt = databaseController.getConnection().prepareStatement(
+            stmt = databaseService.getConnection().prepareStatement(
                     "INSERT INTO productcategory (name, description, department) VALUES (?, ?, ?)");
             stmt.setString(1, category.getName());
             stmt.setString(2, category.getDescription());
@@ -42,8 +42,7 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao{
     public ProductCategory find(int id) {
         String query = "SELECT * FROM productcategory WHERE id ='" + id + "';";
 
-
-        try (Connection connection = databaseController.getConnection();
+        try (Connection connection = databaseService.getConnection();
              Statement statement =connection.createStatement();
              ResultSet resultSet = statement.executeQuery(query);
         ){
@@ -58,14 +57,13 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return null;
     }
 
     @Override
     public void remove(int id) {
         String query = "DELETE FROM productcategory WHERE id ='" + id + "';";
-        databaseController.executeQuery(query);
+        databaseService.executeQuery(query);
     }
 
     @Override
@@ -74,7 +72,7 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao{
 
         List<ProductCategory> resultList = new ArrayList<>();
 
-        try (Connection connection = databaseController.getConnection();
+        try (Connection connection = databaseService.getConnection();
              Statement statement =connection.createStatement();
              ResultSet resultSet = statement.executeQuery(query);
         ){
@@ -91,5 +89,11 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao{
         }
 
         return resultList;
+    }
+
+    public static void main(String[] args) {
+        ProductCategoryDaoJdbc test = new ProductCategoryDaoJdbc();
+
+        System.out.println(test.find(1));
     }
 }

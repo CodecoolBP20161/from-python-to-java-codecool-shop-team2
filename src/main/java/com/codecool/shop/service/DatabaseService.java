@@ -1,10 +1,8 @@
-package com.codecool.shop.controller;
+package com.codecool.shop.service;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
-public class DatabaseController {
+public class DatabaseService {
 
     private static final String DATABASE = "jdbc:postgresql://localhost:5432/codecoolshop";
     private static final String DB_USER = "postgres";
@@ -26,11 +24,5 @@ public class DatabaseController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-
-    public static void main(String[] args) throws SQLException {
-        DatabaseController databaseController = new DatabaseController();
-        databaseController.getConnection();
     }
 }

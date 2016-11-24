@@ -1,14 +1,5 @@
+import com.codecool.shop.controller.CustomerController;
 import com.codecool.shop.controller.ProductController;
-import com.codecool.shop.dao.ProductCategoryDao;
-import com.codecool.shop.dao.ProductDao;
-import com.codecool.shop.dao.SupplierDao;
-import com.codecool.shop.dao.implementation.ProductCategoryDaoJdbc;
-import com.codecool.shop.dao.implementation.ProductDaoJdbc;
-import com.codecool.shop.dao.implementation.SupplierDaoJdbc;
-import com.codecool.shop.model.ExampleData;
-import com.codecool.shop.model.Product;
-import com.codecool.shop.model.ProductCategory;
-import com.codecool.shop.model.Supplier;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
 
 import static spark.Spark.*;
@@ -25,6 +16,7 @@ public class Main {
 
         // here is the website's routes, what call the necessary method form the ProductController
         get("/", ProductController::renderProducts, new ThymeleafTemplateEngine());
+        get("/registration/:usr_pwd", CustomerController::renderRegistration, new ThymeleafTemplateEngine());
         get("/:name/:id", ProductController::renderProducts, new ThymeleafTemplateEngine());
         get("/review", ProductController::renderReview, new ThymeleafTemplateEngine());
         post("/add/:id", ProductController::addProducts);
