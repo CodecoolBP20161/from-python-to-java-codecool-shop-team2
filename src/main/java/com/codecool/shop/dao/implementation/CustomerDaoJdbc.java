@@ -91,22 +91,4 @@ public class CustomerDaoJdbc implements CustomerDao {
 
         return resultList;
     }
-
-    public static void main(String[] args) {
-        CustomerDao customerStore = CustomerDaoJdbc.getInstance();
-        Customer customer = new Customer("cName", "cEmail", "cPassword");
-        customerStore.add(customer);
-        System.out.println(customer.getHashedPW());
-
-//        customer1.setHashedPW("cPassword");
-//        System.out.println(customer1.getHashedPW());
-//        Customer customer2 = customerStore.find(3);
-//        System.out.println(customer.getCustomerName());
-//        customerStore.add(customer);
-//        System.out.println(customerStore.find(1));
-//        System.out.println(customerStore.getAll().size());
-//        System.out.println(customer1.verifyCustomer("cName", "cPassword"));
-        System.out.println(customerStore.find(1).verifyCustomer("cName", "cPassword"));
-//        System.out.println(customerStore.find(3).getHashedPW());
-    }
 }
