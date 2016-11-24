@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS supplier, productCategory, product, customer;
+DROP TABLE IF EXISTS supplier, productCategory, product;
 
 CREATE TABLE supplier
 (
@@ -24,12 +24,4 @@ defaultPrice FLOAT ,
 currencyString VARCHAR(100),
 productCategory INTEGER REFERENCES productCategory(id),
 supplier INTEGER REFERENCES supplier(id)
-);
-
-CREATE TABLE customer
-(
-id SERIAL PRIMARY KEY,
-name VARCHAR(40),
-email VARCHAR(40),
-hashedPW TEXT
 );
