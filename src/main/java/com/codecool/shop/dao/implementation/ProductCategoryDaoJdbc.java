@@ -28,10 +28,10 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao{
         try {
             PreparedStatement stmt;
             stmt = databaseService.getConnection().prepareStatement(
-                    "INSERT INTO productcategory (name, description, department) VALUES (?, ?, ?)");
+                    "INSERT INTO productcategory (name, department, description) VALUES (?, ?, ?)");
             stmt.setString(1, category.getName());
-            stmt.setString(2, category.getDescription());
-            stmt.setString(3, category.getDepartment());
+            stmt.setString(2, category.getDepartment());
+            stmt.setString(3, category.getDescription());
             stmt.executeUpdate();
         }catch (SQLException e) {
             e.printStackTrace();
@@ -49,8 +49,8 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao{
             while (resultSet.next()){
                 ProductCategory category = new ProductCategory(
                         resultSet.getString("name"),
-                        resultSet.getString("description"),
-                        resultSet.getString("department"));
+                        resultSet.getString("department"),
+                        resultSet.getString("description"));
                 category.setId(resultSet.getInt(1));
                 return category;
             }
@@ -79,8 +79,8 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao{
             while (resultSet.next()){
                 ProductCategory category = new ProductCategory(
                         resultSet.getString("name"),
-                        resultSet.getString("description"),
-                        resultSet.getString("department"));
+                        resultSet.getString("department"),
+                        resultSet.getString("description"));
                 category.setId(resultSet.getInt(1));
                 resultList.add(category);
             }
@@ -89,11 +89,5 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao{
         }
 
         return resultList;
-    }
-
-    public static void main(String[] args) {
-        ProductCategoryDaoJdbc test = new ProductCategoryDaoJdbc();
-
-        System.out.println(test.find(1));
     }
 }
