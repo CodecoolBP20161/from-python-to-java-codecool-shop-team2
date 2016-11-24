@@ -6,6 +6,7 @@ import com.codecool.shop.dao.SupplierDao;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
+import com.codecool.shop.service.TestDatabaseService;
 import org.junit.*;
 
 import java.util.ArrayList;
@@ -22,15 +23,8 @@ public class ProductDaoJdbcTest {
     private static SupplierDao supplierDataStoreTest = SupplierDaoJdbc.getInstance();
     private static ProductCategoryDao productCategoryDataStoreTest = ProductCategoryDaoJdbc.getInstance();
 
-    static int lastSupplierIndex = supplierDataStoreTest.getAll().size();
-    static int lastProductCategoryIndex = productCategoryDataStoreTest.getAll().size();
-
-
-    Product testProduct = new Product("Testproduct", 50f, "USD", "for testing", productCategoryDataStoreTest.find(lastProductCategoryIndex), supplierDataStoreTest.find(lastSupplierIndex));
     private static Supplier testSupplier = new Supplier("testSupplier", "for testing");
     private static ProductCategory testCategory = new ProductCategory("testCategory", "test department", "for testing");
-
-
 
     @BeforeClass
     public static void setUpBefore() {
@@ -38,11 +32,10 @@ public class ProductDaoJdbcTest {
         supplierDataStoreTest.add(testSupplier);
     }
 
-
-
-    @After
-    public void after() {
-
+    @Before
+    public void setUp() {
+        Product testProduct = new Product("Testproduct", 50f, "USD", "for testing", productCategoryDataStoreTest.find(1), supplierDataStoreTest.find(1));
+        productDataStoreTest.add(testProduct);
     }
 
     @Test
@@ -53,45 +46,57 @@ public class ProductDaoJdbcTest {
 
     @Test
     public void add() throws Exception {
+        Product testProduct = new Product("Testproduct", 50f, "USD", "for testing", productCategoryDataStoreTest.find(1), supplierDataStoreTest.find(1));
+        int indexBefore = productDataStoreTest.getAll().size();
         productDataStoreTest.add(testProduct);
-        int lastIndex = productDataStoreTest.getAll().size();
+        int indexAfter = productDataStoreTest.getAll().size();
 
-        System.out.println(lastIndex);
-        Product expectedProduct = productDataStoreTest.find(lastIndex);
-        testProduct.setId(lastIndex);
-        productDataStoreTest.remove(lastIndex);
-        assertEquals(expectedProduct, testProduct);
-
+        assertTrue(indexAfter - indexBefore == 1);
     }
 
-    @Ignore
+
     @Test
     public void find() throws Exception {
-
+        Product expectedProduct = productDataStoreTest.find(1);
+        int expectedId = expectedProduct.getId();
+        assertTrue(expectedId == 1);
     }
 
-    @Ignore
+
     @Test
     public void remove() throws Exception {
+        int indexBefore = productDataStoreTest.getAll().size();
+        productDataStoreTest.remove(indexBefore);
+        int indexAfter = productDataStoreTest.getAll().size();
 
+        assertTrue(indexBefore - indexAfter == 1);
     }
 
-    @Ignore
+
     @Test
     public void getAll() throws Exception {
-
+        int productsInTestDb = productDataStoreTest.getAll().size();
+        List<Product> products = productDataStoreTest.getAll();
+        int productsSize = products.size();
+        assertEquals(productsSize, productsInTestDb);
     }
 
-    @Ignore
+
     @Test
     public void getBy() throws Exception {
-
+        List<Product> bySupplierProducts = productDataStoreTest.getBy(supplierDataStoreTest.find(1));
+        Product testProduct = bySupplierProducts.get(0);
+        testSupplier.setId(1);
+        assertEquals(testProduct.getSupplier(), testSupplier);
     }
 
-    @Ignore
+
     @Test
     public void getBy1() throws Exception {
-
+        List<Product> byProductCategoryProducts = productDataStoreTest.getBy(productCategoryDataStoreTest.find(1));
+        Product testProduct = byProductCategoryProducts.get(0);
+        testCategory.setId(1);
+        assertEquals(testProduct.getProductCategory(), testCategory);
     }
 
 }
