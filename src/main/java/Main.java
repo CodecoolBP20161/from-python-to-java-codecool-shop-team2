@@ -16,12 +16,12 @@ public class Main {
 
         // here is the website's routes, what call the necessary method form the ProductController
         get("/", ProductController::renderProducts, new ThymeleafTemplateEngine());
-        get("/registration", CustomerController::renderRegistration, new ThymeleafTemplateEngine());
         get("/:name/:id", ProductController::renderProducts, new ThymeleafTemplateEngine());
         get("/review", ProductController::renderReview, new ThymeleafTemplateEngine());
+        get("/registration", CustomerController::renderRegistration, new ThymeleafTemplateEngine());
         post("/add/:id", ProductController::addProducts);
         post("/edit/:lineItem", ProductController::editProducts);
-        post("/registratio/:usrData", CustomerController::addCustomer);
+        post("/registration", CustomerController::addCustomer);
     }
 
 }
