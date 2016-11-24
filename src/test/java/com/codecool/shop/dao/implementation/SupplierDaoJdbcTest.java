@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 public class SupplierDaoJdbcTest {
 
     SupplierDao testSupplierStore = SupplierDaoJdbc.getInstance();
-    Supplier testSupplier = new Supplier("testSupplier", "supplier for testing");
+    Supplier testSupplier = new Supplier("testSupplier", "for testing");
 
     @Before
     public void setUp() {

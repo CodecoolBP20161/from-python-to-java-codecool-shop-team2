@@ -11,9 +11,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class ProductCategoryDaoJdbcTest {
-    static ProductCategoryDao testCategoryStore = ProductCategoryDaoJdbc.getInstance();
-    static ProductCategory testCategory = new ProductCategory("catName","catDepartment",  "catDescription");
-    //ProductCategory testCategory2 = new ProductCategory("catName2",  "catDescription2", "catDepartment2");
+    ProductCategoryDao testCategoryStore = ProductCategoryDaoJdbc.getInstance();
+    ProductCategory testCategory = new ProductCategory("testCategory","test department",  "for testing");
+
 
     TestDatabaseService databaseService = new TestDatabaseService();
 

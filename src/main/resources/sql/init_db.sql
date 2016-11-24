@@ -13,10 +13,6 @@ id SERIAL PRIMARY KEY,
 name VARCHAR(40),
 department VARCHAR(40),
 description TEXT
-<<<<<<< HEAD
-
-=======
->>>>>>> Story14
 );
 
 CREATE TABLE product
