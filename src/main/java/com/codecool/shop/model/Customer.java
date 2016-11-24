@@ -3,6 +3,9 @@ package com.codecool.shop.model;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Customer {
     private Integer customerId;
@@ -11,10 +14,8 @@ public class Customer {
     private String hashedPW;
 
     public Customer(String customerName, String email, String password) {
-//        this.customerId = customerId;
         this.customerName = customerName;
         this.email = email;
-//        setHashedPW(password);
         this.hashedPW = password;
     }
     public void setCustomerId(Integer id) {this.customerId = id;}
@@ -66,6 +67,20 @@ public class Customer {
 
     public Boolean verifyCustomer(String customerName, String password){
         return this.getHashedPW().equals(this.StringConvertHash(customerName + password));
+    }
+
+    public static Customer getCustomerFromClient(String clientInput){
+        // if the input is right, the userData something like this:
+        //[username=username, email=email%40address.com, password=password]
+        List<String> userData = new ArrayList<>(Arrays.asList(clientInput.split("&")));
+        for (int i=0;i<userData.size();i++) {
+            String [] parts = userData.get(i).split("=");
+            userData.set(i, parts[1]);
+        }
+        // we need to change %40 onto @ at the email address, what get the client
+        userData.set(1, userData.get(1).replaceAll("%40","@"));
+        System.out.println(userData);
+        return new Customer(userData.get(0), userData.get(1), userData.get(2));
     }
 
     @Override
