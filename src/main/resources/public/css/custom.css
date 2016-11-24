@@ -201,6 +201,11 @@ p.logotitle{
     outline: none !important;
 }
 
+.group{
+    padding: 1px;
+    display: inline-block;
+}
+
 .addbuttonshadow {
     z-index: -50;
     margin-left: 53px;

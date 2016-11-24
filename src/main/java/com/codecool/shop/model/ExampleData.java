@@ -36,12 +36,12 @@ public class ExampleData {
 
         //setting up products and add their own store
         productDataStore.add(new Product("Mameshiba", 49.9f, "USD", "Dog-like faces and tell trivia. Their name derives from a series of puns.", productCategoryDataStore.find(1), supplierDataStore.find(1)));
-        productDataStore.add(new Product("Sogood Coffee", 479f, "USD", "Born and brewed in Southern California since 1963, the taste and aroma of the world's best coffees and teas.", productCategoryDataStore.find(2), supplierDataStore.find(2)));
+        productDataStore.add(new Product("Sogood Coffee", 479f, "USD", "Born and brewed in Southern California since 1963, the taste and aroma of the world's best coffees.", productCategoryDataStore.find(2), supplierDataStore.find(2)));
         productDataStore.add(new Product("Bertie Botts", 89f, "USD", "They're back! It's the return of the infamous Bertie Bott's Every Flavour Beans! ", productCategoryDataStore.find(1), supplierDataStore.find(1)));
-        productDataStore.add(new Product("Darkest Energy", 269.99f, "USD", "This beans grown in Mordor depths. Product of caring Orcs.", productCategoryDataStore.find(2), supplierDataStore.find(3)));
+        productDataStore.add(new Product("Darkest Energy", 269.99f, "USD", "This beans grown in Mordor depths. Product of caring Orcs and Sauron himself.", productCategoryDataStore.find(2), supplierDataStore.find(3)));
         productDataStore.add(new Product("Cranberry", 199.99f, "USD", "Cranberries are usually processed into juice, sauce, jam and sweetened dried cranberries.", productCategoryDataStore.find(2), supplierDataStore.find(2)));
-        productDataStore.add(new Product("America Nowadays", 179f, "USD", "No racism by the Trump industry.", productCategoryDataStore.find(2), supplierDataStore.find(3)));
-        productDataStore.add(new Product("Judged based on cover", 1299.99f, "USD", "The exception proves the rule.", productCategoryDataStore.find(2), supplierDataStore.find(3)));
+        productDataStore.add(new Product("America Nowadays", 179f, "USD", "No racism by the Trump industry. No offance BUT....... Add it to cart right now.", productCategoryDataStore.find(2), supplierDataStore.find(3)));
+        productDataStore.add(new Product("Judged based on cover", 1299.99f, "USD", "The exception proves the rule. The exception proves the rule!", productCategoryDataStore.find(2), supplierDataStore.find(3)));
     }
 
 }
