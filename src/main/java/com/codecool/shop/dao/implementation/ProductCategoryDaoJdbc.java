@@ -27,12 +27,15 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao{
     public void add(ProductCategory category) {
         try {
             PreparedStatement stmt;
-            stmt = databaseService.getConnection().prepareStatement(
-                    "INSERT INTO productcategory (name, department, description) VALUES (?, ?, ?)");
+
+            Connection connection = databaseService.getConnection();
+            stmt = connection.prepareStatement(
+                    "INSERT INTO productcategory (name, department, description ) VALUES (?, ?, ?)");
             stmt.setString(1, category.getName());
             stmt.setString(2, category.getDepartment());
             stmt.setString(3, category.getDescription());
             stmt.executeUpdate();
+            connection.close();
         }catch (SQLException e) {
             e.printStackTrace();
         }
@@ -90,4 +93,5 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao{
 
         return resultList;
     }
+
 }
