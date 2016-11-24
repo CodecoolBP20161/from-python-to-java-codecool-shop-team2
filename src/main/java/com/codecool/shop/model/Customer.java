@@ -79,7 +79,6 @@ public class Customer {
         }
         // we need to change %40 onto @ at the email address, what get the client
         userData.set(1, userData.get(1).replaceAll("%40","@"));
-        System.out.println(userData);
         return new Customer(userData.get(0), userData.get(1), userData.get(2));
     }
 
