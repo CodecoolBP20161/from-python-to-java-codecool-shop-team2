@@ -7,6 +7,11 @@ h1 {
     color: orange;
 }
 
+.jumpb {
+    display: inline-block;
+    margin-left: 50px;
+}
+
 input[type=number] {
     width: 70px;
     height: 25px;
