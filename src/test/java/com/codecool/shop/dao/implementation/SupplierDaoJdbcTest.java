@@ -1,17 +1,12 @@
 package com.codecool.shop.dao.implementation;
 
-import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.SupplierDao;
-import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
-import com.codecool.shop.service.DatabaseService;
 import com.codecool.shop.service.TestDatabaseService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import java.sql.PreparedStatement;
 import java.sql.Statement;
 
 import static org.junit.Assert.*;
@@ -22,9 +17,10 @@ public class SupplierDaoJdbcTest {
     SupplierDao testSupplierStore = SupplierDaoJdbc.getInstance();
     Supplier apple = new Supplier("mac", "mac");
 
-    @BeforeClass
+    @Before
     public void setUp() {
         testSupplierStore.remove(1);
+        apple.setId(1);
     }
 
 
@@ -39,8 +35,6 @@ public class SupplierDaoJdbcTest {
     public void add() throws Exception {
         testSupplierStore.add(apple);
         assertEquals(apple, testSupplierStore.find(1));
-
-
     }
 
     @Test
