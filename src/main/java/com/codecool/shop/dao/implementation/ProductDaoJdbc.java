@@ -92,7 +92,7 @@ public class ProductDaoJdbc implements ProductDao {
     @Override
     public void remove(int id) {
 
-        String query = "DELETE * FROM product WHERE id ='" + id + "';";
+        String query = "DELETE FROM product WHERE id ='" + id + "';";
         databaseService.executeQuery(query);
     }
 

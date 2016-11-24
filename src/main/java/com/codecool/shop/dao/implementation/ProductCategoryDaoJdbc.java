@@ -27,6 +27,7 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao{
     public void add(ProductCategory category) {
         try {
             PreparedStatement stmt;
+
             Connection connection = databaseService.getConnection();
             stmt = connection.prepareStatement(
                     "INSERT INTO productcategory (name, department, description ) VALUES (?, ?, ?)");
