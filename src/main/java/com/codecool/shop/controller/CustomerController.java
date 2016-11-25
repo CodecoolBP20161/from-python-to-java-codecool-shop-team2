@@ -18,7 +18,7 @@ public class CustomerController {
     public static String addCustomer(Request req, Response res) {
         CustomerDao customerDataStore = CustomerDaoJdbc.getInstance();
         // get the customer data from client and add to database
-        customerDataStore.add(Customer.getCustomerFromClient(req.body()));
+        customerDataStore.add(Customer.getFromClient(req.body()));
         res.redirect("/");
         return null;
     }
