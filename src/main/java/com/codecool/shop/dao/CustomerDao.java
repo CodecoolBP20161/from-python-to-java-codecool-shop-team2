@@ -9,4 +9,6 @@ public interface CustomerDao {
     void remove(int id);
 
     List<Customer> getAll();
+
+    String verifyCustomer(Customer newCustomer);
 }
