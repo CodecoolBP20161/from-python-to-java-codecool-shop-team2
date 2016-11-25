@@ -35,8 +35,7 @@ public class MailMan {
             System.out.println("Email fromAddress: [NOK]");
         }
     }
-
-    protected void sendWelcome(String customerAddress) {
+    public void sendWelcome(String customerAddress) {
         if (session == null) {
             System.exit(0);
         }
