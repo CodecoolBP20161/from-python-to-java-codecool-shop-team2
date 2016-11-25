@@ -89,4 +89,17 @@ public class CustomerDaoJdbc implements CustomerDao {
 
         return resultList;
     }
+
+    @Override
+    public String verifyCustomer(Customer newCustomer){
+        for (Customer ctr : getAll()){
+            if (ctr.getCustomerName().equals(newCustomer.getCustomerName())) {
+                return "Username already exist!";
+            }
+            if (ctr.getEmail().equals(newCustomer.getEmail())) {
+                return "Email already used!";
+            }
+        }
+        return "OK";
+    }
 }

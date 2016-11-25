@@ -73,7 +73,7 @@ public class Customer {
         return hashCode;
     }
 
-    public Boolean verifyCustomer(String customerName, String password){
+    public Boolean verifyPassword(String customerName, String password){
         return this.getHashedPW().equals(this.StringConvertHash(customerName + password));
     }
 
@@ -87,8 +87,6 @@ public class Customer {
         }
         // need to change %40 onto @ in the email address, what get the client, then send welcome
         userData.set(1, userData.get(1).replaceAll("%40","@"));
-        MailMan email = new MailMan();
-        email.sendWelcome(userData.get(1));
         return new Customer(userData.get(0), userData.get(1), null, userData.get(2));
     }
 
