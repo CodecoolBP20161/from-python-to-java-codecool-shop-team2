@@ -13,11 +13,19 @@ public class Customer {
     private String email;
     private String hashedPW;
 
-    public Customer(String customerName, String email, String password) {
+    public Customer(String customerName, String email, String hashedPassword) {
         this.customerName = customerName;
         this.email = email;
-        this.hashedPW = password;
+        this.hashedPW = hashedPassword;
     }
+
+    // if user need own salty hashed password
+    private Customer(String customerName, String email, String hashedPassword, String rawPW){
+        this.customerName = customerName;
+        this.email = email;
+        this.hashedPW = setHashedPW(rawPW);
+    }
+
     public void setCustomerId(Integer id) {this.customerId = id;}
 
     public void setCustomerName(String customerName) {
@@ -28,8 +36,8 @@ public class Customer {
         this.email = email;
     }
 
-    public void setHashedPW(String password) {
-        this.hashedPW = this.StringConvertHash(this.getCustomerName() + this.hashedPW);
+    private String setHashedPW(String password) {
+        return this.hashedPW = this.StringConvertHash(this.getCustomerName() + password);
     }
 
     public Integer getCustomerId() {return customerId;}
@@ -69,7 +77,7 @@ public class Customer {
         return this.getHashedPW().equals(this.StringConvertHash(customerName + password));
     }
 
-    public static Customer getCustomerFromClient(String clientInput){
+    public static Customer getFromClient(String clientInput){
         // if the input is right, the userData something like this:
         //[username=username, email=email%40address.com, password=password]
         List<String> userData = new ArrayList<>(Arrays.asList(clientInput.split("&")));
@@ -81,7 +89,7 @@ public class Customer {
         userData.set(1, userData.get(1).replaceAll("%40","@"));
         MailMan email = new MailMan();
         email.sendWelcome(userData.get(1));
-        return new Customer(userData.get(0), userData.get(1), userData.get(2));
+        return new Customer(userData.get(0), userData.get(1), null, userData.get(2));
     }
 
     @Override

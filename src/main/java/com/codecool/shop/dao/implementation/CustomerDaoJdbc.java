@@ -24,7 +24,6 @@ public class CustomerDaoJdbc implements CustomerDao {
 
     @Override
     public void add(Customer customer) {
-        customer.setHashedPW(customer.getHashedPW());
         try {
             PreparedStatement stmt;
             stmt = databaseService.getConnection().prepareStatement(
@@ -52,7 +51,6 @@ public class CustomerDaoJdbc implements CustomerDao {
                         resultSet.getString("email"),
                         resultSet.getString("hashedPW"));
                 customer.setCustomerId(resultSet.getInt(1));
-                System.out.println("hashedPW from db: "+customer.getHashedPW());
                 return customer;
             }
         } catch (SQLException e) {
