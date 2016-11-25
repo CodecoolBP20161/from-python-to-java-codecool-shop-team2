@@ -13,6 +13,7 @@
 {
     margin-top: 10px;
 }
+
 .item.list-group-item
 {
     float: none;
@@ -106,6 +107,24 @@ a:hover {
     position: relative;
 }
 
+#regbutt{
+    font-size: 15px;
+    color:orange;
+    background-color: Transparent;
+    border-color: Transparent;
+    outline: none !important;
+    display: inline-block;
+    float: right;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+#regbutt:hover{
+    background-color: darkorange;
+    color: white;
+
+}
+
 #cart {
     margin-top: -50px;
 }
@@ -176,18 +195,23 @@ p.logotitle{
     height: 35px;
     width: 100px;
     border-radius: 5px;
-    border-color: darkorange;
+    border-color: Transparent;
     background-color: darkorange;
     color: white;
 
     outline: none !important;
 }
 
+.group{
+    padding: 1px;
+    display: inline-block;
+}
+
 .addbuttonshadow {
     z-index: -50;
     margin-left: 53px;
     margin-top: -33px;
-    height: 35px;
+    height: 36px;
     width: 100px;
     border-radius: 5px;
     background-color: #f94204;
