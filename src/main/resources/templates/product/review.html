@@ -86,16 +86,60 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <h4 class="modal-title">Continue to checkout and pay in the future</h4>
+                        <h4 class="modal-title">Checkout</h4>
                     </div>
                     <div class="modal-body">
-                        <p>This button will have further use, but now it's only here to say: </p>
-                        <p><strong>Thank you for your attention!</strong></p>
-                        <div class="jumpb center">
-                            <img src="/img/ggbean.gif"/>
-                            <img src="/img/ggbean.gif"/>
-                            <img src="/img/ggbean.gif"/>
-                        </div>
+                        <p><strong>Please fill out the the following field:</strong></p>
+                        <form action="/registration" method="post" >
+                            <div class="form-group">
+                                <label for="name">Name:</label>
+                                <input name="name" type="text" class="form-control" required="required" placeholder="Name" id="name"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input name="email" type="email" class="form-control" required="required" placeholder="E-mail" id="email"/>
+                            </div>
+                                <label for="phone">Phone:</label>
+                                <input name="phone" type="text" class="form-control" required="required" placeholder="Phonenumber" id="phone"/>
+
+                                <h4>Billing address:</h4>
+                            <div class="form-group">
+                                <label for="billingcountry">Country:</label>
+                                <input name="billingcountry" type="text" class="form-control" required="required" placeholder="Billing country" id="billingcountry"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="billingcity">City:</label>
+                                <input name="billingcity" type="text" class="form-control" required="required" placeholder="Billing city" id="billingcity"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="billingzipcode">Zipcode:</label>
+                                <input name="billingzipcode" type="text" class="form-control" required="required" placeholder="Billing zipcode" id="billingzipcode"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="billingaddress">Address:</label>
+                                <input name="billingaddress" type="text" class="form-control" required="required" placeholder="Billing address" id="billingaddress"/>
+                            </div>
+
+                                <h4>Shipping address <small>(only fill out if different):</small></h4>
+                            <div class="form-group">
+                                <label for="shippingcountry">Country:</label>
+                                <input name="shippingcountry" type="text" class="form-control" placeholder="Shipping country" id="shippingcountry"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="shippingcity">City:</label>
+                                <input name="shippingcity" type="text" class="form-control" placeholder="Shipping city" id="shippingcity"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="shippingzipcode">Zipcode:</label>
+                                <input name="shippingzipcode" type="text" class="form-control" placeholder="Shipping zipcode" id="shippingzipcode"/>
+                            </div>
+                                <label for="shippingaddress">Address:</label>
+                                <input name="shippingaddress" type="text" class="form-control" placeholder="Shipping address" id="shippingaddress"/>
+
+                            <br/><br/><br/>
+
+                            <button id="subbutton" href="#">Submit</button>
+                        </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary modalButton" data-dismiss="modal">Close</button>
