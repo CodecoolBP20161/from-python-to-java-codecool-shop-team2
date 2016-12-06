@@ -5,6 +5,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class Customer {
@@ -12,6 +13,16 @@ public class Customer {
     private String customerName;
     private String email;
     private String hashedPW;
+    private static HashMap DEFAULT_MAP = new HashMap();
+    private static HashMap fillMap(HashMap map) {
+        map.put("Country", null);
+        map.put("City", null);
+        map.put("Zipcode", null);
+        map.put("Address", null);
+        return map;
+    }
+    private HashMap billingAddress = fillMap(DEFAULT_MAP);
+    private HashMap shippingAdress = fillMap(DEFAULT_MAP);
 
     public Customer(String customerName, String email, String hashedPassword) {
         this.customerName = customerName;
@@ -39,6 +50,8 @@ public class Customer {
     private String setHashedPW(String password) {
         return this.hashedPW = this.StringConvertHash(this.getCustomerName() + password);
     }
+
+
 
     public Integer getCustomerId() {return customerId;}
 
