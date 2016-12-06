@@ -22,6 +22,7 @@ public class Main {
         post("/add/:id", ProductController::addProducts);
         post("/edit/:lineItem", ProductController::editProducts);
         post("/registration", CustomerController::addCustomer);
+        post("/", CustomerController::checkCustomer);
     }
 
 }

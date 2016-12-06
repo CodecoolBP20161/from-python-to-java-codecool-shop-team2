@@ -22,7 +22,6 @@ public class CustomerController {
         Customer customer = Customer.getFromClient(req.body());
         String customerFree = customerDataStore.verifyCustomer(customer);
         if (!customerFree.equals("OK")) {
-            System.out.println(customerFree);
             res.redirect("/registration");
             return null;
         }
@@ -31,6 +30,19 @@ public class CustomerController {
         res.redirect("/");
         MailMan email = new MailMan();
         email.sendWelcome(customer.getEmail());
+        return null;
+    }
+
+    public static Boolean checkCustomer(Request req, Response res) {
+
+        CustomerDao customerDataStore = CustomerDaoJdbc.getInstance();
+//        customerDataStore.getAll();
+       
+        System.out.println(req.queryParams("password"));
+//        Customer customer = Customer.getFromClient(req.body());
+
+//        String customerFree = customerDataStore.verifyCustomer( req.queryParams("username"), req.queryParams("password"));
+        res.redirect("/");
         return null;
     }
 }
