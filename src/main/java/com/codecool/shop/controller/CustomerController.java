@@ -33,15 +33,17 @@ public class CustomerController {
         return null;
     }
 
-    public static Boolean checkCustomer(Request req, Response res) {
-
+    public static String checkCustomer(Request req, Response res) {
         CustomerDao customerDataStore = CustomerDaoJdbc.getInstance();
-//        customerDataStore.getAll();
-       
-        System.out.println(req.queryParams("password"));
-//        Customer customer = Customer.getFromClient(req.body());
-
-//        String customerFree = customerDataStore.verifyCustomer( req.queryParams("username"), req.queryParams("password"));
+        for(Customer user : customerDataStore.getAll()) {
+            if (user.getCustomerName().equals(req.queryParams("username"))) {
+                Boolean isVerified = user.verifyPassword(req.queryParams("username"), req.queryParams("password"));
+                req.session().attribute("loginStatus", isVerified);
+                res.redirect("/");
+                return null;
+            }
+        }
+        req.session().attribute("loginStatus", null);
         res.redirect("/");
         return null;
     }
