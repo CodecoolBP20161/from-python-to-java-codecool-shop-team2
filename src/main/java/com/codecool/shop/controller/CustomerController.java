@@ -8,7 +8,9 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class CustomerController {
 
@@ -31,6 +33,22 @@ public class CustomerController {
         res.redirect("/");
         MailMan email = new MailMan();
         email.sendWelcome(customer.getEmail());
+        return null;
+    }
+
+    public static String collectShipping(Request req, Response res) {
+        ArrayList<String> shippingList = new ArrayList<>();
+        String doYouSave = req.queryParams("save");
+
+        if(doYouSave != null) {
+            shippingList.add(String.valueOf(req.queryParams("email")));
+            shippingList.add(String.valueOf(req.queryParams("shippingcountry")));
+            shippingList.add(String.valueOf(req.queryParams("shippingcity")));
+            shippingList.add(String.valueOf(req.queryParams("shippingzipcode")));
+            shippingList.add(String.valueOf(req.queryParams("shippingaddress")));
+            Customer.updateShippingCustomer(shippingList);
+        }
+        res.redirect("/");
         return null;
     }
 }
