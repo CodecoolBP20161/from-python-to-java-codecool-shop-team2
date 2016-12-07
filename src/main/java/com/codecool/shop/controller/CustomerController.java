@@ -37,14 +37,29 @@ public class CustomerController {
         CustomerDao customerDataStore = CustomerDaoJdbc.getInstance();
         for(Customer user : customerDataStore.getAll()) {
             if (user.getCustomerName().equals(req.queryParams("username"))) {
+                //true:oké, ha false akkor rossz jelszó, ha null akkor nincs benne
                 Boolean isVerified = user.verifyPassword(req.queryParams("username"), req.queryParams("password"));
                 req.session().attribute("loginStatus", isVerified);
                 res.redirect("/");
                 return null;
             }
         }
-        req.session().attribute("loginStatus", null);
+        req.session().attribute("loginStatus", false);
         res.redirect("/");
         return null;
+    }
+
+    public static String loginStatus(Boolean status){
+        if(status == null){
+            return null;
+        }
+        else if(status){
+            return "Login Success";
+        }else{
+            return"Invalid username or password";
+        }
+
+        //(request.session().attribute("loginStatus"))
+
     }
 }

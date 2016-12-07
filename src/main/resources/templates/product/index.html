@@ -27,6 +27,7 @@
     <link rel="stylesheet" type="text/css" href="/css/custom.css" />
     <script src="/js/style.js"/>
 
+    <script src="/js/log.js"/>
 
 </head>
 
@@ -50,13 +51,16 @@
             <button type="submit" id="regbutt"> SIGN UP </button>
         </form>
 
-        <div th:if="${customer != null}">
-        <span>Hello, th:text="${customer.firstName} ${customer.lastName}"!</span>
-        <a action="/"><button type="button" class="btn btn-primary">Log Out</button></a>
+        <div th:text="${loginStatus}" id ="loginstatus" style="color: #f94204"></div>
+
+        <div>
+        <span></span>
+        <a action="/"><button type="button" class="btn btn-primary" id="logoutbutt">Log Out</button></a>
         </div>
 
-        <div th:if="${customer == null}">
-        <button class="btn-continue pull-right" id="regbutt" style="vertical-align:middle" data-toggle="modal" data-target="#myModal"><span>SIGN IN</span></button>
+        <div>
+            <span></span>
+        <button class="btn-continue pull-right" id="loginbutt" style="vertical-align:middle" data-toggle="modal" data-target="#myModal"><span>LOG IN</span></button>
 
         <div class="container-fluid center" id="box">
         <div class="modal fade" id="myModal">
@@ -64,7 +68,7 @@
                 <div class="modal-content">
                     <div class="modal-body center">
                         <div class="container-fluid center" id="box">
-                            <h1 class="container-fluid text-center">SIGN IN</h1>
+                            <h1 class="container-fluid text-center">LOG IN</h1>
                             <p>Please type in your email address and password.</p>
 
                             <form method="post" class="center">
