@@ -26,7 +26,7 @@ public class ProductController {
         Map params = new HashMap<>();
         Boolean result = req.session().attribute("loginStatus");
         System.out.println("usr stat in renderProducts: "+result);
-        params.put("loginStatus", result);
+        params.put("loginStatus", result.toString());
 
         int valueFromHtml;
         // get values from the client
