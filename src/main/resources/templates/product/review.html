@@ -90,7 +90,7 @@
                     </div>
                     <div class="modal-body">
                         <p><strong>Please fill out the the following field:</strong></p>
-                        <form action="/registration" method="post" >
+                        <form action="/registration/address" method="post" >
                             <div class="form-group">
                                 <label for="name">Name:</label>
                                 <input name="name" type="text" class="form-control" required="required" placeholder="Name" id="name"/>
@@ -98,7 +98,7 @@
                             <div class="form-group">
                                 <label for="email">Email:</label>
                                 <input name="email" type="email" class="form-control" required="required" placeholder="E-mail" id="email"/>
-                            </div>
+                            </div> <!--
                                 <label for="phone">Phone:</label>
                                 <input name="phone" type="text" class="form-control" required="required" placeholder="Phonenumber" id="phone"/>
 
@@ -118,7 +118,7 @@
                             <div class="form-group">
                                 <label for="billingaddress">Address:</label>
                                 <input name="billingaddress" type="text" class="form-control" required="required" placeholder="Billing address" id="billingaddress"/>
-                            </div>
+                            </div>-->
 
                                 <h4>Shipping address <small>(only fill out if different):</small></h4>
                             <div class="form-group">
@@ -136,8 +136,10 @@
                                 <label for="shippingaddress">Address:</label>
                                 <input name="shippingaddress" type="text" class="form-control" placeholder="Shipping address" id="shippingaddress"/>
 
+
                             <br/><br/><br/>
 
+                            <input type="checkbox" name="save" value="true"/>Do you want to save your shipping address?<br/>
                             <button id="subbutton" href="#">Submit</button>
                         </form>
                     </div>
