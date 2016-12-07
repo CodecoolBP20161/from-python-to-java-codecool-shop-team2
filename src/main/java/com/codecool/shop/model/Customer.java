@@ -1,10 +1,15 @@
 package com.codecool.shop.model;
 
+import com.codecool.shop.dao.CustomerDao;
+import com.codecool.shop.dao.implementation.CustomerDaoJdbc;
+
+import java.lang.reflect.Array;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class Customer {
@@ -12,6 +17,7 @@ public class Customer {
     private String customerName;
     private String email;
     private String hashedPW;
+
 
     public Customer(String customerName, String email, String hashedPassword) {
         this.customerName = customerName;
@@ -39,6 +45,7 @@ public class Customer {
     private String setHashedPW(String password) {
         return this.hashedPW = this.StringConvertHash(this.getCustomerName() + password);
     }
+
 
     public Integer getCustomerId() {return customerId;}
 
@@ -89,6 +96,12 @@ public class Customer {
         userData.set(1, userData.get(1).replaceAll("%40","@"));
         return new Customer(userData.get(0), userData.get(1), null, userData.get(2));
     }
+
+    public static void updateShippingCustomer(ArrayList<String> shippingList) {
+        CustomerDao customerDataStore = CustomerDaoJdbc.getInstance();
+        customerDataStore.updateWithShipping(shippingList.get(0), shippingList.get(1), shippingList.get(2), shippingList.get(3), shippingList.get(4));
+    }
+
 
     @Override
     public String toString() {
