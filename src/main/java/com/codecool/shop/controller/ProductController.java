@@ -24,6 +24,11 @@ public class ProductController {
         SupplierDao supplierDataStore = SupplierDaoJdbc.getInstance();
 
         Map params = new HashMap<>();
+        Boolean status = req.session().attribute("loginStatus");
+        //System.out.println(CustomerController.loginStatus(status));
+        //Boolean result = req.session().attribute("loginStatus");
+        //System.out.println("usr stat in renderProducts: "+result);
+        params.put("loginStatus", CustomerController.loginStatus(status));
 
         int valueFromHtml;
         // get values from the client

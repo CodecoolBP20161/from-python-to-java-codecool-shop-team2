@@ -42,6 +42,8 @@ public class ExampleData {
         productDataStore.add(new Product("Cranberry", 199.99f, "USD", "Cranberries are usually processed into juice, sauce, jam and sweetened dried cranberries.", productCategoryDataStore.find(2), supplierDataStore.find(2)));
         productDataStore.add(new Product("America Nowadays", 179f, "USD", "No racism by the Trump industry. No offance BUT....... Add it to cart right now.", productCategoryDataStore.find(2), supplierDataStore.find(3)));
         productDataStore.add(new Product("Judged based on cover", 1299.99f, "USD", "The exception proves the rule. The exception proves the rule!", productCategoryDataStore.find(2), supplierDataStore.find(3)));
+
+        System.out.println("OKOKOKOK");
     }
 
 }
