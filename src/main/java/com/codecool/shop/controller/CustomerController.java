@@ -77,7 +77,8 @@ public class CustomerController {
         }
     }
 
-    // collecting data from the shipping form, then update the customer data in the database
+    // collecting data from the shipping form
+    // if the user checked the box, update the customer data in the database
     public static String collectShippingBilling(Request req, Response res) {
         ArrayList<String> shippingList = new ArrayList<>();
         String doYouSave = req.queryParams("save");

@@ -98,21 +98,24 @@ public class Customer {
     // get the shipping and billing (if necessary) data from client
     public static void updateShippingBilling(ArrayList<String> shippingList) {
         CustomerDao customerDataStore = CustomerDaoJdbc.getInstance();
-        customerDataStore.updateWithShipping(
+        customerDataStore.updateWith(
+                "shipping",
                 shippingList.get(0),
                 shippingList.get(1),
                 shippingList.get(2),
                 shippingList.get(3),
                 shippingList.get(4));
         if (!shippingList.get(5).isEmpty()) {
-            customerDataStore.updateWithBilling(
+            customerDataStore.updateWith(
+                "billing",
                 shippingList.get(0),
                 shippingList.get(5),
                 shippingList.get(6),
                 shippingList.get(7),
                 shippingList.get(8));
         } else {
-            customerDataStore.updateWithBilling(
+            customerDataStore.updateWith(
+                "billing",
                 shippingList.get(0),
                 shippingList.get(1),
                 shippingList.get(2),
