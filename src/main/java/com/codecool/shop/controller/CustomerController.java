@@ -9,7 +9,9 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class CustomerController {
 
@@ -60,14 +62,36 @@ public class CustomerController {
         return null;
     }
 
-    protected static String loginStatus(Boolean status){
-        if(status == null){
+    protected static String loginStatus(Boolean status) {
+        if (status == null) {
             return null;
-        }
-        else if(status){
+        } else if (status) {
             return "Login Success";
-        }else{
-            return"Invalid username or password";
+        } else {
+            return "Invalid username or password";
         }
+    }
+
+    public static String collectShippingBilling(Request req, Response res) {
+        ArrayList<String> shippingList = new ArrayList<>();
+        String doYouSave = req.queryParams("save");
+
+        if(doYouSave != null) {
+            shippingList.add(String.valueOf(req.queryParams("email")));
+            shippingList.add(String.valueOf(req.queryParams("shippingcountry")));
+            shippingList.add(String.valueOf(req.queryParams("shippingcity")));
+            shippingList.add(String.valueOf(req.queryParams("shippingzipcode")));
+            shippingList.add(String.valueOf(req.queryParams("shippingaddress")));
+            shippingList.add(String.valueOf(req.queryParams("billingcountry")));
+            shippingList.add(String.valueOf(req.queryParams("billingcity")));
+            shippingList.add(String.valueOf(req.queryParams("billingzipcode")));
+            shippingList.add(String.valueOf(req.queryParams("billingaddress")));
+
+
+            Customer.updateShippingBillingCustomer(shippingList);
+        }
+        res.redirect("/payment");
+        return null;
+
     }
 }

@@ -19,14 +19,14 @@ input[type=number] {
     text-align: center;
 }
 
+label {
+    margin-right: 20px;
+}
+
 p {
     width: auto;
     color: #4d4b4a;
     font-size: 18px;
-}
-
-div p {
-    margin-left: 20px;
 }
 
 .btn {
@@ -148,6 +148,9 @@ div p {
     margin-top: 5px;
     margin-left: 20px;
     display: inline-block;
+    background-color: Transparent;
+    border-color: Transparent;
+    outline: none !important;
 }
 
 p.logotitle{

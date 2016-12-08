@@ -37,10 +37,7 @@ public class CustomerDaoJdbc implements CustomerDao {
         }
     }
 
-    @Override
-    public Customer find(int id) {
-        String query = "SELECT * FROM customer WHERE id ='" + id + "';";
-
+    private Customer find(String query){
         try (Connection connection = databaseService.getConnection();
              Statement statement =connection.createStatement();
              ResultSet resultSet = statement.executeQuery(query)
@@ -58,6 +55,22 @@ public class CustomerDaoJdbc implements CustomerDao {
         }
         return null;
     }
+
+
+    @Override
+    public Customer findBy(int id) {
+        String query = "SELECT * FROM customer WHERE id ='" + id + "';";
+        return find(query);
+    }
+
+
+    @Override
+    public Customer findBy(String email) {
+        String query = "SELECT * FROM customer WHERE email ='" + email + "';";
+        return find(query);
+    }
+
+
 
     @Override
     public void remove(int id) {
@@ -102,4 +115,28 @@ public class CustomerDaoJdbc implements CustomerDao {
         }
         return "OK";
     }
+
+    @Override
+    public void updateWithShipping(String email, String country, String city, String zipcode, String address){
+        String query = "UPDATE customer " +
+                "SET shippingcountry = '" + country + "', " +
+                "shippingcity = '" + city + "', " +
+                "shippingzipcode = '" + zipcode + "', " +
+                "shippingaddress = '" + address + "' WHERE email = '" + email + "';";
+        System.out.println(query);
+        databaseService.executeQuery(query);
+    }
+
+    @Override
+    public void updateWithBilling(String email, String country, String city, String zipcode, String address){
+        String query = "UPDATE customer " +
+                "SET billingcountry = '" + country + "', " +
+                "billingcity = '" + city + "', " +
+                "billingzipcode = '" + zipcode + "', " +
+                "billingaddress = '" + address + "' WHERE email = '" + email + "';";
+
+        databaseService.executeQuery(query);
+    }
+
+
 }
