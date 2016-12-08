@@ -125,6 +125,43 @@ a:hover {
 
 }
 
+#loginbutt{
+    font-size: 15px;
+    color:orange;
+    background-color: Transparent;
+    border-color: Transparent;
+    outline: none !important;
+    display: inline-block;
+    float: right;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+#loginbutt:hover{
+    background-color: darkorange;
+    color: white;
+}
+
+.logout{
+    font-size: 15px;
+    color:orange;
+    background-color: Transparent;
+    border-color: Transparent;
+    outline: none !important;
+    display: inline-block;
+    float: right;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.logout:hover{
+    background-color: darkorange;
+    color: white;
+}
+
+
+
+
 #cart {
     margin-top: -50px;
 }

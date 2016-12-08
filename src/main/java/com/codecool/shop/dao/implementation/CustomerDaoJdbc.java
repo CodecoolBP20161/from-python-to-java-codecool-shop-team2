@@ -123,7 +123,6 @@ public class CustomerDaoJdbc implements CustomerDao {
                 "shippingcity = '" + city + "', " +
                 "shippingzipcode = '" + zipcode + "', " +
                 "shippingaddress = '" + address + "' WHERE email = '" + email + "';";
-        System.out.println(query);
         databaseService.executeQuery(query);
     }
 

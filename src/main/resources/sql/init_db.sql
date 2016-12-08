@@ -34,10 +34,10 @@ email VARCHAR(40),
 hashedPW TEXT,
 shippingcountry TEXT DEFAULT NULL,
 shippingcity TEXT DEFAULT NULL,
-shippingzipcode INTEGER DEFAULT NULL,
+shippingzipcode TEXT DEFAULT NULL,
 shippingaddress TEXT DEFAULT NULL,
 billingcountry TEXT DEFAULT NULL,
 billingcity TEXT DEFAULT NULL,
-billingzipcode INTEGER DEFAULT NULL,
+billingzipcode TEXT DEFAULT NULL,
 billingaddress TEXT DEFAULT NULL
 );
