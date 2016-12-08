@@ -9,9 +9,9 @@ $(document).ready(function () {
         $("#regbutt").show();
         $("#loginbutt").show();
         $("#logoutbutt").hide();
-
-
     }
+
+
 
 
 

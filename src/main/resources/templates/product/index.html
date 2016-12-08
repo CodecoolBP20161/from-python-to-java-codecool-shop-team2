@@ -27,7 +27,9 @@
     <link rel="stylesheet" type="text/css" href="/css/custom.css" />
     <script src="/js/style.js"/>
 
-    <script src="/js/log.js"/>
+    <script src="/js/logIn.js"/>
+
+    <script src="/js/logout.js"/>
 
 </head>
 
@@ -47,19 +49,21 @@
         <form action="/review">
             <button type="submit" id="cartbutton"><img src="/img/cart.png" id="cartpng"/>  CART</button>
         </form>
-        <form action="/registration">
-            <button type="submit" id="regbutt"> SIGN UP </button>
-        </form>
-
-        <div th:text="${loginStatus}" id ="loginstatus" style="color: #f94204"></div>
 
         <div>
-        <span></span>
-        <a action="/"><button type="button" class="btn btn-primary" id="logoutbutt">Log Out</button></a>
+            <a action="/"><button type="button" class="logout" id="logoutbutt">LOG OUT</button></a>
         </div>
 
         <div>
-            <span></span>
+        <form action="/registration">
+            <button type="submit" id="regbutt"> SIGN UP </button>
+        </form>
+        </div>
+
+        <div th:text="${loginStatus}" class="text-center" id ="loginstatus" style="display: none"></div>
+
+
+        <div>
         <button class="btn-continue pull-right" id="loginbutt" style="vertical-align:middle" data-toggle="modal" data-target="#myModal"><span>LOG IN</span></button>
 
         <div class="container-fluid center" id="box">
@@ -71,14 +75,14 @@
                             <h1 class="container-fluid text-center">LOG IN</h1>
                             <p>Please type in your email address and password.</p>
 
-                            <form method="post" class="center">
+                            <form method="post" class="center" action="/">
                                 <h6>Username</h6>
                                 <input name="username" type="text" required="required" placeholder="Username" />
                                 <h6>Password</h6>
                                 <input name="password" type="password" required="required" placeholder="Password" />
                                 <br/><br/><br/>
 
-                                <button id="subbutton" href="#">Submit</button>
+                                <button id="subbutton" href="/">Submit</button>
                             </form>
                         </div>
                     </div>

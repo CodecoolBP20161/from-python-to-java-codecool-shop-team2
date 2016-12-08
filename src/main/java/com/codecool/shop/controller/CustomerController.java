@@ -4,6 +4,7 @@ import com.codecool.shop.dao.CustomerDao;
 import com.codecool.shop.dao.implementation.CustomerDaoJdbc;
 import com.codecool.shop.model.Customer;
 import com.codecool.shop.model.MailMan;
+import com.codecool.shop.model.Order;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -34,10 +35,20 @@ public class CustomerController {
     }
 
     public static String checkCustomer(Request req, Response res) {
+        Boolean logout = Boolean.parseBoolean(req.queryParams("logout"));
+        if (logout) {
+            // really deleted session attribute
+            req.session().removeAttribute("loginStatus");
+            req.session().attribute("loginStatus", null);
+            Order orderDataStore = new Order();
+            req.session().attribute("order", orderDataStore);
+            res.redirect("/");
+            return null;
+        }
+
         CustomerDao customerDataStore = CustomerDaoJdbc.getInstance();
         for(Customer user : customerDataStore.getAll()) {
             if (user.getCustomerName().equals(req.queryParams("username"))) {
-                //true:oké, ha false akkor rossz jelszó, ha null akkor nincs benne
                 Boolean isVerified = user.verifyPassword(req.queryParams("username"), req.queryParams("password"));
                 req.session().attribute("loginStatus", isVerified);
                 res.redirect("/");
@@ -49,7 +60,7 @@ public class CustomerController {
         return null;
     }
 
-    public static String loginStatus(Boolean status){
+    protected static String loginStatus(Boolean status){
         if(status == null){
             return null;
         }
@@ -58,8 +69,5 @@ public class CustomerController {
         }else{
             return"Invalid username or password";
         }
-
-        //(request.session().attribute("loginStatus"))
-
     }
 }
