@@ -3,13 +3,11 @@ package com.codecool.shop.model;
 import com.codecool.shop.dao.CustomerDao;
 import com.codecool.shop.dao.implementation.CustomerDaoJdbc;
 
-import java.lang.reflect.Array;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 public class Customer {
@@ -26,10 +24,10 @@ public class Customer {
     }
 
     // if user need own salty hashed password
-    private Customer(String customerName, String email, String hashedPassword, String rawPW){
+    public Customer(String customerName, String email, String hashedPassword, String rawPw){
         this.customerName = customerName;
         this.email = email;
-        this.hashedPW = setHashedPW(rawPW);
+        this.hashedPW = setHashedPW(rawPw);
     }
 
     public void setCustomerId(Integer id) {this.customerId = id;}
@@ -97,7 +95,8 @@ public class Customer {
         return new Customer(userData.get(0), userData.get(1), null, userData.get(2));
     }
 
-    public static void updateShippingBillingCustomer(ArrayList<String> shippingList) {
+    // get the shipping and billing (if necessary) data from client
+    public static void updateShippingBilling(ArrayList<String> shippingList) {
         CustomerDao customerDataStore = CustomerDaoJdbc.getInstance();
         customerDataStore.updateWithShipping(
                 shippingList.get(0),
@@ -105,7 +104,7 @@ public class Customer {
                 shippingList.get(2),
                 shippingList.get(3),
                 shippingList.get(4));
-        if (shippingList.get(5).isEmpty() == false) {
+        if (!shippingList.get(5).isEmpty()) {
             customerDataStore.updateWithBilling(
                 shippingList.get(0),
                 shippingList.get(5),
