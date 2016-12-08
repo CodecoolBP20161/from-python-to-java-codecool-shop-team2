@@ -48,7 +48,7 @@ public class CustomerController {
             shippingList.add(String.valueOf(req.queryParams("shippingaddress")));
             Customer.updateShippingCustomer(shippingList);
         }
-        res.redirect("/");
+        res.redirect("/payment");
         return null;
     }
 }
