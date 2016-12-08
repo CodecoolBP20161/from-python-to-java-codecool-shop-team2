@@ -3,6 +3,7 @@ body {
 }
 
 h1 {
+    text-align: center;
     margin-bottom: 50px;
     color: orange;
 }
@@ -128,11 +129,6 @@ p {
     position: relative;
 }
 
-
-body{
-    background-color: #eeead0;
-}
-
 #cart {
     margin-top: -50px;
 }
@@ -213,9 +209,59 @@ p.logotitle{
     margin-right:10px;
 }
 
+.christmas{
+    text-align: center;
+    font-family: sans-serif;
+    font-weight: 100;
+}
+
+h2{
+    text-align: center;
+    color: #396;
+    font-weight: 100;
+    font-size: 40px;
+    margin: 40px 0px 20px;
+}
+
+#clockdiv{
+    text-align: center;
+    font-family: sans-serif;
+    color: #fff;
+    display: inline-block;
+    font-weight: 100;
+    text-align: center;
+    font-size: 30px;
+}
+
+#clockdiv > div{
+    text-align: center;
+    padding: 10px;
+    border-radius: 3px;
+    background: #ea112d;
+    display: inline-block;
+}
+
+#clockdiv div > span{
+    text-align: center;
+    padding: 15px;
+    border-radius: 3px;
+    background: #c3112c;
+    display: inline-block;
+}
+
+.smalltext{
+    text-align: center;
+    padding-top: 5px;
+    font-size: 16px;
+}
+
 @media only screen and (min-width: 150px) and (max-width: 600px)
 {
     h1 {
         text-align: center;
     }
+}
+
+body{
+    background-color: #eeead0;
 }

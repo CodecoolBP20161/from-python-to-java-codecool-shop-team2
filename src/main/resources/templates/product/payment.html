@@ -26,15 +26,21 @@
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" type="text/css" href="/css/customreview.css" />
+    <link rel="stylesheet" type="text/css" href="/css/preview.css" />
+    <link rel="stylesheet" type="text/css" href="/css/snow.css" />
+
     <script src="/js/style.js"/>
 </head>
 <body>
 
+<div id="snowflakeContainer">
+    <p class="snowflake">*</p>
+</div>
+
 <div class="navbar">
     <div>
         <form action="/">
-            <button id="logo"><img src="/img/logo.png"/></button>
+            <button id="logo"><img src="/img/logo_mik.png"/></button>
             <p class="logotitle">Shop</p>
         </form>
     </div>
@@ -49,17 +55,37 @@
 <!--display the selected items on the review page, based on the given data from the server-->
 <div class="container">
     <div class="row">
-        <h1>Payment</h1>
-        <h3>Payment will be here!</h3>
+        <h1>Payment<small> - will be here</small></h1>
     </div>
-    <img src="/img/ggbean.gif"/><img src="/img/ggbean.gif"/><img src="/img/ggbean.gif"/><img src="/img/ggbean.gif"/><img src="/img/ggbean.gif"/>
+
+</div>
+<div class="christmas">
+    <h2>Days until christmas</h2>
+    <div id="clockdiv">
+        <div>
+            <span class="days"></span>
+            <div class="smalltext">Days</div>
+        </div>
+        <div>
+            <span class="hours"></span>
+            <div class="smalltext">Hours</div>
+        </div>
+        <div>
+            <span class="minutes"></span>
+            <div class="smalltext">Minutes</div>
+        </div>
+        <div>
+            <span class="seconds"></span>
+            <div class="smalltext">Seconds</div>
+        </div>
+    </div>
 </div>
 
 <div class="footer navbar-fixed-bottom text-center">
     <p id= "navbartext">2016 | JavaBabok | All rights reserved</p>
 </div>
 
-
+<script src="/js/fallingsnow_v6.js"></script>
 
 </body>
 </html>
