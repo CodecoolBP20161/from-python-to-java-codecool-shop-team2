@@ -147,6 +147,9 @@ a:hover {
     margin-top: 5px;
     margin-left: 20px;
     display: inline-block;
+    background-color: Transparent;
+    border-color: Transparent;
+    outline: none !important;
 }
 
 p.logotitle{
