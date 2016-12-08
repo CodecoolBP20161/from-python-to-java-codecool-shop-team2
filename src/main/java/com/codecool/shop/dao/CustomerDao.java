@@ -14,6 +14,5 @@ public interface CustomerDao {
     List<Customer> getAll();
 
     String verifyCustomer(Customer newCustomer);
-    void updateWithShipping(String email, String country, String city, String zipcode, String address);
-    void updateWithBilling(String email, String country, String city, String zipcode, String address);
+    void updateWith(String columnName, String email, String country, String city, String zipcode, String address);
 }
