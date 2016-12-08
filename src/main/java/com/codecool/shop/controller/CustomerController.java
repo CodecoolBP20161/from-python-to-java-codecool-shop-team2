@@ -36,7 +36,7 @@ public class CustomerController {
         return null;
     }
 
-    public static String collectShipping(Request req, Response res) {
+    public static String collectShippingBilling(Request req, Response res) {
         ArrayList<String> shippingList = new ArrayList<>();
         String doYouSave = req.queryParams("save");
 
@@ -46,7 +46,15 @@ public class CustomerController {
             shippingList.add(String.valueOf(req.queryParams("shippingcity")));
             shippingList.add(String.valueOf(req.queryParams("shippingzipcode")));
             shippingList.add(String.valueOf(req.queryParams("shippingaddress")));
-            Customer.updateShippingCustomer(shippingList);
+            shippingList.add(String.valueOf(req.queryParams("billingcountry")));
+            shippingList.add(String.valueOf(req.queryParams("billingcity")));
+            shippingList.add(String.valueOf(req.queryParams("billingzipcode")));
+            shippingList.add(String.valueOf(req.queryParams("billingaddress")));
+
+            System.out.println(shippingList);
+
+
+            Customer.updateShippingBillingCustomer(shippingList);
         }
         res.redirect("/");
         return null;
