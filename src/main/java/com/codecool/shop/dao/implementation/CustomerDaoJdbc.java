@@ -128,13 +128,12 @@ public class CustomerDaoJdbc implements CustomerDao {
     }
 
     @Override
-    public void updateWithBilling(String id, String country, String city, String zipcode, String address){
+    public void updateWithBilling(String email, String country, String city, String zipcode, String address){
         String query = "UPDATE customer " +
-                "SET billingcountry ='" + country + "'," +
-                "billinggcity ='" + city + "'," +
-                "billingzipcode ='" + zipcode + "'," +
-                "billingaddress ='" + address + "'," +
-                "WHERE id ='" + id + "';";
+                "SET billingcountry = '" + country + "', " +
+                "billingcity = '" + city + "', " +
+                "billingzipcode = '" + zipcode + "', " +
+                "billingaddress = '" + address + "' WHERE email = '" + email + "';";
 
         databaseService.executeQuery(query);
     }

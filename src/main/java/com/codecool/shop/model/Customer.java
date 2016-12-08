@@ -97,9 +97,29 @@ public class Customer {
         return new Customer(userData.get(0), userData.get(1), null, userData.get(2));
     }
 
-    public static void updateShippingCustomer(ArrayList<String> shippingList) {
+    public static void updateShippingBillingCustomer(ArrayList<String> shippingList) {
         CustomerDao customerDataStore = CustomerDaoJdbc.getInstance();
-        customerDataStore.updateWithShipping(shippingList.get(0), shippingList.get(1), shippingList.get(2), shippingList.get(3), shippingList.get(4));
+        customerDataStore.updateWithShipping(
+                shippingList.get(0),
+                shippingList.get(1),
+                shippingList.get(2),
+                shippingList.get(3),
+                shippingList.get(4));
+        if (shippingList.get(5).isEmpty() == false) {
+            customerDataStore.updateWithBilling(
+                shippingList.get(0),
+                shippingList.get(5),
+                shippingList.get(6),
+                shippingList.get(7),
+                shippingList.get(8));
+        } else {
+            customerDataStore.updateWithBilling(
+                shippingList.get(0),
+                shippingList.get(1),
+                shippingList.get(2),
+                shippingList.get(3),
+                shippingList.get(4));
+        }
     }
 
 
