@@ -18,10 +18,12 @@ public class Main {
         get("/", ProductController::renderProducts, new ThymeleafTemplateEngine());
         get("/:name/:id", ProductController::renderProducts, new ThymeleafTemplateEngine());
         get("/review", ProductController::renderReview, new ThymeleafTemplateEngine());
+        get("/payment", ProductController::renderPayment, new ThymeleafTemplateEngine());
         get("/registration", CustomerController::renderRegistration, new ThymeleafTemplateEngine());
         post("/add/:id", ProductController::addProducts);
         post("/edit/:lineItem", ProductController::editProducts);
         post("/registration", CustomerController::addCustomer);
+        post("/registration/address", CustomerController::collectShippingBilling);
     }
 
 }
