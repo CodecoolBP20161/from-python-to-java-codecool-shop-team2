@@ -56,7 +56,7 @@ public class CustomerController {
 
             Customer.updateShippingBillingCustomer(shippingList);
         }
-        res.redirect("/");
+        res.redirect("/payment");
         return null;
     }
 }
