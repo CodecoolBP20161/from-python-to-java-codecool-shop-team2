@@ -1,5 +1,8 @@
 package com.codecool.shop.model;
 
+import com.codecool.shop.dao.CustomerDao;
+import com.codecool.shop.dao.implementation.CustomerDaoJdbc;
+
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -13,6 +16,7 @@ public class Customer {
     private String email;
     private String hashedPW;
 
+
     public Customer(String customerName, String email, String hashedPassword) {
         this.customerName = customerName;
         this.email = email;
@@ -20,10 +24,10 @@ public class Customer {
     }
 
     // if user need own salty hashed password
-    private Customer(String customerName, String email, String hashedPassword, String rawPW){
+    public Customer(String customerName, String email, String hashedPassword, String rawPw){
         this.customerName = customerName;
         this.email = email;
-        this.hashedPW = setHashedPW(rawPW);
+        this.hashedPW = setHashedPW(rawPw);
     }
 
     public void setCustomerId(Integer id) {this.customerId = id;}
@@ -39,6 +43,7 @@ public class Customer {
     private String setHashedPW(String password) {
         return this.hashedPW = this.StringConvertHash(this.getCustomerName() + password);
     }
+
 
     public Integer getCustomerId() {return customerId;}
 
@@ -89,6 +94,36 @@ public class Customer {
         userData.set(1, userData.get(1).replaceAll("%40","@"));
         return new Customer(userData.get(0), userData.get(1), null, userData.get(2));
     }
+
+    // get the shipping and billing (if necessary) data from client
+    public static void updateShippingBilling(ArrayList<String> shippingList) {
+        CustomerDao customerDataStore = CustomerDaoJdbc.getInstance();
+        customerDataStore.updateWith(
+                "shipping",
+                shippingList.get(0),
+                shippingList.get(1),
+                shippingList.get(2),
+                shippingList.get(3),
+                shippingList.get(4));
+        if (!shippingList.get(5).isEmpty()) {
+            customerDataStore.updateWith(
+                "billing",
+                shippingList.get(0),
+                shippingList.get(5),
+                shippingList.get(6),
+                shippingList.get(7),
+                shippingList.get(8));
+        } else {
+            customerDataStore.updateWith(
+                "billing",
+                shippingList.get(0),
+                shippingList.get(1),
+                shippingList.get(2),
+                shippingList.get(3),
+                shippingList.get(4));
+        }
+    }
+
 
     @Override
     public String toString() {

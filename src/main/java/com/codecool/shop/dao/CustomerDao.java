@@ -5,10 +5,14 @@ import java.util.List;
 
 public interface CustomerDao {
     void add(Customer customer);
-    Customer find(int id);
+
+    Customer findBy(int id);
+    Customer findBy(String email);
     void remove(int id);
+
 
     List<Customer> getAll();
 
     String verifyCustomer(Customer newCustomer);
+    void updateWith(String columnName, String email, String country, String city, String zipcode, String address);
 }

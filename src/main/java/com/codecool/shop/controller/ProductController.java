@@ -24,6 +24,11 @@ public class ProductController {
         SupplierDao supplierDataStore = SupplierDaoJdbc.getInstance();
 
         Map params = new HashMap<>();
+        Boolean status = req.session().attribute("loginStatus");
+        //System.out.println(CustomerController.loginStatus(status));
+        //Boolean result = req.session().attribute("loginStatus");
+        //System.out.println("usr stat in renderProducts: "+result);
+        params.put("loginStatus", CustomerController.loginStatus(status));
 
         int valueFromHtml;
         // get values from the client
@@ -118,5 +123,23 @@ public class ProductController {
         }
         res.redirect("/review");
         return null;
+    }
+
+    // render the payment page
+    public static ModelAndView renderPayment(Request req, Response res) {
+        // if the user is new and visit this page first, then create her/his own session, then send the home page
+        if (req.session().isNew()){
+            Order orderDataStore = new Order();
+            req.session().attribute("order", orderDataStore);
+            res.redirect("/");
+        }
+        // get user's session
+        Order orderDataStore = req.session().attribute("order");
+        float price = orderDataStore.getAllPrice();
+        // create the params HashMap, then fill it the necessary data, after that, send the HashMap to tha client
+        Map params = new HashMap<>();
+        params.put("order", orderDataStore.getList());
+        params.put("price", price);
+        return new ModelAndView(params, "product/payment");
     }
 }

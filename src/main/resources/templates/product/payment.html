@@ -5,7 +5,7 @@
     <meta name="author" content="Codecool" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Codecool Shop/Reg</title>
+    <title>Codecool Shop</title>
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
 
@@ -26,7 +26,7 @@
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" type="text/css" href="/css/registration.css" />
+    <link rel="stylesheet" type="text/css" href="/css/preview.css" />
     <link rel="stylesheet" type="text/css" href="/css/snow.css" />
 
     <script src="/js/style.js"/>
@@ -45,31 +45,40 @@
         </form>
     </div>
     <div id="cart">
-        <form action="/">
+        <form action="/review">
             <button type="submit" id="cartbutton">BACK</button>
         </form>
     </div>
 
 </div>
 
-<div class="container-fluid center" id="box">
-    <h1 class="container-fluid text-center">Registration</h1>
-    <form method="post" >
-        <h6>Username</h6>
-        <input name="username" type="text" required="required" placeholder="username" />
-        <h6>Email</h6>
-        <input name="email" type="text" required="required" placeholder="email" />
-        <h6>Password</h6>
-        <input name="password" type="password" required="required" placeholder="password" />
-        <br/><br/><br/>
+<!--display the selected items on the review page, based on the given data from the server-->
+<div class="container">
+    <div class="row">
+        <h1>Payment<small> - will be here</small></h1>
+    </div>
 
-        <button id="subbutton" href="#">Submit</button>
-    </form>
 </div>
-<br/>
-<div id="war" class="text-center">
-    WARNING:<br/> If you give an exist Username or email address, then the registration page reloaded.<br/>
-    If you arrived back to index page, then the registration was successfully.
+<div class="christmas">
+    <h2>Days until christmas</h2>
+    <div id="clockdiv">
+        <div>
+            <span class="days"></span>
+            <div class="smalltext">Days</div>
+        </div>
+        <div>
+            <span class="hours"></span>
+            <div class="smalltext">Hours</div>
+        </div>
+        <div>
+            <span class="minutes"></span>
+            <div class="smalltext">Minutes</div>
+        </div>
+        <div>
+            <span class="seconds"></span>
+            <div class="smalltext">Seconds</div>
+        </div>
+    </div>
 </div>
 
 <div class="footer navbar-fixed-bottom text-center">
