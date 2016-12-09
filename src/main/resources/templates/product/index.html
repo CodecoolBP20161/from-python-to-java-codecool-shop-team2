@@ -65,44 +65,42 @@
         </div>
 
         <div>
-        <form action="/registration">
-            <button type="submit" id="regbutt"> SIGN UP </button>
-        </form>
+            <form action="/registration">
+                <button type="submit" id="regbutt"> SIGN UP </button>
+            </form>
         </div>
 
         <div th:text="${loginStatus}" class="text-center" id ="loginstatus" style="display: none"></div>
 
 
         <div>
-        <button class="btn-continue pull-right" id="loginbutt" style="vertical-align:middle" data-toggle="modal" data-target="#myModal"><span>LOG IN</span></button>
+            <button class="btn-continue pull-right" id="loginbutt" style="vertical-align:middle" data-toggle="modal" data-target="#myModal"><span>LOG IN</span></button>
 
-        <div class="container-fluid center" id="box">
-        <div class="modal fade" id="myModal">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-body center">
-                        <div class="container-fluid center" id="box">
-                            <h1 class="container-fluid text-center">LOG IN</h1>
-                            <p>Please type in your email address and password.</p>
-
+            <div class="container-fluid center" id="box">
+                <div class="modal fade" id="myModal">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
                             <form method="post" class="center" action="/">
-                                <h6>Username</h6>
-                                <input name="username" type="text" required="required" placeholder="Username" />
-                                <h6>Password</h6>
-                                <input name="password" type="password" required="required" placeholder="Password" />
-                                <br/><br/><br/>
-
-                                <button id="subbutton" href="/">Submit</button>
+                                <div class="modal-body center">
+                                    <div class="container-fluid center" id="box">
+                                        <h1 class="container-fluid text-center">LOG IN</h1>
+                                        <p>Please type in your email address and password.</p>
+                                        <h6>Username</h6>
+                                        <input name="username" type="text" required="required" placeholder="Username" />
+                                        <h6>Password</h6>
+                                        <input name="password" type="password" required="required" placeholder="Password" />
+                                        <br/><br/><br/>
+                                    </div>
+                                </div>
+                                <div class="modal-footer center">
+                                    <button id="subbutton" class="modalButton btn btn-secondary" href="/">Submit</button>
+                                    <button type="button" class="btn btn-secondary modalButton" data-dismiss="modal">Close</button>
+                                </div>
                             </form>
-                        </div>
-                    </div>
-                    <div class="modal-footer center">
-                        <button type="button" class="btn btn-secondary modalButton" data-dismiss="modal">Close</button>
-                    </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
-        </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+            </div>
         </div>
 
     </div>
@@ -117,7 +115,7 @@
     <div>
         <a href='/category/1'>Magic</a><br/>
         <a href='/category/2'>Real</a>
-    <h4>Supplier</h4>
+        <h4>Supplier</h4>
         <a href='/supplier/2'>BioBean</a><br/>
         <a href='/supplier/3'>FriendlySt</a><br/>
         <a href='/supplier/1'>MagicMarket</a>

@@ -107,8 +107,8 @@
                                 <label for="email">Email:</label>
                                 <input name="email" type="email" class="form-control" required="required" placeholder="E-mail" id="email"/>
                             </div>
-                                <label for="phone">Phone:</label>
-                                <input name="phone" type="text" class="form-control" required="required" placeholder="Phonenumber" id="phone"/>
+                            <label for="phone">Phone:</label>
+                            <input name="phone" type="text" class="form-control" required="required" placeholder="Phonenumber" id="phone"/>
 
                             <h4>Shipping address:</h4>
                             <div class="form-group">
@@ -126,7 +126,7 @@
                             <label for="shippingaddress">Address:</label>
                             <input name="shippingaddress" type="text" class="form-control" required="required" placeholder="Shipping address" id="shippingaddress"/>
 
-                                <h4>Billing address <small>(only fill out if different):</small></h4>
+                            <h4>Billing address <small>(only fill out if different):</small></h4>
                             <div class="form-group">
                                 <label for="billingcountry">Country:</label>
                                 <input name="billingcountry" type="text" class="form-control" placeholder="Billing country" id="billingcountry"/>
@@ -149,13 +149,17 @@
 
                             <br/><br/><br/>
 
-                            <input type="checkbox" name="save" value="true"/>Do you want to save your shipping address?<br/>
-                            <button id="subbutton" href="#">Submit</button>
+                            <div class="checkbox">
+                                <label><input type="checkbox" name="save" value="true"/>Do you want to save your shipping address?</label>
+                                <!--<input type="checkbox" name="save" value="true"/>Do you want to save your shipping address?<br/>-->
+                            </div>
+                            <div class="modal-footer">
+                                <button id="subbutton" class="btn btn-secondary modalButton" href="#">Submit</button>
+                                <button type="button" class="btn btn-secondary modalButton" data-dismiss="modal">Close</button>
+                            </div>
                         </form>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary modalButton" data-dismiss="modal">Close</button>
-                    </div>
+
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
