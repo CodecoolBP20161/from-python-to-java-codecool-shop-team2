@@ -1,8 +1,6 @@
-package Controller;
-
-import Service.CostCalculator;
+package com.feecalculator.Controller;
+import com.feecalculator.Service.CostCalculator;
 import spark.Request;
-
 import java.util.HashMap;
 
 /**

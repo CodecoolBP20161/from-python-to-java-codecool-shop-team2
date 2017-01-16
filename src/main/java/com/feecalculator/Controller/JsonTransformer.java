@@ -1,8 +1,7 @@
-package Controller;
+package com.feecalculator.Controller;
 
 import com.google.gson.Gson;
 import spark.Request;
-import spark.Response;
 
 import java.util.HashMap;
 
