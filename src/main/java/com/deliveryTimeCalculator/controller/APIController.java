@@ -15,22 +15,19 @@ import java.util.concurrent.TimeUnit;
 public class APIController {
 
     private static APIService apiService;
-    // ORIGIN string store the webshop location
-    // TODO: Change origin location, what you want!
-    private static final String ORIGIN = "Amsterdam";
 
     public APIController(APIService apiService){
         APIController.apiService = apiService;
     }
 
     public JSONObject location (Request request, Response response) throws IOException, URISyntaxException, JSONException {
-        return this.getTimeInMs(request.params(":destination"));
+        return this.getTimeInMs(request.params(":origin"), request.params(":destination"));
     }
 
     // This method create the final json with the output data.
-    public JSONObject getTimeInMs(String destination) throws IOException, URISyntaxException, JSONException {
+    public JSONObject getTimeInMs(String origin, String destination) throws IOException, URISyntaxException, JSONException {
         JSONObject json = new JSONObject();
-        String status = checkStatus(destination);
+        String status = checkStatus(origin, destination);
         // If something went wrong, the time will be 0.
         if(!status.equals("OK")) {
             json.put("time", 0);
@@ -38,7 +35,7 @@ public class APIController {
             return json;
         }
         // Here start the work with the jon from Google Maps.
-        JSONObject routeDetails = getRouteDetails(destination);
+        JSONObject routeDetails = getRouteDetails(origin, destination);
         Integer timeInSec = (Integer) ((JSONObject) routeDetails.get("duration")).get("value");
         // Convert second to millisecond.
         json.put("time", TimeUnit.SECONDS.toMillis(timeInSec));
@@ -46,9 +43,9 @@ public class APIController {
         return json;
     }
 
-    public String checkStatus(String destination) throws IOException, URISyntaxException, JSONException {
+    public String checkStatus(String origin, String destination) throws IOException, URISyntaxException, JSONException {
         // Check the status and expand it, if no OK (or something else).
-        JSONObject routeDetails = getRouteDetails(destination);
+        JSONObject routeDetails = getRouteDetails(origin, destination);
         String status = routeDetails.get("status").toString();
         switch (status) {
             case "ZERO_RESULTS":
@@ -61,9 +58,9 @@ public class APIController {
         }
     }
 
-    public JSONObject getRouteDetails(String destination) throws IOException, URISyntaxException, JSONException {
+    public JSONObject getRouteDetails(String origin, String destination) throws IOException, URISyntaxException, JSONException {
         // Here get the json from Google and return it.
-        JSONObject jsonObject = new JSONObject(apiService.calcTime(ORIGIN, destination));
+        JSONObject jsonObject = new JSONObject(apiService.calcTime(origin, destination));
         JSONObject routeDetailsList = (JSONObject) ((JSONArray) jsonObject.get("rows")).get(0);
         return (JSONObject) ((JSONArray) routeDetailsList.get("elements")).get(0);
     }

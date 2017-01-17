@@ -19,8 +19,8 @@ public class TimeGeneratorService {
         application.controller = new APIController(APIService.getInstance());
 
         // --- MAPPING ---
-        //for e.g.: http://0.0.0.0:60003/api/timecalculator/Budapest
-        get("/api/timecalculator/:destination", application.controller::location);
+        //for e.g.: http://0.0.0.0:60003/api/timecalculator/Budapest/Érd
+        get("/api/timecalculator/:origin/:destination", application.controller::location);
     }
 
 }
