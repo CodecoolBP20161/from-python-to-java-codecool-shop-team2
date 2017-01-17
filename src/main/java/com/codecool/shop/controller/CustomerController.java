@@ -97,7 +97,7 @@ public class CustomerController {
             // at more info look at the Customer model
             Customer.updateShippingBilling(shippingList);
         }
-        res.redirect("/payment");
+        res.redirect("/summary");
         return null;
 
     }

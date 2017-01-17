@@ -14,7 +14,7 @@ public class DeliveryCostController {
     private static final String API_URL = "http://localhost:9999/api";
     private static final String WEBSHOPLOCATION = "Budapest";
 
-    public static String calcDeliveryCost(Request req, Response res) throws IOException, URISyntaxException {
+    public static double calcDeliveryCost(Request req, Response res) throws IOException, URISyntaxException {
         String costFee = null;
 
         try {
@@ -27,7 +27,7 @@ public class DeliveryCostController {
         }
 
         Double costAsDouble = Math.ceil(Double.parseDouble(costFee));
-        return costAsDouble.toString() + " $";
+        return costAsDouble;
     }
 
     public static JSONObject getFeeJson(String webshop, String target) throws URISyntaxException, IOException {
