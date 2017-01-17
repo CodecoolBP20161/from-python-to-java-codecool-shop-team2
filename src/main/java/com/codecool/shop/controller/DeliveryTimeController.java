@@ -18,7 +18,7 @@ public class DeliveryTimeController {
     private static final String ORIGIN = "Amterdam";
 
 
-    public static String calcDelivetyTime(Request req, Response res){
+    public static String calcDeliveryTime(Request req, Response res){
         String time = null;
         try {
             JSONObject obj = getTimeJson(ORIGIN, String.valueOf(req.queryParams("shippingcity")));
