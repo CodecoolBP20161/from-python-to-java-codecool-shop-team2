@@ -9,6 +9,8 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -79,9 +81,10 @@ public class CustomerController {
 
     // collecting data from the shipping form
     // if the user checked the box, update the customer data in the database
-    public static String collectShippingBilling(Request req, Response res) {
+    public static ModelAndView collectShippingBilling(Request req, Response res) throws IOException, URISyntaxException {
         ArrayList<String> shippingList = new ArrayList<>();
         String doYouSave = req.queryParams("save");
+
 
         if(doYouSave != null) {
             shippingList.add(String.valueOf(req.queryParams("email")));
@@ -97,8 +100,7 @@ public class CustomerController {
             // at more info look at the Customer model
             Customer.updateShippingBilling(shippingList);
         }
-        res.redirect("/summary");
-        return null;
 
+        return APIController.renderDeliverySummary(req, res);
     }
 }

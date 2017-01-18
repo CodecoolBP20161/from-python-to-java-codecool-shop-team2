@@ -18,13 +18,14 @@ public class Main {
         get("/", ProductController::renderProducts, new ThymeleafTemplateEngine());
         get("/:name/:id", ProductController::renderProducts, new ThymeleafTemplateEngine());
         get("/review", ProductController::renderReview, new ThymeleafTemplateEngine());
-        get("/payment", ProductController::renderPayment, new ThymeleafTemplateEngine());
+        // get("/payment", ProductController::renderPayment, new ThymeleafTemplateEngine());
         get("/registration", CustomerController::renderRegistration, new ThymeleafTemplateEngine());
-        get("/summary", APIController::renderDeliverySummary, new ThymeleafTemplateEngine());
+        //post("/summary", APIController::renderDeliverySummary, new ThymeleafTemplateEngine());
+        post("/summary", CustomerController::collectShippingBilling, new ThymeleafTemplateEngine());
         post("/add/:id", ProductController::addProducts);
         post("/edit/:lineItem", ProductController::editProducts);
         post("/registration", CustomerController::addCustomer);
         post("/", CustomerController::checkCustomer);
-        post("/registration/address", CustomerController::collectShippingBilling);
+
     }
 }
