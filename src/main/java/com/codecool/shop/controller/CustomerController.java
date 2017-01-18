@@ -3,6 +3,7 @@ package com.codecool.shop.controller;
 import com.codecool.shop.dao.CustomerDao;
 import com.codecool.shop.dao.implementation.CustomerDaoJdbc;
 import com.codecool.shop.model.Customer;
+import com.codecool.shop.model.EmailType;
 import com.codecool.shop.model.MailMan;
 import com.codecool.shop.model.Order;
 import spark.ModelAndView;
@@ -26,6 +27,7 @@ public class CustomerController {
         // Customer customer = Customer.getFromClient(req.body());
         Customer customer = new Customer(
                 req.queryParams("username"), req.queryParams("email"), null, req.queryParams("password"));
+        MailMan email = new MailMan(EmailType.WELCOME_MESSAGE, req.queryParams("username"));
         String customerFree = customerDataStore.verifyCustomer(customer);
         if (!customerFree.equals("OK")) {
             res.redirect("/registration");
@@ -33,8 +35,9 @@ public class CustomerController {
         }
         req.session().removeAttribute("customerStatus");
         customerDataStore.add(customer);
+
+
         res.redirect("/");
-        MailMan email = new MailMan();
         email.sendWelcome(customer.getEmail());
         return null;
     }
