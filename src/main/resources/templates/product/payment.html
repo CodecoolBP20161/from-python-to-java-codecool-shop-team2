@@ -26,21 +26,22 @@
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" type="text/css" href="/css/preview.css" />
+    <link rel="stylesheet" type="text/css" href="/css/confirm.css" />
     <link rel="stylesheet" type="text/css" href="/css/snow.css" />
 
     <script src="/js/style.js"/>
 </head>
 <body>
-
+<!--
 <div id="snowflakeContainer">
     <p class="snowflake">*</p>
 </div>
+-->
 
 <div class="navbar">
     <div>
         <form action="/">
-            <button id="logo"><img src="/img/logo_mik.png"/></button>
+            <button id="logo"><img src="/img/logo.png"/></button>
             <p class="logotitle">Shop</p>
         </form>
     </div>
@@ -55,29 +56,29 @@
 <!--display the selected items on the review page, based on the given data from the server-->
 <div class="container">
     <div class="row">
-        <h1>Payment<small> - will be here</small></h1>
+        <h1>Confirm delivery</h1>
     </div>
-
 </div>
-<div class="christmas">
-    <h2>Days until christmas</h2>
-    <div id="clockdiv">
-        <div>
-            <span class="days"></span>
-            <div class="smalltext">Days</div>
+
+<div class="container-fluid orderbox ">
+    <div class="row">
+        <div class="quantityForm">
+            <div th:each="ord,iterStat : ${order}">
+                <div class="col-xs-6">
+                    <p class="inline" th:text="${ord.getProductName()}">name</p>
+                </div>
+                <div class="col-xs-6">
+                    <p class="inline pull-right">subtotal: <strong th:text="${ord.getSubTotalPrice()}+' $'">totalPrice</strong></p>
+                </div>
+            </div>
+            <br/>
         </div>
-        <div>
-            <span class="hours"></span>
-            <div class="smalltext">Hours</div>
-        </div>
-        <div>
-            <span class="minutes"></span>
-            <div class="smalltext">Minutes</div>
-        </div>
-        <div>
-            <span class="seconds"></span>
-            <div class="smalltext">Seconds</div>
-        </div>
+    </div>
+</div>
+<div id="totalPriceDiv">
+    <!--display the total price, based on the given data from the server-->
+    <div id ="totalborder">
+        <p class="inline" id ="price">Total price: <strong th:text="${price}+' $'"></strong></p>
     </div>
 </div>
 
