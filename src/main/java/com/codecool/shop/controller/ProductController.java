@@ -1,7 +1,7 @@
 package com.codecool.shop.controller;
 
+import com.codecool.shop.Main;
 import com.codecool.shop.dao.ProductCategoryDao;
-import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.dao.SupplierDao;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoJdbc;
 import com.codecool.shop.dao.implementation.ProductDaoJdbc;
@@ -12,37 +12,51 @@ import com.codecool.shop.model.Product;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
+
 import java.util.*;
 
-// this class contains the methods for the routes in the Main class
+/**
+ * This class contains the methods for the routes (what is about the products).
+ * @see Main
+ */
 public class ProductController {
 
+    /**
+     * This store the product data access object instance for database.
+     */
+    private static ProductDaoJdbc productDataStore = ProductDaoJdbc.getInstance();
+
+    /**
+     * This method responsible for rendering the index page.
+     * Initialize the data access objects and create the params HashMap.
+     * Get the products id and name, what the users want to see on the page,
+     * then put them into the params. Handle the cart based on users Order by store in sessions.
+     * (The log in don't overwrite the items in the cart.)
+     *
+     * @param req Request from client
+     * @param res Response to client
+     * @return the index page template
+     */
     public static ModelAndView renderProducts(Request req, Response res) {
-        // initialize data for renderProducts
-        ProductDao productDataStore = ProductDaoJdbc.getInstance();
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoJdbc.getInstance();
         SupplierDao supplierDataStore = SupplierDaoJdbc.getInstance();
 
-        Map params = new HashMap<>();
+        Map<String, Object> params = new HashMap<>();
+
         Boolean status = req.session().attribute("loginStatus");
-        //System.out.println(CustomerController.loginStatus(status));
-        //Boolean result = req.session().attribute("loginStatus");
-        //System.out.println("usr stat in renderProducts: "+result);
         params.put("loginStatus", CustomerController.loginStatus(status));
 
         int valueFromHtml;
-        // get values from the client
         String stringValueFromHtml = req.params(":id");
         String stringValueName = req.params(":name");
 
-        // create int from the string one way or another:
-       if (stringValueFromHtml!= null){
+        if (stringValueFromHtml != null){
            valueFromHtml = Integer.parseInt(stringValueFromHtml);
-       }
-       else {
-           valueFromHtml = 0;
-       }
-       // search based on the given values, then put the products to the param HashMap
+        }
+        else {
+            valueFromHtml = 0;
+        }
+
         if (valueFromHtml == 0) {
             params.put("categories", productCategoryDataStore.getAll());
             params.put("products", productDataStore.getAll());
@@ -58,66 +72,60 @@ public class ProductController {
             }
         }
 
-        // create a new session if the the user is new on the site
-        // create and put the user's Order object into the new session
-        if (req.session().isNew()) {
-            Order orderDataStore = new Order();
-            req.session().attribute("order", orderDataStore);
-            // put all quantity into params HashMap
-            params.put("allQuantity", orderDataStore.getAllQuantity());
-        }
-        else {
-            // if the user have a session, then get own Order object
-            Order orderDataStore = req.session().attribute("order");
-            params.put("allQuantity", orderDataStore.getAllQuantity());
-        }
-        // send params HashMap to the client
+        params.put("allQuantity", getOrderBySession(req).getAllQuantity());
         return new ModelAndView(params, "product/index");
     }
 
-    // add products to the user's Order object
+
+    /**
+     * Get the product id from client. Add products to the user's Order object (cart).
+     * Add the Order object to the session and add new LineItem to the Order
+     *
+     * @param req Request from client
+     * @param res Response to client
+     * @return null
+     */
     public static String addProducts(Request req, Response res) {
-        // find the selected product
         Integer id = Integer.parseInt(req.params(":id"));
-        ProductDao productDataStore = ProductDaoJdbc.getInstance();
         Product result = productDataStore.find(id);
-        // give to the Order's object into the session
-        Order orderDataStore = req.session().attribute("order");
-        orderDataStore.addItem(new LineItem(result));
+        getOrderBySession(req).addItem(new LineItem(result));
         res.redirect("/");
         return null;
     }
 
-    // render the review page
+    /**
+     * This method responsible for rendering the review page.
+     * Get the Order from session, then put the into params HashMap.
+     * After that send it to the client.
+     *
+     * @param req Request from client
+     * @param res Response to client
+     * @return the review page template
+     */
     public static ModelAndView renderReview(Request req, Response res) {
-        // if the user is new and visit this page first, then create her/his own session, then send the home page
-        if (req.session().isNew()){
-            Order orderDataStore = new Order();
-            req.session().attribute("order", orderDataStore);
-            res.redirect("/");
-        }
-        // get user's session
-        Order orderDataStore = req.session().attribute("order");
-        float price = orderDataStore.getAllPrice();
-        // create the params HashMap, then fill it the necessary data, after that, send the HashMap to tha client
-        Map params = new HashMap<>();
+        Order orderDataStore = getOrderBySession(req);
+        Map<String, Object> params = new HashMap<>();
         params.put("order", orderDataStore.getList());
-        params.put("price", price);
+        params.put("price", orderDataStore.getAllPrice());
         return new ModelAndView(params, "product/review");
     }
 
-    // if the user edit the item quantity on the review site, then this method process that
+    /**
+     * When the user editing an item in cart (on review page), then this method responsible for modifying.
+     * Create an ArrayList, then get and process the data from the client and add to it. Save the edited Order
+     * data and save in session. Catch the IllegalArgumentException, what thrown, when the client send not valid data.
+     *
+     * @see Order#editItem(List) method, if you need more info about not valid data.
+     * @param req Request from client
+     * @param res Response to client
+     * @return null
+     */
     public static String editProducts(Request req, Response res) {
-        // get user's session
-        Order orderDataStore = req.session().attribute("order");
-        // create an ArrayList, then get data from the client and add to it
-        // (the received data is a string, what split three parts, before add them to the List)
         List<String> editAttr = new ArrayList<>(Arrays.asList(req.params(":lineItem").split("_")));
         try {
-            // run the editItem method and put the new Order's object in the session
-            req.session().attribute("order", orderDataStore.editItem(editAttr));
+            req.session().attribute("order", getOrderBySession(req).editItem(editAttr));
         }
-        // (if the client send an invalid value in editAttr List, then catch the exception)
+        //TODO: create a unique exception for illegal editAttr arguments (?)
         catch (IllegalArgumentException e) {
             e.printStackTrace();
         }
@@ -125,21 +133,35 @@ public class ProductController {
         return null;
     }
 
-    // render the payment page
+    /**
+     * This method responsible for rendering the payment page.
+     * Get the users session, then create a params HashMap,
+     * after that put the relevant data into it.
+     *
+     * @param req Request from client
+     * @param res Response to client
+     * @return the payment page template
+     */
     public static ModelAndView renderPayment(Request req, Response res) {
-        // if the user is new and visit this page first, then create her/his own session, then send the home page
-        if (req.session().isNew()){
+        Order orderDataStore = getOrderBySession(req);
+        Map<String, Object> params = new HashMap<>();
+        params.put("order", orderDataStore.getList());
+        params.put("price", orderDataStore.getAllPrice());
+        return new ModelAndView(params, "product/payment");
+    }
+
+    /**
+     * Check the users session. If new, then create a new Order for them.
+     * Anyway get the object, what store in session.
+     *
+     * @param req Request from client
+     * @return user Order form session
+     */
+    private static Order getOrderBySession(Request req) {
+        if (req.session().isNew()) {
             Order orderDataStore = new Order();
             req.session().attribute("order", orderDataStore);
-            res.redirect("/");
         }
-        // get user's session
-        Order orderDataStore = req.session().attribute("order");
-        float price = orderDataStore.getAllPrice();
-        // create the params HashMap, then fill it the necessary data, after that, send the HashMap to tha client
-        Map params = new HashMap<>();
-        params.put("order", orderDataStore.getList());
-        params.put("price", price);
-        return new ModelAndView(params, "product/payment");
+        return req.session().attribute("order");
     }
 }

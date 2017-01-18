@@ -1,3 +1,5 @@
+package com.codecool.shop;
+
 import com.codecool.shop.controller.APIController;
 import com.codecool.shop.controller.CustomerController;
 import com.codecool.shop.controller.ProductController;
