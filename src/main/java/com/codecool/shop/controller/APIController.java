@@ -1,6 +1,9 @@
 package com.codecool.shop.controller;
 
 
+import com.codecool.shop.model.Customer;
+import com.codecool.shop.model.EmailType;
+import com.codecool.shop.model.MailMan;
 import com.codecool.shop.model.Order;
 import spark.ModelAndView;
 import spark.Request;
@@ -28,6 +31,12 @@ public class APIController {
         params.put("order", ORDER);
         params.put("cost", DeliveryCostController.calcDeliveryCost(req, res));
         params.put("time", DeliveryTimeController.getTimeInMinute(calcDeliveryTime(req, res)));
+
+
+        Customer customer = new Customer(
+                req.queryParams("username"), req.queryParams("email"), null, req.queryParams("password"));
+        MailMan email = new MailMan(EmailType.SUMMERY_MESSAGE, customer.getCustomerName(), DeliveryCostController.calcDeliveryCost(req, res), DeliveryTimeController.getTimeInMinute(calcDeliveryTime(req, res)), PRICE);
+        email.sendSummary(customer.getEmail());
         return new ModelAndView(params, "product/summary");
     }
 }

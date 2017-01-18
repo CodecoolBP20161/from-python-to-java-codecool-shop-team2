@@ -26,7 +26,7 @@ public class MailMan {
         }
     }
 
-    public MailMan(EmailType type,String name, double cost, String time, float totalPrice ) {
+    public MailMan(EmailType type, String name, double cost, String time, float totalPrice ) {
         if (session == null) {
             init();
             this.type = type;
@@ -34,6 +34,7 @@ public class MailMan {
             this.cost = cost;
             this.time = time;
             this.totalPrice = totalPrice;
+            this.setSummeryEmailBody(name, cost, time, totalPrice);
         }
     }
 
@@ -94,62 +95,65 @@ public class MailMan {
         return WELCOME_MESSAGE;
     }
 
-    private String SUMMARY_MESSAGE = "<!DOCTYPE html>\n" +
-            "<html>\n" +
-            "<head>\n" +
-            "<title>Summary</title>\n" +
-            "<meta charset=\"utf-8\">\n" +
-            "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n" +
-            "<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"/>\n" +
-            "\n" +
-            "</head>\n" +
-            "    <body style=\"margin: 0 !important; padding: 0 !important;\">\n" +
-            "        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\n" +
-            "            <tr>\n" +
-            "                <td>\n" +
-            "                    <table align=\"center\" cellpadding=\"0\" cellspacing=\"0\" width=\"600\" style=\"border-collapse: collapse; border: 1px solid #cccccc; font-size: 15; font-family: Helvetica;\">\n" +
-            "                        <tr>\n" +
-            "                            <td align=\"center\">\n" +
-            "                                <img src=\"https://c3.staticflickr.com/1/131/31141177970_816abda6e8_b.jpg\" alt=\"Codecool Shop LOGO\" style=\"display: block\" width=\"100%\"/>\n" +
-            "                            </td>\n" +
-            "                        </tr>\n" +
-            "                        <tr>\n" +
-            "                        </tr>\n" +
-            "                        <tr>\n" +
-            "                        </tr>\n" +
-            "                        <tr>\n" +
-            "                            <td style=\"font-size: 60px; text-align: center; color: #595959; padding: 0px 0px 40px 0px\">\n" +
-            "                                <strong>Codecool Shop<br></strong>\n" +
-            "                            </td>\n" +
-            "                        </tr>\n" +
-            "                        <tr>\n" +
-            "                            <td style=\"font-size: 35px; padding: 0px 36px 40px 36px;\">\n" +
-            "                                Hello " + this.name + "\n" +
-            "                            </td>\n" +
-            "                        </tr>\n" +
-            "                        <tr>\n" +
-            "                            <td style=\"font-size: 18px; padding: 0px 36px 40px 36px; line-height: 2;\">\n" +
-            "                                Thank you for ordering from us! Here are your order details:\n" +
-            "                                " + "delivery cost: " + this.cost+ "\n" +
-            "                                " + "delivery time: "+ this.time + "\n" +
-            "                                " + "total price:  "+ this.totalPrice + "\n" +
+    private String setSummeryEmailBody(String name, double cost, String time, float totalPrice){
 
-            "                            </td>\n" +
-            "                        </tr>\n" +
-            "                        <tr>\n" +
-            "                            <td style=\"padding: 0px 30px 15px 36px\">\n" +
-            "                                <strong>Members of JavaBeans</strong>\n" +
-            "                            </td>\n" +
-            "                        </tr>         \n" +
-            "                    </table>\n" +
-            "                </td>\n" +
-            "            </tr>        \n" +
-            "        </table>\n" +
-            "    </body>\n" +
-            "</html>";
+        String SUMMARY_MESSAGE = "<!DOCTYPE html>\n" +
+                "<html>\n" +
+                "<head>\n" +
+                "<title>Summary</title>\n" +
+                "<meta charset=\"utf-8\">\n" +
+                "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n" +
+                "<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"/>\n" +
+                "\n" +
+                "</head>\n" +
+                "    <body style=\"margin: 0 !important; padding: 0 !important;\">\n" +
+                "        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\n" +
+                "            <tr>\n" +
+                "                <td>\n" +
+                "                    <table align=\"center\" cellpadding=\"0\" cellspacing=\"0\" width=\"600\" style=\"border-collapse: collapse; border: 1px solid #cccccc; font-size: 15; font-family: Helvetica;\">\n" +
+                "                        <tr>\n" +
+                "                            <td align=\"center\">\n" +
+                "                                <img src=\"https://c3.staticflickr.com/1/131/31141177970_816abda6e8_b.jpg\" alt=\"Codecool Shop LOGO\" style=\"display: block\" width=\"100%\"/>\n" +
+                "                            </td>\n" +
+                "                        </tr>\n" +
+                "                        <tr>\n" +
+                "                        </tr>\n" +
+                "                        <tr>\n" +
+                "                        </tr>\n" +
+                "                        <tr>\n" +
+                "                            <td style=\"font-size: 60px; text-align: center; color: #595959; padding: 0px 0px 40px 0px\">\n" +
+                "                                <strong>Codecool Shop<br></strong>\n" +
+                "                            </td>\n" +
+                "                        </tr>\n" +
+                "                        <tr>\n" +
+                "                            <td style=\"font-size: 35px; padding: 0px 36px 40px 36px;\">\n" +
+                "                                Hello " + name + "\n" +
+                "                            </td>\n" +
+                "                        </tr>\n" +
+                "                        <tr>\n" +
+                "                            <td style=\"font-size: 18px; padding: 0px 36px 40px 36px; line-height: 2;\">\n" +
+                "                                Thank you for ordering from us! Here are your order details:\n" +
+                "                                " + "delivery cost: " + cost+ "\n" +
+                "                                " + "delivery time: "+ time + "\n" +
+                "                                " + "total price:  "+ totalPrice + "\n" +
 
+                "                            </td>\n" +
+                "                        </tr>\n" +
+                "                        <tr>\n" +
+                "                            <td style=\"padding: 0px 30px 15px 36px\">\n" +
+                "                                <strong>Members of JavaBeans</strong>\n" +
+                "                            </td>\n" +
+                "                        </tr>         \n" +
+                "                    </table>\n" +
+                "                </td>\n" +
+                "            </tr>        \n" +
+                "        </table>\n" +
+                "    </body>\n" +
+                "</html>";
 
+        return SUMMARY_MESSAGE;
 
+    }
 
 
     public void init() {
@@ -190,6 +194,36 @@ public class MailMan {
 
             message.addRecipients(Message.RecipientType.TO, InternetAddress.parse(customerAddress));
             message.setSubject("Sikeres regisztráció!:)");
+            message.setContent(messageText, "text/html");
+
+            Transport.send(message);
+
+            System.out.println("Email sent: [OK]");
+
+        } catch (MessagingException e) {
+            e.printStackTrace();
+            System.out.println("Email sent:[NOT]");
+        }
+    }
+
+    public void sendSummary(String customerAddress) {
+        if (session == null) {
+            System.exit(0);
+        }
+        try {
+            String messageText = setSummeryEmailBody(this.name, this.cost, this.time, this.totalPrice);
+
+            Message message = new MimeMessage(session);
+            try {
+                message.setFrom(new InternetAddress("no-reply", "No Reply"));
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+            message.setReplyTo(InternetAddress.parse("no-reply"));
+
+
+            message.addRecipients(Message.RecipientType.TO, InternetAddress.parse(customerAddress));
+            message.setSubject("confirmation");
             message.setContent(messageText, "text/html");
 
             Transport.send(message);
