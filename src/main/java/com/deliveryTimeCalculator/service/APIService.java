@@ -13,7 +13,7 @@ import java.net.URISyntaxException;
 public class APIService {
 
     private static final String API_URL = "https://maps.googleapis.com/maps/api/distancematrix/json?";
-    private static final String API_KEY = "AIzaSyBCZljDDXlcKS3WICsg0hfndUNF2oLevRY";
+    private static final String API_KEY = "AIzaSyD9emeRrTuCeAOMtvFKSZOmnal0K1jgt2g";
 
     public APIService() {}
 

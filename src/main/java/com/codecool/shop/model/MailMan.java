@@ -38,6 +38,11 @@ public class MailMan {
         }
     }
 
+    public double calcTotal(float totalPrice, double cost) {
+        double totalOrderPrice = totalPrice;
+        return totalOrderPrice + cost;
+    }
+
     private String setEmailBody(String name){
 
         String WELCOME_MESSAGE = "<!DOCTYPE html>\n" +
@@ -132,18 +137,36 @@ public class MailMan {
                 "                        </tr>\n" +
                 "                        <tr>\n" +
                 "                            <td style=\"font-size: 18px; padding: 0px 36px 40px 36px; line-height: 2;\">\n" +
-                "                                Thank you for ordering from us! Here are your order details:\n" +
-                "                                " + "delivery cost: " + cost+ "\n" +
-                "                                " + "delivery time: "+ time + "\n" +
-                "                                " + "total price:  "+ totalPrice + "\n" +
-
+                "                                Thank you for ordering from us! Our drone is on the way with your beans." +
+                "                                Please check the delivery time, and make sure to receive the order!" +
+                "                                Here are your order details:\n"+
+                "                            </td>\n" +
+                "                        </tr>\n" +
+                "                        </tr>\n" +
+                "                        <tr>" +
+                "                           <td style=\"font-size: 18px; padding: 0px 36px 40px 36px; line-height: 2;\">\n" +
+                "                               <strong>Delivery time:</strong> " + time + "\n" +
+                "                            </td>\n" +
+                "                        </tr>\n" +
+                "                        <tr>" +
+                "                           <td style=\"font-size: 18px; padding: 0px 36px 40px 36px; line-height: 2;\">\n" +
+                "                                <strong>Delivery cost:</strong> " + cost + "\n" +
+                "                            </td>\n" +
+                "                        <tr>" +
+                "                           <td style=\"font-size: 18px; padding: 0px 36px 40px 36px; line-height: 2;\">\n" +
+                "                                <strong>Order cost:</strong> " + totalPrice + "$" + "\n" +
+                "                            </td>\n" +
+                "                        </tr>\n" +
+                "                        <tr>" +
+                "                           <td style=\"font-size: 18px; padding: 0px 36px 40px 36px; line-height: 2;\">\n" +
+                "                                <strong>Total cost:</strong> " + calcTotal(totalPrice, cost) + "$" + "\n" +
                 "                            </td>\n" +
                 "                        </tr>\n" +
                 "                        <tr>\n" +
                 "                            <td style=\"padding: 0px 30px 15px 36px\">\n" +
                 "                                <strong>Members of JavaBeans</strong>\n" +
                 "                            </td>\n" +
-                "                        </tr>         \n" +
+                "                        </tr>\n" +
                 "                    </table>\n" +
                 "                </td>\n" +
                 "            </tr>        \n" +
