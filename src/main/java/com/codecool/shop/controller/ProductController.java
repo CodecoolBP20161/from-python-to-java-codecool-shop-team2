@@ -125,7 +125,7 @@ public class ProductController {
         return null;
     }
 
-    // render the payment page
+    /* render the payment page
     public static ModelAndView renderPayment(Request req, Response res) {
         // if the user is new and visit this page first, then create her/his own session, then send the home page
         if (req.session().isNew()){
@@ -141,5 +141,5 @@ public class ProductController {
         params.put("order", orderDataStore.getList());
         params.put("price", price);
         return new ModelAndView(params, "product/payment");
-    }
+    }*/
 }
