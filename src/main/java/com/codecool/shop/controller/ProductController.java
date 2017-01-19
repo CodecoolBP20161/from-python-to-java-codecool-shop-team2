@@ -96,6 +96,7 @@ public class ProductController {
     /**
      * This method responsible for rendering the review page.
      * Get the Order from session, then put the into params HashMap.
+     * (If the cart is empty, the review page will be unavailable.)
      * After that send it to the client.
      *
      * @param req Request from client
@@ -104,6 +105,9 @@ public class ProductController {
      */
     public static ModelAndView renderReview(Request req, Response res) {
         Order orderDataStore = getOrderBySession(req);
+        if (orderDataStore.getList().size()==0) {
+            res.redirect("/");
+        }
         Map<String, Object> params = new HashMap<>();
         params.put("order", orderDataStore.getList());
         params.put("price", orderDataStore.getAllPrice());
