@@ -12,13 +12,13 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.concurrent.TimeUnit;
 
-public class DeliveryTimeController {
+class DeliveryTimeController {
 
     private static final String API_URL = "http://0.0.0.0:60003/api/timecalculator/";
     private static final String ORIGIN = "Budapest";
 
 
-    public static String calcDeliveryTime(Request req, Response res){
+    static String calcDeliveryTime(Request req, Response res){
         String time = null;
         try {
             JSONObject obj = getTimeJson(ORIGIN, String.valueOf(req.queryParams("shippingcity")));
@@ -30,13 +30,13 @@ public class DeliveryTimeController {
         return time;
     }
 
-    public static String getTimeInMinute(String timeMs){
+    static String getTimeInMinute(String timeMs){
         Long ms = Long.valueOf(timeMs);
         String timeInHourMinute = String.format("%02d day %02d hours",TimeUnit.MILLISECONDS.toDays(ms), TimeUnit.MILLISECONDS.toHours(ms));
         return timeInHourMinute;
     }
 
-    public static JSONObject getTimeJson(String origin, String target) throws URISyntaxException, IOException, JSONException {
+    private static JSONObject getTimeJson(String origin, String target) throws URISyntaxException, IOException, JSONException {
 
         URIBuilder builder = new URIBuilder(API_URL + origin + "/" + target);
 

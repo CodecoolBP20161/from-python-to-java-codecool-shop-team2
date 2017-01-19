@@ -54,7 +54,6 @@ public class CustomerController {
             res.redirect("/registration");
             return null;
         }
-
         customerDataStore.add(customer);
         res.redirect("/");
         email.sendWelcome(customer.getEmail());
@@ -82,7 +81,6 @@ public class CustomerController {
             res.redirect("/");
             return null;
         }
-
         for(Customer user : customerDataStore.getAll()) {
             if (user.getCustomerName().equals(req.queryParams("username"))) {
                 Boolean isVerified = user.verifyPassword(req.queryParams("username"), req.queryParams("password"));
@@ -121,7 +119,6 @@ public class CustomerController {
      * @param res Response to client
      * @return null
      */
-
     public static ModelAndView collectShippingBilling(Request req, Response res) throws IOException, URISyntaxException {
         ArrayList<String> shippingList = new ArrayList<>();
         String doYouSave = req.queryParams("save");
@@ -145,6 +142,15 @@ public class CustomerController {
         return APIController.renderDeliverySummary(req, res);
     }
 
+    /**
+     * Collect customers data from session, what is necessary for the email.
+     * Then send it with a information about the order and shipping.
+     * Finally, navigating the index page.
+     *
+     * @param req Request from client
+     * @param res Response to client
+     * @return status message
+     */
     public static String sendCheckoutEmail(Request req, Response res) {
         Order order = req.session().attribute("order");
         String name = req.session().attribute("name");
@@ -154,6 +160,8 @@ public class CustomerController {
         Float allPrice = order.getAllPrice();
         MailMan mail = new MailMan(EmailType.SUMMERY_MESSAGE, name, cost, time, allPrice);
         mail.sendSummary(email);
+        Order orderDataStore = new Order();
+        req.session().attribute("order", orderDataStore);
         res.redirect("/");
         return "Checkout email was sent";
     }

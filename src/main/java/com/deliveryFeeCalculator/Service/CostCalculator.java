@@ -1,6 +1,6 @@
-package com.feecalculator.Service;
+package com.deliveryFeeCalculator.Service;
 
-import com.feecalculator.Controller.GoogleApiController;
+import com.deliveryFeeCalculator.Controller.GoogleApiController;
 
 /**
  * Created by balint on 1/3/17.

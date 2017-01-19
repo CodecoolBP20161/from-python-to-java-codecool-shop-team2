@@ -1,14 +1,10 @@
 package com.codecool.shop.controller;
 
-
-import com.codecool.shop.model.Customer;
-import com.codecool.shop.model.EmailType;
-import com.codecool.shop.model.MailMan;
+import com.codecool.shop.model.LineItem;
 import com.codecool.shop.model.Order;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
-
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.HashMap;
@@ -17,16 +13,15 @@ import java.util.Map;
 
 import static com.codecool.shop.controller.DeliveryTimeController.calcDeliveryTime;
 
-public class APIController {
+class APIController {
 
 
-    public static ModelAndView renderDeliverySummary(Request req, Response res) throws IOException, URISyntaxException {
-
+    static ModelAndView renderDeliverySummary(Request req, Response res) throws IOException, URISyntaxException {
 
         Order orderDataStore = req.session().attribute("order");
         float PRICE = orderDataStore.getAllPrice();
-        List ORDER = orderDataStore.getList();
-        Map params = new HashMap<>();
+        List<LineItem> ORDER = orderDataStore.getList();
+        Map<String, Object> params = new HashMap<>();
         Double cost = DeliveryCostController.calcDeliveryCost(req, res);
         String time = DeliveryTimeController.getTimeInMinute(calcDeliveryTime(req, res));
 

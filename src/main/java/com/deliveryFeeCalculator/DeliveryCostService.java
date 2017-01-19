@@ -1,15 +1,12 @@
-package com.feecalculator;
+package com.deliveryFeeCalculator;
 
-import com.feecalculator.Controller.CostCalculatorController;
+import com.deliveryFeeCalculator.Controller.CostCalculatorController;
 import spark.Request;
 import spark.Response;
 import spark.Route;
 
 import static spark.Spark.*;
 
-/**
- * Created by adambodnar on 2017. 01. 16..
- */
 public class DeliveryCostService {
     public static void main(String[] args) {
 
