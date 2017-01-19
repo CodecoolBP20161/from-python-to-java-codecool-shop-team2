@@ -27,16 +27,17 @@ public class APIController {
         float PRICE = orderDataStore.getAllPrice();
         List ORDER = orderDataStore.getList();
         Map params = new HashMap<>();
+        Double cost = DeliveryCostController.calcDeliveryCost(req, res);
+        String time = DeliveryTimeController.getTimeInMinute(calcDeliveryTime(req, res));
+
         params.put("price", PRICE);
         params.put("order", ORDER);
-        params.put("cost", DeliveryCostController.calcDeliveryCost(req, res));
-        params.put("time", DeliveryTimeController.getTimeInMinute(calcDeliveryTime(req, res)));
+        params.put("cost", cost);
+        params.put("time", time);
 
+        req.session().attribute("cost", cost);
+        req.session().attribute("time", time);
 
-        Customer customer = new Customer(
-                req.queryParams("username"), req.queryParams("email"), null, req.queryParams("password"));
-        MailMan email = new MailMan(EmailType.SUMMERY_MESSAGE, customer.getCustomerName(), DeliveryCostController.calcDeliveryCost(req, res), DeliveryTimeController.getTimeInMinute(calcDeliveryTime(req, res)), PRICE);
-        email.sendSummary(customer.getEmail());
         return new ModelAndView(params, "product/summary");
     }
 }

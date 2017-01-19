@@ -26,6 +26,7 @@ public class Main {
         post("/edit/:lineItem", ProductController::editProducts);
         post("/registration", CustomerController::addCustomer);
         post("/", CustomerController::checkCustomer);
+        post("/summary/checkout", CustomerController::sendCheckoutEmail);
 
     }
 }

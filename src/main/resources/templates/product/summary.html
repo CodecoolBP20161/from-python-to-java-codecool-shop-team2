@@ -82,6 +82,26 @@
         <p class="inline" id ="price">COST: <strong th:text="${cost}+' $'"></strong></p>
         <p class="inline" id ="price">TIME: <strong th:text="${time}+' $'"></strong></p>
     </div>
+    <div>
+        <form action="/summary/checkout" method="post">
+            <button class="btn-continue pull-right" style="vertical-align:middle" data-toggle="modal" data-target="#myModal"><span>Continue </span></button>
+        </form>
+        <!--<div class="modal fade" id="myModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title">Checkout</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p><strong>Development will be continued, thank you for your attention!</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+    </div>
 </div>
 
 <div class="footer navbar-fixed-bottom text-center">

@@ -15,6 +15,8 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static com.codecool.shop.model.EmailType.SUMMERY_MESSAGE;
+
 public class CustomerController {
 
     public static ModelAndView renderRegistration(Request req, Response res){
@@ -101,9 +103,25 @@ public class CustomerController {
             shippingList.add(String.valueOf(req.queryParams("billingaddress")));
 
             // at more info look at the Customer model
+
             Customer.updateShippingBilling(shippingList);
         }
 
+        req.session().attribute("name", req.queryParams("name"));
+        req.session().attribute("email", req.queryParams("email"));
         return APIController.renderDeliverySummary(req, res);
+    }
+
+    public static String sendCheckoutEmail(Request req, Response res) {
+        Order order = req.session().attribute("order");
+        String name = req.session().attribute("name");
+        Double cost = req.session().attribute("cost");
+        String time = req.session().attribute("time");
+        String email = req.session().attribute("email");
+        Float allPrice = order.getAllPrice();
+        MailMan mail = new MailMan(EmailType.SUMMERY_MESSAGE, name, cost, time, allPrice);
+        mail.sendSummary(email);
+        res.redirect("/");
+        return "Checkout email was sent";
     }
 }
