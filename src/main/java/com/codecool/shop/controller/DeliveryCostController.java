@@ -24,8 +24,15 @@ class DeliveryCostController {
             e.printStackTrace();
         }
 
-        assert costFee != null;
-        return Math.ceil(Double.parseDouble(costFee));
+        try {
+            assert costFee != null;
+            return Math.ceil(Double.parseDouble(costFee));
+        }
+        catch (NumberFormatException e) {
+            e.printStackTrace();
+            res.redirect("/review");
+            return 0;
+        }
     }
 
     private static JSONObject getFeeJson(String webshop, String target) throws URISyntaxException, IOException {
