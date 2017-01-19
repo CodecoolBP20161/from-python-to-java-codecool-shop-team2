@@ -1,6 +1,5 @@
 package com.codecool.shop;
 
-import com.codecool.shop.controller.APIController;
 import com.codecool.shop.controller.CustomerController;
 import com.codecool.shop.controller.ProductController;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
@@ -15,17 +14,16 @@ public class Main {
      * - WORKING ON: http://0.0.0.0:8888
      *
      * Routes Mapping:
-     * - GET "/": Rendering all products in webshop
-     * - GET "/:name/:id" Get the product name and id for rendering
-     * - GET "/payment": Rendering the payment site
-     * - GET "/registration": Rendering the registration interface
-     * - GET "/review": Rendering the review page, where the user can see her/his cart
-     * - GET "/summary": Rendering the summary page, where the user can confirm her/his order
-     * - POST "/": Check the users status
-     * - POST "/add/:id": Responsible for adding an item to cart
-     * - POST "/edit/:lineItem": Responsible for editing an item quantity in cart
-     * - POST "/registration": Send the registration data to the server
-     * - POST "/registration/address": Send the shipping, billing data to the serve
+     * - GET "/": Rendering all products in webshop.
+     * - GET "/:name/:id" Get the product name and id for rendering.
+     * - GET "/registration": Rendering the registration interface.
+     * - GET "/review": Rendering the review page, where the user can see her/his cart.
+     *
+     * - POST "/": Check the users status.
+     * - POST "/add/:id": Responsible for adding an item to cart.
+     * - POST "/edit/:lineItem": Responsible for editing an item quantity in cart.
+     * - POST "/summary": Collect the shipping and billing data, and send to APIController.
+     * - POST "/summary/checkout": Get customers data from session, then send an email about details.
      */
     public static void main(String[] args) {
 
@@ -37,6 +35,7 @@ public class Main {
         get("/:name/:id", ProductController::renderProducts, new ThymeleafTemplateEngine());
         get("/registration", CustomerController::renderRegistration, new ThymeleafTemplateEngine());
         get("/review", ProductController::renderReview, new ThymeleafTemplateEngine());
+
         post("/", CustomerController::checkCustomer);
         post("/add/:id", ProductController::addProducts);
         post("/edit/:lineItem", ProductController::editProducts);

@@ -126,7 +126,6 @@ public class ProductController {
         try {
             req.session().attribute("order", getOrderBySession(req).editItem(editAttr));
         }
-        //TODO: create a unique exception for illegal editAttr arguments (?)
         catch (IllegalArgumentException e) {
             e.printStackTrace();
         }
