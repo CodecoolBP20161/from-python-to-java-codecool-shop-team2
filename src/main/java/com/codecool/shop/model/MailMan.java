@@ -139,19 +139,19 @@ public class MailMan {
                 "                            <td style=\"font-size: 18px; padding: 0px 36px 40px 36px; line-height: 2;\">\n" +
                 "                                Thank you for ordering from us! Our drone is on the way with your beans." +
                 "                                Please check the delivery time, and make sure to receive the order!" +
-                "                                Here are your order details:\n"+
+                "                                Here are your order details:"+
                 "                            </td>\n" +
-                "                        </tr>\n" +
                 "                        </tr>\n" +
                 "                        <tr>" +
                 "                           <td style=\"font-size: 18px; padding: 0px 36px 40px 36px; line-height: 2;\">\n" +
-                "                               <strong>Delivery time:</strong> " + time + "\n" +
+                "                               <strong>Delivery time:</strong> " + time  +
                 "                            </td>\n" +
                 "                        </tr>\n" +
                 "                        <tr>" +
                 "                           <td style=\"font-size: 18px; padding: 0px 36px 40px 36px; line-height: 2;\">\n" +
                 "                                <strong>Delivery cost:</strong> " + cost + "\n" +
                 "                            </td>\n" +
+                "                        </tr>\n" +
                 "                        <tr>" +
                 "                           <td style=\"font-size: 18px; padding: 0px 36px 40px 36px; line-height: 2;\">\n" +
                 "                                <strong>Order cost:</strong> " + totalPrice + "$" + "\n" +
