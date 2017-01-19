@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 public class DeliveryTimeController {
 
     private static final String API_URL = "http://0.0.0.0:60003/api/timecalculator/";
-    private static final String ORIGIN = "Amterdam";
+    private static final String ORIGIN = "Budapest";
 
 
     public static String calcDeliveryTime(Request req, Response res){
@@ -33,7 +33,6 @@ public class DeliveryTimeController {
     public static String getTimeInMinute(String timeMs){
         Long ms = Long.valueOf(timeMs);
         String timeInHourMinute = String.format("%02d day %02d hours",TimeUnit.MILLISECONDS.toDays(ms), TimeUnit.MILLISECONDS.toHours(ms));
-        System.out.println(timeInHourMinute);
         return timeInHourMinute;
     }
 

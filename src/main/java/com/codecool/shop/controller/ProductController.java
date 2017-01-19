@@ -50,23 +50,20 @@ public class ProductController {
         String stringValueFromHtml = req.params(":id");
         String stringValueName = req.params(":name");
 
-        if (stringValueFromHtml != null){
-           valueFromHtml = Integer.parseInt(stringValueFromHtml);
-        }
-        else {
+        if (stringValueFromHtml != null) {
+            valueFromHtml = Integer.parseInt(stringValueFromHtml);
+        } else {
             valueFromHtml = 0;
         }
 
         if (valueFromHtml == 0) {
             params.put("categories", productCategoryDataStore.getAll());
             params.put("products", productDataStore.getAll());
-        }
-        else {
-            if (stringValueName.equals("category") ) {
+        } else {
+            if (stringValueName.equals("category")) {
                 params.put("selected_category", productCategoryDataStore.find(valueFromHtml));
                 params.put("products", productDataStore.getBy(productCategoryDataStore.find(valueFromHtml)));
-            }
-            else {
+            } else {
                 params.put("selected_category", supplierDataStore.find(valueFromHtml));
                 params.put("products", productDataStore.getBy(supplierDataStore.find(valueFromHtml)));
             }
@@ -105,7 +102,7 @@ public class ProductController {
      */
     public static ModelAndView renderReview(Request req, Response res) {
         Order orderDataStore = getOrderBySession(req);
-        if (orderDataStore.getList().size()==0) {
+        if (orderDataStore.getList().size() == 0) {
             res.redirect("/");
         }
         Map<String, Object> params = new HashMap<>();
@@ -119,10 +116,10 @@ public class ProductController {
      * Create an ArrayList, then get and process the data from the client and add to it. Save the edited Order
      * data and save in session. Catch the IllegalArgumentException, what thrown, when the client send not valid data.
      *
-     * @see Order#editItem(List) method, if you need more info about not valid data.
      * @param req Request from client
      * @param res Response to client
      * @return null
+     * @see Order#editItem(List) method, if you need more info about not valid data.
      */
     public static String editProducts(Request req, Response res) {
         List<String> editAttr = new ArrayList<>(Arrays.asList(req.params(":lineItem").split("_")));
@@ -135,23 +132,6 @@ public class ProductController {
         }
         res.redirect("/review");
         return null;
-    }
-
-    /**
-     * This method responsible for rendering the payment page.
-     * Get the users session, then create a params HashMap,
-     * after that put the relevant data into it.
-     *
-     * @param req Request from client
-     * @param res Response to client
-     * @return the payment page template
-     */
-    public static ModelAndView renderPayment(Request req, Response res) {
-        Order orderDataStore = getOrderBySession(req);
-        Map<String, Object> params = new HashMap<>();
-        params.put("order", orderDataStore.getList());
-        params.put("price", orderDataStore.getAllPrice());
-        return new ModelAndView(params, "product/payment");
     }
 
     /**

@@ -4,12 +4,15 @@ import com.codecool.shop.Main;
 import com.codecool.shop.dao.CustomerDao;
 import com.codecool.shop.dao.implementation.CustomerDaoJdbc;
 import com.codecool.shop.model.Customer;
+import com.codecool.shop.model.EmailType;
 import com.codecool.shop.model.MailMan;
 import com.codecool.shop.model.Order;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -44,7 +47,7 @@ public class CustomerController {
     public static String addCustomer(Request req, Response res) {
         Customer customer = new Customer(
                 req.queryParams("username"), req.queryParams("email"), null, req.queryParams("password"));
-
+        MailMan email = new MailMan(EmailType.WELCOME_MESSAGE, req.queryParams("username"));
         String customerFree = customerDataStore.verifyCustomer(customer);
 
         if (!customerFree.equals("OK")) {
@@ -54,7 +57,6 @@ public class CustomerController {
 
         customerDataStore.add(customer);
         res.redirect("/");
-        MailMan email = new MailMan();
         email.sendWelcome(customer.getEmail());
         return null;
     }
@@ -119,7 +121,8 @@ public class CustomerController {
      * @param res Response to client
      * @return null
      */
-    public static String collectShippingBilling(Request req, Response res) {
+
+    public static ModelAndView collectShippingBilling(Request req, Response res) throws IOException, URISyntaxException {
         ArrayList<String> shippingList = new ArrayList<>();
         String doYouSave = req.queryParams("save");
 
@@ -136,8 +139,22 @@ public class CustomerController {
 
             Customer.updateShippingBilling(shippingList);
         }
-        res.redirect("/summary");
-        return null;
 
+        req.session().attribute("name", req.queryParams("name"));
+        req.session().attribute("email", req.queryParams("email"));
+        return APIController.renderDeliverySummary(req, res);
+    }
+
+    public static String sendCheckoutEmail(Request req, Response res) {
+        Order order = req.session().attribute("order");
+        String name = req.session().attribute("name");
+        Double cost = req.session().attribute("cost");
+        String time = req.session().attribute("time");
+        String email = req.session().attribute("email");
+        Float allPrice = order.getAllPrice();
+        MailMan mail = new MailMan(EmailType.SUMMERY_MESSAGE, name, cost, time, allPrice);
+        mail.sendSummary(email);
+        res.redirect("/");
+        return "Checkout email was sent";
     }
 }

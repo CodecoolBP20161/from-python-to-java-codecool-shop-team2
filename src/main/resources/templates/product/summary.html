@@ -75,12 +75,41 @@
         </div>
     </div>
 </div>
-<div id="totalPriceDiv">
-    <!--display the total price, based on the given data from the server-->
-    <div id ="totalborder">
-        <p class="inline" id ="price">Total price: <strong th:text="${price}+' $'"></strong></p>
+<div class="container inline">
+    <div class="row">
+        <div class="container-fluid" id="totalPriceDiv">
+            <!--display the total price, based on the given data from the server-->
+            <div id ="totalborder">
+                <p class="inline" id ="price">Total price: <strong th:text="${price+cost}+' $'"></strong></p>
+            </div>
+        <div class="price details inline">
+            <p class="details inline">Delivery Cost: <p class="details inline" th:text="${cost}+' $'"></p></p><br/>
+            <p class="details inline">Delivery Time: <p class="details inline" th:text="${time}"></p></p>
+        </div>
+        </div>
+    </div>
+    <div>
+        <form action="/summary/checkout" method="post">
+            <button class="btn-continue pull-right" style="vertical-align:middle"><span>Continue </span></button>
+        </form>
+        <!--<div class="modal fade" id="myModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title">Checkout</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p><strong>Development will be continued, thank you for your attention!</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>-->
     </div>
 </div>
+
 
 <div class="footer navbar-fixed-bottom text-center">
     <p id= "navbartext">2016 | JavaBabok | All rights reserved</p>

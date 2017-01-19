@@ -26,8 +26,15 @@ label {
 
 p {
     width: auto;
-    color: #4d4b4a;
+    color: black;
     font-size: 18px;
+}
+
+.details{
+    color: black;
+    font-size: 14px;
+    left: 0;
+    right: 0;
 }
 
 .btn {
@@ -49,22 +56,30 @@ p {
 }
 
 #totalPriceDiv {
-    border-top: 1px;
     border-top-style: solid;
     border-top-color: #bab8b7;
-    position: fixed;
-    left: 0;
-    right: 0;
+
+}
+
+#info{
+    color:black;
+    left: 50%;
+    right: 50%;
+    margin: auto;
 }
 
 #totalborder {
     margin-top: 10px;
+    width: 50%;
+    float: right;
 }
 
 .inline {
     display: inline-block;
+    margin: auto;
     margin-left: 20px;
     padding-bottom: 10px;
+    float: left;
 }
 
 .pull-right {
@@ -132,6 +147,10 @@ p {
     position: relative;
 }
 
+.price{
+    margin-top: 10px;
+}
+
 #cart {
     margin-top: -50px;
 }
@@ -191,7 +210,7 @@ p.logotitle{
 }
 
 #totalborder{
-    height:50px;
+    height:70px;
     width:250px;
     border-width: 1px;
     border-color: orange;

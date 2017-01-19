@@ -35,14 +35,13 @@ public class Main {
 
         get("/", ProductController::renderProducts, new ThymeleafTemplateEngine());
         get("/:name/:id", ProductController::renderProducts, new ThymeleafTemplateEngine());
-        get("/payment", ProductController::renderPayment, new ThymeleafTemplateEngine());
         get("/registration", CustomerController::renderRegistration, new ThymeleafTemplateEngine());
         get("/review", ProductController::renderReview, new ThymeleafTemplateEngine());
-        get("/summary", APIController::renderDeliverySummary, new ThymeleafTemplateEngine());
         post("/", CustomerController::checkCustomer);
         post("/add/:id", ProductController::addProducts);
         post("/edit/:lineItem", ProductController::editProducts);
         post("/registration", CustomerController::addCustomer);
-        post("/registration/address", CustomerController::collectShippingBilling);
+        post("/summary", CustomerController::collectShippingBilling, new ThymeleafTemplateEngine());
+        post("/summary/checkout", CustomerController::sendCheckoutEmail);
     }
 }
