@@ -75,12 +75,18 @@
         </div>
     </div>
 </div>
-<div id="totalPriceDiv">
-    <!--display the total price, based on the given data from the server-->
-    <div id ="totalborder">
-        <p class="inline" id ="price">Total price: <strong th:text="${price}+' $'"></strong></p>
-        <p class="inline" id ="price">COST: <strong th:text="${cost}+' $'"></strong></p>
-        <p class="inline" id ="price">TIME: <strong th:text="${time}+' $'"></strong></p>
+<div class="container inline">
+    <div class="row">
+        <div class="container-fluid" id="totalPriceDiv">
+            <!--display the total price, based on the given data from the server-->
+            <div id ="totalborder">
+                <p class="inline" id ="price">Total price: <strong th:text="${price+cost}+' $'"></strong></p>
+            </div>
+        <div class="price details inline">
+            <p class="details inline">Delivery Cost: <p class="details inline" th:text="${cost}+' $'"></p></p><br/>
+            <p class="details inline">Delivery Time: <p class="details inline" th:text="${time}"></p></p>
+        </div>
+        </div>
     </div>
     <div>
         <form action="/summary/checkout" method="post">
@@ -103,6 +109,7 @@
         </div>-->
     </div>
 </div>
+
 
 <div class="footer navbar-fixed-bottom text-center">
     <p id= "navbartext">2016 | JavaBabok | All rights reserved</p>
