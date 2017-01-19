@@ -160,6 +160,8 @@ public class CustomerController {
         Float allPrice = order.getAllPrice();
         MailMan mail = new MailMan(EmailType.SUMMERY_MESSAGE, name, cost, time, allPrice);
         mail.sendSummary(email);
+        Order orderDataStore = new Order();
+        req.session().attribute("order", orderDataStore);
         res.redirect("/");
         return "Checkout email was sent";
     }
