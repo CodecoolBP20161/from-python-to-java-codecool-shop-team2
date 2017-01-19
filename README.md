@@ -1,8 +1,10 @@
-# Codecool Online Shop
+# Codecool Online Shop - 2.0
 
-From Python To Java, 2nd TW week project
+This shop works with other API's ([Postal fee calculator](https://github.com/CodecoolBP20161/from-python-to-java-microservices-los_patrones), [Delivery time calculator](https://github.com/CodecoolBP20161/from-python-to-java-microservices-team2)) , what you have to start locally, if you want to smoothie running this application. 
 
-# Requirements
+_(More info in Usage section)_
+
+## Requirements
 
 1. Java SDK 1.8
 2. Spark web framework
@@ -11,14 +13,14 @@ From Python To Java, 2nd TW week project
 
 _If you need more info, look at the pom.xml!_
 
+## Usage
+Run the API's: java/com...
+* ... deliveryTimeCalculator/TimeGeneratorService.java
+* ... deliveryFeeCalculator/DeliveryCostService.java
 
-# Usage
+Run the server (java/com/codecool/shop/Main.java), then visit the [Codecool webshop] (http://0.0.0.0:8888/)
 
-Run the server (Main.java), then visit the [Codecool webshop] (http://0.0.0.0:8888/)
-
-(The payment method is not available for now.)
-
-# Developers
+## Developers
 
 * Edina Berkes
 * Tamara Bólya
