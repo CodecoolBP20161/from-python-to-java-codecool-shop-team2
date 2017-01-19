@@ -1,4 +1,4 @@
-package com.feecalculator.Controller;
+package com.deliveryFeeCalculator.Controller;
 
 import com.google.gson.internal.LinkedTreeMap;
 import org.apache.http.client.utils.URIBuilder;
